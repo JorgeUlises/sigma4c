@@ -1,5 +1,5 @@
-#Parqueaderos
-Es el entorno de desarrollo para el sistema de parqueaderos.
+#Sigma4C
+Es el entorno de desarrollo para el sigma4c.
 ```bash
 #$ vagrant init centos/7
 #Para iniciar la máquina
@@ -10,5 +10,11 @@ Se ejecuta la provisión:
 $ vagrant provision
 $ vagrant reload
 $ vagrant ssh
+```
+
+¿MÁS FÁCIL?
+-----------
+```bash
+$ ./install.sh
 ```
 

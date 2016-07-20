@@ -1,5 +1,4 @@
-#!/bin/bash
-echo "Instalando Postgresql"
+o "Instalando Postgresql"
 sudo su -c "
 yum localinstall -y http://yum.postgresql.org/9.4/redhat/rhel-6-x86_64/pgdg-centos94-9.4-1.noarch.rpm
 yum install -y postgresql94-server
@@ -42,3 +41,4 @@ $ /usr/pgsql-9.4/bin/psql -p 5432
 > SELECT postgis_full_version();
 EOF
 echo "Postgis Instalado"
+
