@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/datatables" xmlns:table="urn:jsptagdir:/WEB-INF/tags/datatables" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_org_sigma_core_domain_Proyecto" items="${proyectoes}" z="Vcub28uBUqzyz9RRt8KZ8OX9FL4=">
+        <table:table data="${proyectoes}" id="l_org_sigma_core_domain_Proyecto" path="/proyectoes" z="/HUtXc7hHTWM6OpgD1ZJmbbtKQU=">
+            <table:column id="c_org_sigma_core_domain_Proyecto_empresas" property="empresas" z="HclfPY05NqVB4q6aLkHXll6F/r4="/>
+            <table:column id="c_org_sigma_core_domain_Proyecto_fuenteHidricas" property="fuenteHidricas" z="7ObsNT//2HXQN+BnN40GNz+s71Q="/>
+            <table:column id="c_org_sigma_core_domain_Proyecto_involucrados" property="involucrados" z="RAJS3uyI5vxrpnPlD5JgQFVg3r8="/>
+            <table:column id="c_org_sigma_core_domain_Proyecto_nombre" property="nombre" z="7xESpfzoqEGkXwPL34/O+8Saxeg="/>
+            <table:column id="c_org_sigma_core_domain_Proyecto_encargado" property="encargado" z="FS1hzw0C2UA/eqWT6qCl9obxiJU="/>
+        </table:table>
+    </page:list>
+</div>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/jquery/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/datatables" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_org_sigma_core_domain_User" modelAttribute="user" path="/users" render="${empty dependencies}" z="Cz0QJ8FBJhmAJdsqSF1xLgkoQxM=">
+        <field:select field="rols" id="c_org_sigma_core_domain_User_rols" itemValue="id" items="${rols}" multiple="true" path="/rols" z="vho5nrlU2cwTSFMLVSAZYw2jlaU="/>
+        <field:select field="idEmpresa" id="c_org_sigma_core_domain_User_idEmpresa" itemValue="id" items="${empresas}" path="/empresas" z="SNoxbLYCP7s9gcp6RDemymFg6MA="/>
+        <field:input field="alias" id="c_org_sigma_core_domain_User_alias" z="9M8wsoZ+KViIVtWsOJuabeme/00="/>
+        <field:input field="mail" id="c_org_sigma_core_domain_User_mail" z="y+2tULod5vPj/ncxB0odhx/KXhA="/>
+        <field:input field="nombre" id="c_org_sigma_core_domain_User_nombre" z="2yVbvU7aRkl4C7iyymrWTHdd7wA="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_org_sigma_core_domain_User" render="${not empty dependencies}" z="BSLzfm0ILorPO1yVN8il5j1C48w="/>
+</div>

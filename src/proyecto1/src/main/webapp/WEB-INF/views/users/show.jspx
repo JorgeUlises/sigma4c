@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/jquery/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/datatables" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_org_sigma_core_domain_User" object="${user}" path="/users" z="Bpmw+I5jWrkgKs1rVFIlwYo63ms=">
+        <field:display field="rols" id="s_org_sigma_core_domain_User_rols" object="${user}" z="oTjpDdLEvmywejoIHdKOp+0iyRw="/>
+        <field:display field="idEmpresa" id="s_org_sigma_core_domain_User_idEmpresa" object="${user}" z="4vmLUcdouOgKQeBvRivxeue1eJ8="/>
+        <field:display field="alias" id="s_org_sigma_core_domain_User_alias" object="${user}" z="gKntEiaGrpll7Uv1nrUCGbnufF8="/>
+        <field:display field="mail" id="s_org_sigma_core_domain_User_mail" object="${user}" z="4QSljP3CEZniXwi/rk5AgRr9AbI="/>
+        <field:display field="nombre" id="s_org_sigma_core_domain_User_nombre" object="${user}" z="6g2kpxAtijMmUjMBO/jw+28302Q="/>
+    </page:show>
+</div>

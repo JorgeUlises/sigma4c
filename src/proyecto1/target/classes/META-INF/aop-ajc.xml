@@ -1,0 +1,62 @@
+<aspectj>
+<aspects>
+<aspect name="org.sigma.core.service.FuenteHidricaService_Roo_Service"/>
+<aspect name="org.sigma.core.service.ProyectoService_Roo_Service"/>
+<aspect name="org.sigma.core.web.ParametroController_Roo_GvNIXDatatables"/>
+<aspect name="org.sigma.core.service.UserService_Roo_Service"/>
+<aspect name="org.sigma.core.domain.User_Roo_ToString"/>
+<aspect name="org.sigma.core.web.FuenteHidricaController_Roo_Controller"/>
+<aspect name="org.sigma.core.domain.Rol_Roo_DbManaged"/>
+<aspect name="org.sigma.core.service.impl.ParametroServiceImpl_Roo_Service"/>
+<aspect name="org.sigma.core.domain.Rol_Roo_Jpa_Entity"/>
+<aspect name="org.sigma.core.domain.User_Roo_DbManaged"/>
+<aspect name="org.sigma.core.domain.Muestra_Roo_Jpa_Entity"/>
+<aspect name="org.sigma.core.service.impl.RolServiceImpl_Roo_Service"/>
+<aspect name="org.sigma.core.web.EmpresaController_Roo_Controller"/>
+<aspect name="org.sigma.core.service.EmpresaService_Roo_Service"/>
+<aspect name="org.sigma.core.domain.Rol_Roo_ToString"/>
+<aspect name="org.sigma.core.service.impl.EmpresaServiceImpl_Roo_Service"/>
+<aspect name="org.sigma.core.web.ApplicationConversionServiceFactoryBean_Roo_ConversionService"/>
+<aspect name="org.sigma.core.domain.Muestra_Roo_ToString"/>
+<aspect name="org.sigma.core.domain.Proyecto_Roo_DbManaged"/>
+<aspect name="org.sigma.core.domain.User_Roo_Jpa_Entity"/>
+<aspect name="org.sigma.core.domain.Empresa_Roo_DbManaged"/>
+<aspect name="org.sigma.core.service.RolService_Roo_Service"/>
+<aspect name="org.sigma.core.repository.FuenteHidricaRepository_Roo_Jpa_Repository"/>
+<aspect name="org.sigma.core.domain.Muestra_Roo_DbManaged"/>
+<aspect name="org.sigma.core.web.UserController_Roo_GvNIXDatatables"/>
+<aspect name="org.sigma.core.service.ParametroService_Roo_Service"/>
+<aspect name="org.sigma.core.repository.MuestraRepository_Roo_Jpa_Repository"/>
+<aspect name="org.sigma.core.service.impl.FuenteHidricaServiceImpl_Roo_Service"/>
+<aspect name="org.sigma.core.domain.Proyecto_Roo_Jpa_Entity"/>
+<aspect name="org.sigma.core.repository.ProyectoRepository_Roo_Jpa_Repository"/>
+<aspect name="org.sigma.core.web.RolController_Roo_Controller"/>
+<aspect name="org.sigma.core.web.EmpresaController_Roo_GvNIXDatatables"/>
+<aspect name="org.sigma.core.web.MuestraController_Roo_GvNIXDatatables"/>
+<aspect name="org.sigma.core.service.impl.UserServiceImpl_Roo_Service"/>
+<aspect name="org.sigma.core.repository.UserRepository_Roo_Jpa_Repository"/>
+<aspect name="org.sigma.core.domain.Parametro_Roo_DbManaged"/>
+<aspect name="org.sigma.core.web.ParametroController_Roo_Controller"/>
+<aspect name="org.sigma.core.web.UserController_Roo_Controller"/>
+<aspect name="org.sigma.core.domain.FuenteHidrica_Roo_Jpa_Entity"/>
+<aspect name="org.sigma.core.repository.EmpresaRepository_Roo_Jpa_Repository"/>
+<aspect name="org.sigma.core.domain.Parametro_Roo_Jpa_Entity"/>
+<aspect name="org.sigma.core.service.impl.MuestraServiceImpl_Roo_Service"/>
+<aspect name="org.sigma.core.domain.Proyecto_Roo_ToString"/>
+<aspect name="org.sigma.core.web.ProyectoController_Roo_Controller"/>
+<aspect name="org.sigma.core.service.impl.ProyectoServiceImpl_Roo_Service"/>
+<aspect name="org.sigma.core.repository.ParametroRepository_Roo_Jpa_Repository"/>
+<aspect name="org.sigma.core.web.FuenteHidricaController_Roo_GvNIXDatatables"/>
+<aspect name="org.sigma.core.web.RolController_Roo_GvNIXDatatables"/>
+<aspect name="org.sigma.core.web.MuestraController_Roo_Controller"/>
+<aspect name="org.sigma.core.domain.Empresa_Roo_Jpa_Entity"/>
+<aspect name="org.sigma.core.domain.FuenteHidrica_Roo_DbManaged"/>
+<aspect name="org.sigma.core.domain.Parametro_Roo_ToString"/>
+<aspect name="org.sigma.core.web.ProyectoController_Roo_GvNIXDatatables"/>
+<aspect name="org.sigma.core.domain.FuenteHidrica_Roo_ToString"/>
+<aspect name="org.sigma.core.service.MuestraService_Roo_Service"/>
+<aspect name="org.sigma.core.domain.Empresa_Roo_ToString"/>
+<aspect name="org.sigma.core.repository.RolRepository_Roo_Jpa_Repository"/>
+</aspects>
+</aspectj>
+
