@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ -z "$1" ]
+then
+ mvn tomcat7:run
+else
+ mvn clean compile tomcat7:run
+fi
