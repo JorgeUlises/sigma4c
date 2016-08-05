@@ -15,6 +15,13 @@ $ vagrant ssh
 ¿MÁS FÁCIL?
 -----------
 ```bash
-$ ./install.sh
+$ ./install
+```
+
+¿Y LUEGO?
+-----------
+Después de que hayas iniciado toda la máquina, se puede ejecutar fácilmente:
+```bash
+$ ./run
 ```
 
