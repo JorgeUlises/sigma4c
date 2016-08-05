@@ -2,7 +2,7 @@
 file=sigma4c.sql
 postgreshome=/var/lib/pgsql
 
-scriptsql=src/$file
+scriptsql=$file
 sudo cp $scriptsql $postgreshome
 scriptsql=$postgreshome/$file
 sudo chown postgres:postgres $scriptsql
