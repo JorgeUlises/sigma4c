@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_org_sigma_core_domain_Empresa" modelAttribute="empresa" path="/empresas" render="${empty dependencies}" z="gMR4IdKCf9XpexJrBNHuJ14Hr6I=">
+        <field:select field="proyectoes" id="c_org_sigma_core_domain_Empresa_proyectoes" itemValue="id" items="${proyectoes}" multiple="true" path="/proyectoes" z="yxUXhfrHfL2go/DNSdIHceG4Uf8="/>
+        <field:simple field="users" id="c_org_sigma_core_domain_Empresa_users" messageCode="entity_reference_not_managed" messageCodeAttribute="User" z="0iqUd7otrGyZr8q6GNVaPHrM/Q0="/>
+        <field:input field="tipoempresa" id="c_org_sigma_core_domain_Empresa_tipoempresa" z="TwMsGUsLmUXqjQUZStU765X8LIM="/>
+        <field:input field="nombre" id="c_org_sigma_core_domain_Empresa_nombre" z="wofD+nu3aMGvpUojUSK6Omli8Uc="/>
+        <field:input field="representantelegal" id="c_org_sigma_core_domain_Empresa_representantelegal" z="GK7DegdUk76OZAzX9hCiM/w0HSw="/>
+        <field:input field="rut" id="c_org_sigma_core_domain_Empresa_rut" z="dVYzkbREmR06FT91F8gqxgGv9HM="/>
+        <field:input field="nit" id="c_org_sigma_core_domain_Empresa_nit" z="LJvrSMdpoT9Zhbtb3aHnJz4DBQo="/>
+        <field:input field="email" id="c_org_sigma_core_domain_Empresa_email" validationMessageCode="field_invalid_email" z="xwcO1fkAWeL80zIQReVE9OjnYDM="/>
+        <field:input field="ciudad" id="c_org_sigma_core_domain_Empresa_ciudad" z="Jl7yQDVEsC2YMoLRhcbj6Tarras="/>
+        <field:input field="direccion" id="c_org_sigma_core_domain_Empresa_direccion" z="ZFFleKeCWmjLyVjit3z7YUDk4tg="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_org_sigma_core_domain_Empresa" render="${not empty dependencies}" z="Fec1/I2+FCvwm/3PdSUVg7QrJbI="/>
+</div>

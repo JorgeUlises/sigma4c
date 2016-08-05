@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" id="menu" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <menu:menu id="_menu" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
+        <menu:category id="c_proyecto" z="HchEvGzVWINxicJGpvU4CxJ28iI=">
+            <menu:item id="i_proyecto_new" messageCode="global_menu_new" url="/proyectoes?form" z="k1Zj8tJvWZ+urKltNz99V/L0zqE="/>
+            <menu:item id="i_proyecto_list" messageCode="global_menu_list" url="/proyectoes?page=1&amp;size=${empty param.size ? 10 : param.size}" z="W7ujno4HwC+XWrbscz+0DcqxIJ0="/>
+        </menu:category>
+        <menu:category id="c_empresa" z="Xy2UIEQBwGL74OghlgyDNqDXG44=">
+            <menu:item id="i_empresa_new" messageCode="global_menu_new" url="/empresas?form" z="TBXez8QM+aB2tzcjHN1lQJYrewc="/>
+            <menu:item id="i_empresa_list" messageCode="global_menu_list" url="/empresas?page=1&amp;size=${empty param.size ? 10 : param.size}" z="/YQYlSdehDz3lrOGSSpWZYe++Zk="/>
+        </menu:category>
+        <menu:category id="c_parametro" z="2HnT9F++DHbfdoa1LAms1aEhQ0A=">
+            <menu:item id="i_parametro_new" messageCode="global_menu_new" url="/parametroes?form" z="zAtehP4di7cOTaX1NW4TB6RPHNo="/>
+            <menu:item id="i_parametro_list" messageCode="global_menu_list" url="/parametroes?page=1&amp;size=${empty param.size ? 10 : param.size}" z="YHtLDwN/BAd5+rpicqNm1rwUYws="/>
+        </menu:category>
+        <menu:category id="c_fuentehidrica" z="kNQq+Z2bfR2GjYbIB++Z0pE1MgE=">
+            <menu:item id="i_fuentehidrica_new" messageCode="global_menu_new" url="/fuentehidricas?form" z="btFdqLURVvIiYJ+v1tG/Db+EppY="/>
+            <menu:item id="i_fuentehidrica_list" messageCode="global_menu_list" url="/fuentehidricas?page=1&amp;size=${empty param.size ? 10 : param.size}" z="d1bsTe990B240fx7k2Wsth4wSGk="/>
+        </menu:category>
+        <menu:category id="c_muestra" z="97aQgR5Pk9E7lRUXxL5TGmTfLu4=">
+            <menu:item id="i_muestra_new" messageCode="global_menu_new" url="/muestras?form" z="XuZA5ydVwyvbXt4Fn2VdLGAuZ2w="/>
+            <menu:item id="i_muestra_list" messageCode="global_menu_list" url="/muestras?page=1&amp;size=${empty param.size ? 10 : param.size}" z="Rpd2rqfYi8gMH+Jpt4j4NsrLKtM="/>
+        </menu:category>
+        <menu:category id="c_user" z="uoTSf/uIZ821ZppidzS9aO776yk=">
+            <menu:item id="i_user_new" messageCode="global_menu_new" url="/users?form" z="Zv1m8u2rG+JFKcvJ+AHVVK0ey24="/>
+            <menu:item id="i_user_list" messageCode="global_menu_list" url="/users?page=1&amp;size=${empty param.size ? 10 : param.size}" z="4MY4uybxa60Q1G2rlI5bOwg+sm0="/>
+        </menu:category>
+        <menu:category id="c_rol" z="WyJ0DN0p4cfPsGF7WGHEFk6Ok1k=">
+            <menu:item id="i_rol_new" messageCode="global_menu_new" url="/rols?form" z="pci13zJkyKMJXhGhbCY9f9yBMb4="/>
+            <menu:item id="i_rol_list" messageCode="global_menu_list" url="/rols?page=1&amp;size=${empty param.size ? 10 : param.size}" z="GQHH+mdvcxfHlFAlkR2gFwHsv1s="/>
+        </menu:category>
+    </menu:menu>
+</div>

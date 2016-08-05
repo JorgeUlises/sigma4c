@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_org_sigma_core_domain_Rol" items="${rols}" z="OXFA7acVc1LZgPp7Gexbvr8ewYA=">
+        <table:table data="${rols}" id="l_org_sigma_core_domain_Rol" path="/rols" z="J8UZGzc1fW4r0cAdwn+qLEFVU94=">
+            <table:column id="c_org_sigma_core_domain_Rol_users" property="users" z="IIkZfl457l/eYHGXkKoDBXtslLA="/>
+            <table:column id="c_org_sigma_core_domain_Rol_nombre" property="nombre" z="xNbGCAEStwm3hfAirOZC1MBqpjc="/>
+        </table:table>
+    </page:list>
+</div>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_org_sigma_core_domain_Parametro" items="${parametroes}" z="sXU1aHXaKWwh0FVRMgX9q8dxOjU=">
+        <table:table data="${parametroes}" id="l_org_sigma_core_domain_Parametro" path="/parametroes" z="MddpiEG6y264aE0hPYferp7W2qg=">
+            <table:column id="c_org_sigma_core_domain_Parametro_muestras" property="muestras" z="A6gdZsilx/nMpU2N8pwAzq7YuH8="/>
+            <table:column id="c_org_sigma_core_domain_Parametro_nombre" property="nombre" z="+N9V33UK8EhqxaDDP/9qH4k1oUE="/>
+            <table:column id="c_org_sigma_core_domain_Parametro_unidad" property="unidad" z="lwakKdZELtsDiJM9/M1GGT5DpXE="/>
+            <table:column id="c_org_sigma_core_domain_Parametro_concentracion" property="concentracion" z="+wATjxR9z7OX65cVRJY0mj4AE1k="/>
+            <table:column id="c_org_sigma_core_domain_Parametro_tecAnalitic" property="tecAnalitic" z="R2v9ei2KHgl9eXa5JWSo3jToNC0="/>
+        </table:table>
+    </page:list>
+</div>
