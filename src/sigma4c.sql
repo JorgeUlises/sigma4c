@@ -382,4 +382,4 @@ REFERENCES public.empresa (id) MATCH FULL
 ON DELETE SET NULL ON UPDATE CASCADE;
 -- ddl-end --
 
-
+CREATE SEQUENCE public.hibernate_sequence START 1;

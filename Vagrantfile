@@ -44,4 +44,6 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", path: "install_utilities.sh"
   config.vm.provision "shell", path: "install_vboxguestaditions.sh"
   config.vm.provision "shell", path: "install_postgresql_postgis.sh"
+  config.vm.provision "shell", path: "create_database_proyecto.sh"
+  config.vm.provision "shell", path: "install_gvnix.sh"
 end
