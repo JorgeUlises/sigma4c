@@ -2,7 +2,7 @@ pass_variables = ["HTTP_PROXY", "http_proxy", "HTTPS_PROXY", "https_proxy", "NO_
 
 Vagrant.configure(2) do |config|
   config.vm.box = "centos/7"
-
+  config.ssh.insert_key = false ## soluciona fallo con ssh gpg key
   # config.vm.network "forwarded_port", guest: 8080, host: 8090
 
   # Create a private network, which allows host-only access to the machine
