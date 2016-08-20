@@ -17,6 +17,6 @@ sudo chown postgres:postgres $scriptsql2
 sudo su postgres -c "
 cd /tmp
 psql -f $scriptsql1
-psql -f $scriptsql2 -d circe
+psql -f $scriptsql2 -d sigma4c
 "
 fi
