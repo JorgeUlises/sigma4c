@@ -4,7 +4,7 @@ sql1=userdbsigma4c.sql
 sql2=sigma4c.sql
 
 
-if echo '\connect circe; SELECT * FROM public.grupo_isla;' | sudo psql -U postgres&>/dev/null;then
+if echo '\connect sigma4c; SELECT * FROM public.parametro;' | sudo psql -U postgres&>/dev/null;then
   echo 'La base de datos ya está creada. Nada que hacer.'
 else
 
