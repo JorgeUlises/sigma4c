@@ -58,7 +58,7 @@ Vagrant.configure(2) do |config|
   end
   config.vm.provision "shell", path: scripts_path+"install_postgresql_postgis.sh"
   config.vm.provision "file", source: "src/sigma4c.sql", destination: "sigma4c.sql"
-  config.vm.provision "file", source: "src/userdbsigma4c.sqll", destination: "userdbsigma4c.sql"
+  config.vm.provision "file", source: "src/userdbsigma4c.sql", destination: "userdbsigma4c.sql"
   config.vm.provision "shell", path: scripts_path+"create_database_proyecto.sh"
   config.vm.provision "shell", path: scripts_path+"install_gvnix.sh"
 end
