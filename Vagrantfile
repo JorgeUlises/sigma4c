@@ -1,10 +1,15 @@
-pass_variables = ["HTTP_PROXY", "http_proxy", "HTTPS_PROXY", "https_proxy", "NO_PROXY", "no_proxy"]
+#http_proxy = ENV["http_proxy"] || ""
+
+pass_variables = ["HTTP_PROXY", "http_proxy", "FTP_PROXY", "ftp_proxy", "HTTPS_PROXY", "https_proxy", "NO_PROXY", "no_proxy"]
 
 Vagrant.configure(2) do |config|
   config.vm.box = "centos/7"
-  config.ssh.insert_key = false ## soluciona fallo con ssh gpg key
-  # config.vm.network "forwarded_port", guest: 8080, host: 8090
+  config.ssh.insert_key = false # Soluciona fallo con ssh gpg key
 
+  config.vm.network "forwarded_port", guest: 3000, host: 13000
+  config.vm.network "forwarded_port", guest: 8000, host: 18000
+  config.vm.network "forwarded_port", guest: 8080, host: 18080
+  
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   config.vm.network "private_network", ip: "192.168.69.69"
@@ -37,14 +42,23 @@ Vagrant.configure(2) do |config|
   string_sudoers+="\""
   config.vm.provision "shell", inline: "source ~/.bashrc"
   config.vm.provision "shell", inline: <<-SHELL
-	echo '#{string_sudoers}' >> /etc/sudoers
+    if grep -i proxy /etc/sudoers; then
+      echo 'Archivo SUDORES con variables PROXY ya está configurado. Nada que hacer.'
+    else
+      echo '#{string_sudoers}' >> /etc/sudoers
+    fi
   SHELL
   config.vm.provision "shell", inline: "env | grep -i proxy || true"
-
-  config.vm.provision "shell", path: "install_utilities.sh"
-  config.vm.provision "shell", path: "install_vboxguestaditions.sh"
-  config.vm.provision "shell", path: "install_postgresql_postgis.sh"
-  config.vm.provision "file", source: "sigma4c.sql", destination: "sigma4c.sql"
-  config.vm.provision "shell", path: "create_database_proyecto.sh"
-  config.vm.provision "shell", path: "install_gvnix.sh"
+  
+  scripts_path="scripts/"
+  config.vm.provision "shell", path: scripts_path+"set_permisive.sh"
+  config.vm.provision "shell", path: scripts_path+"install_utilities.sh"
+  config.vm.provider "virtualbox" do |vb|
+       config.vm.provision "shell", path: scripts_path+"install_vboxguestaditions.sh"
+  end
+  config.vm.provision "shell", path: scripts_path+"install_postgresql_postgis.sh"
+  config.vm.provision "file", source: "src/sigma4c.sql", destination: "sigma4c.sql"
+  config.vm.provision "file", source: "src/userdbsigma4c.sqll", destination: "userdbsigma4c.sql"
+  config.vm.provision "shell", path: scripts_path+"create_database_proyecto.sh"
+  config.vm.provision "shell", path: scripts_path+"install_gvnix.sh"
 end
