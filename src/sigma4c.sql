@@ -128,14 +128,6 @@ CREATE TABLE public.usuario(
 ALTER TABLE public.usuario OWNER TO sigma4c;
 -- ddl-end --
 
--- object: public.paramlist | type: TYPE --
--- DROP TYPE IF EXISTS public.paramlist CASCADE;
-CREATE TYPE public.paramlist AS
- ENUM ('PH','CONDUCTIVIDAD','COLOR APARENTE','COLOR VERDADERO','SALINIDAD','TURBIEDAD','OXIGENO DISUELTO','DUREZA TOTAL','DIOXIDO DE CARBONO','ALCALINIDAD TOTAL','ACIDEZ TOTAL','SULFATOS','SOLIDOS TOTALES','SOLIDOS DISUELTOS TOTALES','SOLIDOS SUSPENDIDOS TOTALES','SOLIDOS SEDIMENTABLES','DBO5','DQO','NITROGENO AMONIACAL','NITRATOS','NITRITOS','FOSFORO TOTAL','FOSFATOS','FENOLES TOTALES','CLORUROS','BICARBONATOS','SODIO','POTASIO','PLOMO','NIQUEL','MERCURIO','MAGNESIO','HIERRO','CROMO HEXAVALENTE','COBRE','CALCIO','CADMIO','BARIO','ALUMINIO','TENSOACTIVOS','GRASAS Y ACEITES','HIDROCARBUROS TOTALES','PESTICIDAS ORGANOFOSFORADOS','PESTICIDAS ORGANOCLORADOS','COLIFORMES TOTALES','COLIFORMES FECALES');
--- ddl-end --
-ALTER TYPE public.paramlist OWNER TO sigma4c;
--- ddl-end --
-
 -- object: public.parametro | type: TABLE --
 -- DROP TABLE IF EXISTS public.parametro CASCADE;
 CREATE TABLE public.parametro(
@@ -177,32 +169,6 @@ REFERENCES public.rol (id) MATCH FULL
 ON DELETE SET NULL ON UPDATE CASCADE;
 -- ddl-end --
 
--- object: public.many_proyecto_has_many_empresa | type: TABLE --
--- DROP TABLE IF EXISTS public.many_proyecto_has_many_empresa CASCADE;
-CREATE TABLE public.many_proyecto_has_many_empresa(
-	id_proyecto integer,
-	id_empresa integer,
-	CONSTRAINT many_proyecto_has_many_empresa_pk PRIMARY KEY (id_proyecto,id_empresa)
-
-);
--- ddl-end --
-ALTER TABLE public.many_proyecto_has_many_empresa OWNER TO sigma4c;
--- ddl-end --
-
--- object: proyecto_fk | type: CONSTRAINT --
--- ALTER TABLE public.many_proyecto_has_many_empresa DROP CONSTRAINT IF EXISTS proyecto_fk CASCADE;
-ALTER TABLE public.many_proyecto_has_many_empresa ADD CONSTRAINT proyecto_fk FOREIGN KEY (id_proyecto)
-REFERENCES public.proyecto (id) MATCH FULL
-ON DELETE CASCADE ON UPDATE CASCADE;
--- ddl-end --
-
--- object: empresa_fk | type: CONSTRAINT --
--- ALTER TABLE public.many_proyecto_has_many_empresa DROP CONSTRAINT IF EXISTS empresa_fk CASCADE;
-ALTER TABLE public.many_proyecto_has_many_empresa ADD CONSTRAINT empresa_fk FOREIGN KEY (id_empresa)
-REFERENCES public.empresa (id) MATCH FULL
-ON DELETE CASCADE ON UPDATE CASCADE;
--- ddl-end --
-
 -- object: public.many_muestra_has_many_parametro | type: TABLE --
 -- DROP TABLE IF EXISTS public.many_muestra_has_many_parametro CASCADE;
 CREATE TABLE public.many_muestra_has_many_parametro(
@@ -228,6 +194,32 @@ ON DELETE CASCADE ON UPDATE CASCADE;
 -- ALTER TABLE public.many_muestra_has_many_parametro DROP CONSTRAINT IF EXISTS parametro_fk CASCADE;
 ALTER TABLE public.many_muestra_has_many_parametro ADD CONSTRAINT parametro_fk FOREIGN KEY (id_parametro)
 REFERENCES public.parametro (id) MATCH FULL
+ON DELETE CASCADE ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: public.many_proyecto_has_many_empresa | type: TABLE --
+-- DROP TABLE IF EXISTS public.many_proyecto_has_many_empresa CASCADE;
+CREATE TABLE public.many_proyecto_has_many_empresa(
+	id_proyecto integer,
+	id_empresa integer,
+	CONSTRAINT many_proyecto_has_many_empresa_pk PRIMARY KEY (id_proyecto,id_empresa)
+
+);
+-- ddl-end --
+ALTER TABLE public.many_proyecto_has_many_empresa OWNER TO sigma4c;
+-- ddl-end --
+
+-- object: proyecto_fk | type: CONSTRAINT --
+-- ALTER TABLE public.many_proyecto_has_many_empresa DROP CONSTRAINT IF EXISTS proyecto_fk CASCADE;
+ALTER TABLE public.many_proyecto_has_many_empresa ADD CONSTRAINT proyecto_fk FOREIGN KEY (id_proyecto)
+REFERENCES public.proyecto (id) MATCH FULL
+ON DELETE CASCADE ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: empresa_fk | type: CONSTRAINT --
+-- ALTER TABLE public.many_proyecto_has_many_empresa DROP CONSTRAINT IF EXISTS empresa_fk CASCADE;
+ALTER TABLE public.many_proyecto_has_many_empresa ADD CONSTRAINT empresa_fk FOREIGN KEY (id_empresa)
+REFERENCES public.empresa (id) MATCH FULL
 ON DELETE CASCADE ON UPDATE CASCADE;
 -- ddl-end --
 
