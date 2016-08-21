@@ -20,11 +20,19 @@ else
   sudo yum install -y ${list[*]}
 fi
 
-if which symfony &> /dev/null
+if [ -f /usr/local/bin/symfony ]
 then
   echo 'Symfony ya está instalado. Nada que hacer.'
 else
   sudo mkdir -p /usr/local/bin
   sudo curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony
   sudo chmod a+x /usr/local/bin/symfony
+fi
+
+#link: http://stackoverflow.com/a/11695165/4922405
+if [ -f /etc/php.ini.bak ]
+then
+  echo 'php.ini.bak ya existe. Nada que hacer.'
+else  
+  sudo sed -i.bak '/^;date.timezone =$/s:$:\ndate.timezone = "America/Bogota";:' /etc/php.ini
 fi

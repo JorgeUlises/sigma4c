@@ -1,7 +1,7 @@
 #!/bin/bash
 echo 'Ejecutando: install_composer.sh'
 
-if which composer &> /dev/null
+if [ -f /usr/local/bin/composer ]
 then
   echo 'Composer ya está instalado. Nada que hacer.'
 else
