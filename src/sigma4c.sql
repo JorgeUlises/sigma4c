@@ -5,7 +5,7 @@ CREATE EXTENSION postgis_topology;
 
 -- Database generated with pgModeler (PostgreSQL Database Modeler).
 -- pgModeler  version: 0.8.2
--- PostgreSQL version: 9.5
+-- PostgreSQL version: 9.4
 -- Project Site: pgmodeler.com.br
 -- Model Author: ---
 
@@ -181,7 +181,7 @@ ALTER TABLE public.usuario OWNER TO sigma4c;
 CREATE TYPE public.paramlist AS
  ENUM ('PH','CONDUCTIVIDAD','COLOR APARENTE','COLOR VERDADERO','SALINIDAD','TURBIEDAD','OXIGENO DISUELTO','DUREZA TOTAL','DIOXIDO DE CARBONO','ALCALINIDAD TOTAL','ACIDEZ TOTAL','SULFATOS','SOLIDOS TOTALES','SOLIDOS DISUELTOS TOTALES','SOLIDOS SUSPENDIDOS TOTALES','SOLIDOS SEDIMENTABLES','DBO5','DQO','NITROGENO AMONIACAL','NITRATOS','NITRITOS','FOSFORO TOTAL','FOSFATOS','FENOLES TOTALES','CLORUROS','BICARBONATOS','SODIO','POTASIO','PLOMO','NIQUEL','MERCURIO','MAGNESIO','HIERRO','CROMO HEXAVALENTE','COBRE','CALCIO','CADMIO','BARIO','ALUMINIO','TENSOACTIVOS','GRASAS Y ACEITES','HIDROCARBUROS TOTALES','PESTICIDAS ORGANOFOSFORADOS','PESTICIDAS ORGANOCLORADOS','COLIFORMES TOTALES','COLIFORMES FECALES');
 -- ddl-end --
-ALTER TYPE public.paramlist OWNER TO postgres;
+ALTER TYPE public.paramlist OWNER TO sigma4c;
 -- ddl-end --
 
 -- object: public.parametro | type: TABLE --
@@ -232,9 +232,9 @@ REFERENCES public.parametro (id) MATCH FULL
 ON DELETE RESTRICT ON UPDATE CASCADE;
 -- ddl-end --
 
--- object: public."hibernate.secuence" | type: SEQUENCE --
--- DROP SEQUENCE IF EXISTS public."hibernate.secuence" CASCADE;
-CREATE SEQUENCE public."hibernate.secuence"
+-- object: public.hibernate_secuence | type: SEQUENCE --
+-- DROP SEQUENCE IF EXISTS public.hibernate_secuence CASCADE;
+CREATE SEQUENCE public.hibernate_secuence
 	INCREMENT BY 1
 	MINVALUE 0
 	MAXVALUE 2147483647
@@ -243,7 +243,7 @@ CREATE SEQUENCE public."hibernate.secuence"
 	NO CYCLE
 	OWNED BY NONE;
 -- ddl-end --
-ALTER SEQUENCE public."hibernate.secuence" OWNER TO postgres;
+ALTER SEQUENCE public.hibernate_secuence OWNER TO sigma4c;
 -- ddl-end --
 
 -- object: rol_fk | type: CONSTRAINT --
