@@ -4,8 +4,12 @@ sql1=userdbsigma4c.sql
 sql2=sigma4c.sql
 
 
-if echo '\connect sigma4c; SELECT * FROM public.parametro;' | sudo psql -U postgres&>/dev/null;then
+if echo '\connect sigma4c;' | sudo psql -U postgres&>/dev/null
+then
   echo 'La base de datos ya está creada. Nada que hacer.'
+elif echo 'SELECT * FROM public.parametro;' | sudo psql -U postgres&>/dev/null
+then 
+  echo 'La tabla parametro ya está creada. Nada que hacer.'
 else
 
 cp $sql1 /tmp
