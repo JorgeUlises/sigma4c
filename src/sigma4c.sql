@@ -232,9 +232,9 @@ REFERENCES public.parametro (id) MATCH FULL
 ON DELETE RESTRICT ON UPDATE CASCADE;
 -- ddl-end --
 
--- object: public.hibernate_secuence | type: SEQUENCE --
--- DROP SEQUENCE IF EXISTS public.hibernate_secuence CASCADE;
-CREATE SEQUENCE public.hibernate_secuence
+-- object: public.hibernate_sequence | type: SEQUENCE --
+-- DROP SEQUENCE IF EXISTS public.hibernate_sequence CASCADE;
+CREATE SEQUENCE public.hibernate_sequence
 	INCREMENT BY 1
 	MINVALUE 0
 	MAXVALUE 2147483647
@@ -243,7 +243,7 @@ CREATE SEQUENCE public.hibernate_secuence
 	NO CYCLE
 	OWNED BY NONE;
 -- ddl-end --
-ALTER SEQUENCE public.hibernate_secuence OWNER TO sigma4c;
+ALTER SEQUENCE public.hibernate_sequence OWNER TO sigma4c;
 -- ddl-end --
 
 -- object: rol_fk | type: CONSTRAINT --
