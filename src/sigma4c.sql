@@ -1,8 +1,19 @@
+-- Prepended SQL commands --
+CREATE EXTENSION postgis;
+CREATE EXTENSION postgis_topology;
+---
+
 -- Database generated with pgModeler (PostgreSQL Database Modeler).
 -- pgModeler  version: 0.8.2
 -- PostgreSQL version: 9.5
 -- Project Site: pgmodeler.com.br
 -- Model Author: ---
+
+-- object: sigma4c | type: ROLE --
+-- DROP ROLE IF EXISTS sigma4c;
+CREATE ROLE sigma4c WITH 
+	UNENCRYPTED PASSWORD 'abc123';
+-- ddl-end --
 
 
 -- Database creation must be done outside an multicommand file.
@@ -30,7 +41,7 @@ CREATE TABLE public.empresa(
 
 );
 -- ddl-end --
-ALTER TABLE public.empresa OWNER TO postgres;
+ALTER TABLE public.empresa OWNER TO sigma4c;
 -- ddl-end --
 
 -- object: public.proyecto | type: TABLE --
@@ -44,7 +55,7 @@ CREATE TABLE public.proyecto(
 
 );
 -- ddl-end --
-ALTER TABLE public.proyecto OWNER TO postgres;
+ALTER TABLE public.proyecto OWNER TO sigma4c;
 -- ddl-end --
 
 -- object: public.muestra | type: TABLE --
@@ -66,7 +77,7 @@ CREATE TABLE public.muestra(
 
 );
 -- ddl-end --
-ALTER TABLE public.muestra OWNER TO postgres;
+ALTER TABLE public.muestra OWNER TO sigma4c;
 -- ddl-end --
 
 -- object: public.fuente_hidrica | type: TABLE --
@@ -79,7 +90,7 @@ CREATE TABLE public.fuente_hidrica(
 
 );
 -- ddl-end --
-ALTER TABLE public.fuente_hidrica OWNER TO postgres;
+ALTER TABLE public.fuente_hidrica OWNER TO sigma4c;
 -- ddl-end --
 
 -- object: public.many_proyecto_has_many_empresa | type: TABLE --
@@ -146,7 +157,7 @@ CREATE TABLE public.rol(
 
 );
 -- ddl-end --
-ALTER TABLE public.rol OWNER TO postgres;
+ALTER TABLE public.rol OWNER TO sigma4c;
 -- ddl-end --
 
 -- object: public.usuario | type: TABLE --
@@ -162,7 +173,7 @@ CREATE TABLE public.usuario(
 
 );
 -- ddl-end --
-ALTER TABLE public.usuario OWNER TO postgres;
+ALTER TABLE public.usuario OWNER TO sigma4c;
 -- ddl-end --
 
 -- object: public.paramlist | type: TYPE --
@@ -185,7 +196,7 @@ CREATE TABLE public.parametro(
 
 );
 -- ddl-end --
-ALTER TABLE public.parametro OWNER TO postgres;
+ALTER TABLE public.parametro OWNER TO sigma4c;
 -- ddl-end --
 
 -- object: empresa_fk | type: CONSTRAINT --
