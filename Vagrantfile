@@ -60,5 +60,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision "file", source: "src/sigma4c.sql", destination: "sigma4c.sql"
   config.vm.provision "file", source: "src/userdbsigma4c.sql", destination: "userdbsigma4c.sql"
   config.vm.provision "shell", path: scripts_path+"create_database_proyecto.sh"
-  config.vm.provision "shell", path: scripts_path+"install_gvnix.sh"
+  #config.vm.provision "shell", path: scripts_path+"install_gvnix.sh"
+  config.vm.provision "shell", path: scripts_path+"install_symfony.sh"
+  config.vm.provision "shell", path: scripts_path+"install_composer.sh"
 end
