@@ -10,7 +10,7 @@ import org.sigma.core.domain.Parametro;
 privileged aspect Parametro_Roo_ToString {
     
     public String Parametro.toString() {
-        return new ReflectionToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).setExcludeFieldNames("muestras").toString();
+        return new ReflectionToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).setExcludeFieldNames("manyMuestraHasManyParametroes").toString();
     }
     
 }

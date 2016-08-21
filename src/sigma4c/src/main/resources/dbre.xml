@@ -23,7 +23,7 @@
             <option key="exported" value="true"/>
             <reference foreign="id_empresa" local="id"/>
         </foreign-key>
-        <foreign-key foreignTable="user" name="empresa_fk" onDelete="setnull" onUpdate="cascade">
+        <foreign-key foreignTable="usuario" name="empresa_fk" onDelete="setnull" onUpdate="cascade">
             <option key="foreignSchemaName" value="public"/>
             <option key="exported" value="true"/>
             <reference foreign="id_empresa" local="id"/>
@@ -34,7 +34,7 @@
     </table>
     <table alias="public" name="fuente_hidrica">
         <column name="id" primaryKey="true" required="true" scale="0" size="10" type="4,serial"/>
-        <column name="geometria" primaryKey="false" required="false" scale="0" size="2147483647" type="12,varchar"/>
+        <column name="geometria" primaryKey="false" required="false" scale="0" size="2147483647" type="1111,geometry"/>
         <column name="nombre" primaryKey="false" required="false" scale="0" size="2147483647" type="12,varchar"/>
         <foreign-key foreignTable="many_proyecto_has_many_fuente_hidrica" name="fuente_hidrica_fk" onDelete="restrict" onUpdate="cascade">
             <option key="foreignSchemaName" value="public"/>
@@ -53,6 +53,8 @@
     <table alias="public" name="many_muestra_has_many_parametro">
         <column name="id_muestra" primaryKey="true" required="true" scale="0" size="10" type="4,int4"/>
         <column name="id_parametro" primaryKey="true" required="true" scale="0" size="10" type="4,int4"/>
+        <column name="concentracion" primaryKey="false" required="false" scale="17" size="17" type="8,float8"/>
+        <column name="tec_analitic" primaryKey="false" required="false" scale="0" size="2147483647" type="12,varchar"/>
         <foreign-key foreignTable="muestra" name="muestra_fk" onDelete="restrict" onUpdate="cascade">
             <option key="foreignSchemaName" value="public"/>
             <option key="exported" value="false"/>
@@ -104,26 +106,9 @@
             <unique-column name="id_fuente_hidrica"/>
         </unique>
     </table>
-    <table alias="public" name="many_user_has_many_rol">
-        <column name="id_user" primaryKey="true" required="true" scale="0" size="10" type="4,int4"/>
-        <column name="id_rol" primaryKey="true" required="true" scale="0" size="10" type="4,int4"/>
-        <foreign-key foreignTable="rol" name="rol_fk" onDelete="restrict" onUpdate="cascade">
-            <option key="foreignSchemaName" value="public"/>
-            <option key="exported" value="false"/>
-            <reference foreign="id" local="id_rol"/>
-        </foreign-key>
-        <foreign-key foreignTable="user" name="user_fk" onDelete="restrict" onUpdate="cascade">
-            <option key="foreignSchemaName" value="public"/>
-            <option key="exported" value="false"/>
-            <reference foreign="id" local="id_user"/>
-        </foreign-key>
-        <unique name="many_user_has_many_rol_pk">
-            <unique-column name="id_user"/>
-            <unique-column name="id_rol"/>
-        </unique>
-    </table>
     <table alias="public" name="muestra">
         <column name="id" primaryKey="true" required="true" scale="0" size="10" type="4,serial"/>
+        <column name="id_fuente_hidrica" primaryKey="false" required="false" scale="0" size="10" type="4,int4"/>
         <column name="responsable" primaryKey="false" required="false" scale="0" size="2147483647" type="12,varchar"/>
         <column name="producto" primaryKey="false" required="false" scale="0" size="2147483647" type="12,varchar"/>
         <column name="lugar_toma" primaryKey="false" required="false" scale="0" size="2147483647" type="12,varchar"/>
@@ -133,7 +118,7 @@
         <column name="fecha_recepcion" primaryKey="false" required="false" scale="0" size="13" type="91,date"/>
         <column name="fecha_analisis" primaryKey="false" required="false" scale="0" size="13" type="91,date"/>
         <column name="tipo_muestreo" primaryKey="false" required="false" scale="0" size="2147483647" type="12,varchar"/>
-        <column name="id_fuente_hidrica" primaryKey="false" required="false" scale="0" size="10" type="4,int4"/>
+        <column name="geometria" primaryKey="false" required="false" scale="0" size="2147483647" type="1111,geometry"/>
         <foreign-key foreignTable="fuente_hidrica" name="fuente_hidrica_fk" onDelete="setnull" onUpdate="cascade">
             <option key="foreignSchemaName" value="public"/>
             <option key="exported" value="false"/>
@@ -185,7 +170,7 @@
     <table alias="public" name="rol">
         <column name="id" primaryKey="true" required="true" scale="0" size="10" type="4,serial"/>
         <column name="nombre" primaryKey="false" required="false" scale="0" size="2147483647" type="12,varchar"/>
-        <foreign-key foreignTable="many_user_has_many_rol" name="rol_fk" onDelete="restrict" onUpdate="cascade">
+        <foreign-key foreignTable="usuario" name="rol_fk" onDelete="setnull" onUpdate="cascade">
             <option key="foreignSchemaName" value="public"/>
             <option key="exported" value="true"/>
             <reference foreign="id_rol" local="id"/>
@@ -194,21 +179,32 @@
             <unique-column name="id"/>
         </unique>
     </table>
-    <table alias="public" name="user">
+    <table alias="public" name="spatial_ref_sys">
+        <column name="srid" primaryKey="true" required="true" scale="0" size="10" type="4,int4"/>
+        <column name="auth_name" primaryKey="false" required="false" scale="0" size="256" type="12,varchar"/>
+        <column name="auth_srid" primaryKey="false" required="false" scale="0" size="10" type="4,int4"/>
+        <column name="srtext" primaryKey="false" required="false" scale="0" size="2048" type="12,varchar"/>
+        <column name="proj4text" primaryKey="false" required="false" scale="0" size="2048" type="12,varchar"/>
+        <unique name="spatial_ref_sys_pkey">
+            <unique-column name="srid"/>
+        </unique>
+    </table>
+    <table alias="public" name="usuario">
         <column name="id" primaryKey="true" required="true" scale="0" size="10" type="4,serial"/>
+        <column name="id_empresa" primaryKey="false" required="false" scale="0" size="10" type="4,int4"/>
         <column name="alias" primaryKey="false" required="false" scale="0" size="2147483647" type="12,varchar"/>
         <column name="mail" primaryKey="false" required="false" scale="0" size="2147483647" type="12,varchar"/>
         <column name="nombre" primaryKey="false" required="false" scale="0" size="2147483647" type="12,varchar"/>
-        <column name="id_empresa" primaryKey="false" required="false" scale="0" size="10" type="4,int4"/>
+        <column name="id_rol" primaryKey="false" required="false" scale="0" size="10" type="4,int4"/>
         <foreign-key foreignTable="empresa" name="empresa_fk" onDelete="setnull" onUpdate="cascade">
             <option key="foreignSchemaName" value="public"/>
             <option key="exported" value="false"/>
             <reference foreign="id" local="id_empresa"/>
         </foreign-key>
-        <foreign-key foreignTable="many_user_has_many_rol" name="user_fk" onDelete="restrict" onUpdate="cascade">
+        <foreign-key foreignTable="rol" name="rol_fk" onDelete="setnull" onUpdate="cascade">
             <option key="foreignSchemaName" value="public"/>
-            <option key="exported" value="true"/>
-            <reference foreign="id_user" local="id"/>
+            <option key="exported" value="false"/>
+            <reference foreign="id" local="id_rol"/>
         </foreign-key>
         <unique name="user_id">
             <unique-column name="id"/>

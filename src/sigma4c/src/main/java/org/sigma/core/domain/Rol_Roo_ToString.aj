@@ -10,7 +10,7 @@ import org.sigma.core.domain.Rol;
 privileged aspect Rol_Roo_ToString {
     
     public String Rol.toString() {
-        return new ReflectionToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).setExcludeFieldNames("users").toString();
+        return new ReflectionToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).setExcludeFieldNames("usuarios").toString();
     }
     
 }

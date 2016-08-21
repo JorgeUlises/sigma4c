@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/jquery/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/jquery/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_org_sigma_core_domain_SpatialRefSys" items="${spatialrefsyses}" z="bAwOa1gvflMZWSHi6vQx1P/PrSs=">
+        <table:table data="${spatialrefsyses}" id="l_org_sigma_core_domain_SpatialRefSys" path="/spatialrefsyses" typeIdFieldName="srid" z="Q64tqclToLu1dd904yh/FfzmWRo=">
+            <table:column id="c_org_sigma_core_domain_SpatialRefSys_authName" property="authName" z="TSdkFKLIbKxmQNAQetkrMMxNq/U="/>
+            <table:column id="c_org_sigma_core_domain_SpatialRefSys_authSrid" property="authSrid" z="GqluzFU3oZDB3OqmDqB4FxY4wGc="/>
+            <table:column id="c_org_sigma_core_domain_SpatialRefSys_srtext" property="srtext" z="g3eLzU5mwn0YZirGvyH19rLUSdU="/>
+            <table:column id="c_org_sigma_core_domain_SpatialRefSys_proj4text" property="proj4text" z="hvTpiinl7rIYK+fQS3I0kdcfzjo="/>
+        </table:table>
+    </page:list>
+</div>

@@ -5,23 +5,22 @@ package org.sigma.core.domain;
 
 import java.util.Date;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.sigma.core.domain.FuenteHidrica;
+import org.sigma.core.domain.ManyMuestraHasManyParametro;
 import org.sigma.core.domain.Muestra;
-import org.sigma.core.domain.Parametro;
 import org.springframework.format.annotation.DateTimeFormat;
 
 privileged aspect Muestra_Roo_DbManaged {
     
-    @ManyToMany
-    @JoinTable(name = "many_muestra_has_many_parametro", joinColumns = { @JoinColumn(name = "id_muestra", nullable = false) }, inverseJoinColumns = { @JoinColumn(name = "id_parametro", nullable = false) })
-    private Set<Parametro> Muestra.parametroes;
+    @OneToMany(mappedBy = "idMuestra", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    private Set<ManyMuestraHasManyParametro> Muestra.manyMuestraHasManyParametroes;
     
     @ManyToOne
     @JoinColumn(name = "id_fuente_hidrica", referencedColumnName = "id")
@@ -60,12 +59,15 @@ privileged aspect Muestra_Roo_DbManaged {
     @Column(name = "tipo_muestreo")
     private String Muestra.tipoMuestreo;
     
-    public Set<Parametro> Muestra.getParametroes() {
-        return parametroes;
+    @Column(name = "geometria")
+    private String Muestra.geometria;
+    
+    public Set<ManyMuestraHasManyParametro> Muestra.getManyMuestraHasManyParametroes() {
+        return manyMuestraHasManyParametroes;
     }
     
-    public void Muestra.setParametroes(Set<Parametro> parametroes) {
-        this.parametroes = parametroes;
+    public void Muestra.setManyMuestraHasManyParametroes(Set<ManyMuestraHasManyParametro> manyMuestraHasManyParametroes) {
+        this.manyMuestraHasManyParametroes = manyMuestraHasManyParametroes;
     }
     
     public FuenteHidrica Muestra.getIdFuenteHidrica() {
@@ -146,6 +148,14 @@ privileged aspect Muestra_Roo_DbManaged {
     
     public void Muestra.setTipoMuestreo(String tipoMuestreo) {
         this.tipoMuestreo = tipoMuestreo;
+    }
+    
+    public String Muestra.getGeometria() {
+        return geometria;
+    }
+    
+    public void Muestra.setGeometria(String geometria) {
+        this.geometria = geometria;
     }
     
 }

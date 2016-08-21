@@ -12,7 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import org.sigma.core.domain.Empresa;
 import org.sigma.core.domain.Proyecto;
-import org.sigma.core.domain.User;
+import org.sigma.core.domain.Usuario;
 
 privileged aspect Empresa_Roo_DbManaged {
     
@@ -21,7 +21,7 @@ privileged aspect Empresa_Roo_DbManaged {
     private Set<Proyecto> Empresa.proyectoes;
     
     @OneToMany(mappedBy = "idEmpresa", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-    private Set<User> Empresa.users;
+    private Set<Usuario> Empresa.usuarios;
     
     @Column(name = "tipoempresa")
     private String Empresa.tipoempresa;
@@ -55,12 +55,12 @@ privileged aspect Empresa_Roo_DbManaged {
         this.proyectoes = proyectoes;
     }
     
-    public Set<User> Empresa.getUsers() {
-        return users;
+    public Set<Usuario> Empresa.getUsuarios() {
+        return usuarios;
     }
     
-    public void Empresa.setUsers(Set<User> users) {
-        this.users = users;
+    public void Empresa.setUsuarios(Set<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
     
     public String Empresa.getTipoempresa() {

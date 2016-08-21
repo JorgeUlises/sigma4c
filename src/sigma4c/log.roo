@@ -1,4 +1,4 @@
-// Spring Roo 1.3.2.RELEASE [rev d18aef8] log opened at 2016-08-04 22:54:25
+// Spring Roo 1.3.2.RELEASE [rev d18aef8] log opened at 2016-08-20 22:47:28
 project --topLevelPackage org.sigma.core --projectName sigma4c
 jpa setup --database POSTGRES --provider HIBERNATE --databaseName sigma4c --hostName localhost --userName sigma4c --password abc123
 download status
@@ -6,9 +6,12 @@ download accept terms of use
 osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml
 osgi obr deploy --bundleSymbolicName org.springframework.roo.wrapping.postgresql-jdbc4
 database reverse engineer --schema "public" --activeRecord false --disableGeneratedIdentifiers false --disableVersionFields true --package ~.domain
-service all --interfacePackage ~.service --classPackage ~.service.impl
+// [failed] service all --interfacePackage ~.service --classPackage ~.service.impl
 web mvc setup
 web mvc all --package ~.web
-// [failed] web mvc jquery setup
+web mvc jquery setup
+web mvc jquery all
+web mvc datatables setup
+web mvc bootstrap setup
 exit
-// Spring Roo 1.3.2.RELEASE [rev d18aef8] log closed at 2016-08-04 22:55:35
+// Spring Roo 1.3.2.RELEASE [rev d18aef8] log closed at 2016-08-20 22:48:38

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/jquery/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/jquery/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <form:update id="fu_org_sigma_core_domain_Muestra" modelAttribute="muestra" path="/muestras" versionField="none" z="uW5OFq1NpyQzT3qvLf/A8HUbIdc=">
-        <field:select field="parametroes" id="c_org_sigma_core_domain_Muestra_parametroes" itemValue="id" items="${parametroes}" multiple="true" path="/parametroes" z="ltIYlYkJ5t9GPrAAy+oYqIimDXk="/>
+        <field:simple field="manyMuestraHasManyParametroes" id="c_org_sigma_core_domain_Muestra_manyMuestraHasManyParametroes" messageCode="entity_reference_not_managed" messageCodeAttribute="Many Muestra Has Many Parametro" z="qhaeoi3Esue3wj5a6KjrziNKUUI="/>
         <field:select field="idFuenteHidrica" id="c_org_sigma_core_domain_Muestra_idFuenteHidrica" itemValue="id" items="${fuentehidricas}" path="/fuentehidricas" z="yCszSB3xMpslATFycsxz9G/qCcA="/>
         <field:input field="responsable" id="c_org_sigma_core_domain_Muestra_responsable" z="pQ9ze6g6LMMb/p7rEXIXVpHpg9g="/>
         <field:input field="producto" id="c_org_sigma_core_domain_Muestra_producto" z="15ukMgHjDJew1wzh/RqzWdO58Rw="/>
@@ -14,5 +14,6 @@
         <field:datetime dateTimePattern="${muestra_fecharecepcion_date_format}" field="fechaRecepcion" id="c_org_sigma_core_domain_Muestra_fechaRecepcion" z="JobSzoVtr1/Wu0kZh89VNPX5frk="/>
         <field:datetime dateTimePattern="${muestra_fechaanalisis_date_format}" field="fechaAnalisis" id="c_org_sigma_core_domain_Muestra_fechaAnalisis" z="XLvKZbVBBIF6lp/lgaC4Z/r/5vs="/>
         <field:input field="tipoMuestreo" id="c_org_sigma_core_domain_Muestra_tipoMuestreo" z="xRD5griJt9tHYu7gwobJyo/Ih2Y="/>
+        <field:input field="geometria" id="c_org_sigma_core_domain_Muestra_geometria" z="+WFK5n+ftAs8RDW+ptbwE8dOTUw="/>
     </form:update>
 </div>

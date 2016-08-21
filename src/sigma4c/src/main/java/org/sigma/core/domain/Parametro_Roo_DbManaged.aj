@@ -6,14 +6,14 @@ package org.sigma.core.domain;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ManyToMany;
-import org.sigma.core.domain.Muestra;
+import javax.persistence.OneToMany;
+import org.sigma.core.domain.ManyMuestraHasManyParametro;
 import org.sigma.core.domain.Parametro;
 
 privileged aspect Parametro_Roo_DbManaged {
     
-    @ManyToMany(mappedBy = "parametroes", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-    private Set<Muestra> Parametro.muestras;
+    @OneToMany(mappedBy = "idParametro", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    private Set<ManyMuestraHasManyParametro> Parametro.manyMuestraHasManyParametroes;
     
     @Column(name = "nombre")
     private String Parametro.nombre;
@@ -27,12 +27,12 @@ privileged aspect Parametro_Roo_DbManaged {
     @Column(name = "tec_analitic")
     private String Parametro.tecAnalitic;
     
-    public Set<Muestra> Parametro.getMuestras() {
-        return muestras;
+    public Set<ManyMuestraHasManyParametro> Parametro.getManyMuestraHasManyParametroes() {
+        return manyMuestraHasManyParametroes;
     }
     
-    public void Parametro.setMuestras(Set<Muestra> muestras) {
-        this.muestras = muestras;
+    public void Parametro.setManyMuestraHasManyParametroes(Set<ManyMuestraHasManyParametro> manyMuestraHasManyParametroes) {
+        this.manyMuestraHasManyParametroes = manyMuestraHasManyParametroes;
     }
     
     public String Parametro.getNombre() {

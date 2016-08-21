@@ -10,7 +10,7 @@ import org.sigma.core.domain.Empresa;
 privileged aspect Empresa_Roo_ToString {
     
     public String Empresa.toString() {
-        return new ReflectionToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).setExcludeFieldNames("proyectoes", "users").toString();
+        return new ReflectionToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).setExcludeFieldNames("proyectoes", "usuarios").toString();
     }
     
 }

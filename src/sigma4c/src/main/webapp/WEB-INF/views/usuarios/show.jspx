@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/jquery/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/jquery/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_org_sigma_core_domain_Usuario" object="${usuario}" path="/usuarios" z="hwcsSYy8rZXDomjKcwCrS+IJRaw=">
+        <field:display field="idEmpresa" id="s_org_sigma_core_domain_Usuario_idEmpresa" object="${usuario}" z="jDrL6eo/ZlMqYVGXGfcSbiwnaCE="/>
+        <field:display field="idRol" id="s_org_sigma_core_domain_Usuario_idRol" object="${usuario}" z="9AiqJjiIwUfmv3L96GbWXuXiuPE="/>
+        <field:display field="alias" id="s_org_sigma_core_domain_Usuario_alias" object="${usuario}" z="VAGJD62pZ4j6bUFvN6/Vb59flAs="/>
+        <field:display field="mail" id="s_org_sigma_core_domain_Usuario_mail" object="${usuario}" z="LKhMKM6vwtQ7BTdhX++RrMOupHI="/>
+        <field:display field="nombre" id="s_org_sigma_core_domain_Usuario_nombre" object="${usuario}" z="FJrG+ZVvVQRiOKJBszW2HcHtNCs="/>
+    </page:show>
+</div>

@@ -10,7 +10,7 @@ import org.sigma.core.domain.Muestra;
 privileged aspect Muestra_Roo_ToString {
     
     public String Muestra.toString() {
-        return new ReflectionToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).setExcludeFieldNames("parametroes", "idFuenteHidrica").toString();
+        return new ReflectionToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).setExcludeFieldNames("manyMuestraHasManyParametroes", "idFuenteHidrica").toString();
     }
     
 }

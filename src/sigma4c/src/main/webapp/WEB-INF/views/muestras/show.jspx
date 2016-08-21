@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/jquery/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/jquery/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <page:show id="ps_org_sigma_core_domain_Muestra" object="${muestra}" path="/muestras" z="XpAK8nDdgV7P0TZMAI9TnmwvSQU=">
-        <field:display field="parametroes" id="s_org_sigma_core_domain_Muestra_parametroes" object="${muestra}" z="bkOzncHig55zxayBcZBed9mfgwc="/>
         <field:display field="idFuenteHidrica" id="s_org_sigma_core_domain_Muestra_idFuenteHidrica" object="${muestra}" z="2swb8o4czdexwMXfQFbHVTNk7OM="/>
         <field:display field="responsable" id="s_org_sigma_core_domain_Muestra_responsable" object="${muestra}" z="dIdrxb5c/eaWLmnb4Mmgd1klT88="/>
         <field:display field="producto" id="s_org_sigma_core_domain_Muestra_producto" object="${muestra}" z="/majXOK6Hd7sMn5ynk3sJNjUOtQ="/>
@@ -14,5 +13,6 @@
         <field:display date="true" dateTimePattern="${muestra_fecharecepcion_date_format}" field="fechaRecepcion" id="s_org_sigma_core_domain_Muestra_fechaRecepcion" object="${muestra}" z="EoWOWiyLmoJaqq9N8P0MeF96JFc="/>
         <field:display date="true" dateTimePattern="${muestra_fechaanalisis_date_format}" field="fechaAnalisis" id="s_org_sigma_core_domain_Muestra_fechaAnalisis" object="${muestra}" z="M4zab/JWWbfr71240zpYuBCxWaI="/>
         <field:display field="tipoMuestreo" id="s_org_sigma_core_domain_Muestra_tipoMuestreo" object="${muestra}" z="8sz4fql7X+LbZ7KHqm7gwRWdELU="/>
+        <field:display field="geometria" id="s_org_sigma_core_domain_Muestra_geometria" object="${muestra}" z="GiP0qSinuMZh9qI3taf4Se3w+MQ="/>
     </page:show>
 </div>

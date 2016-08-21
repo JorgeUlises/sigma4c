@@ -3,22 +3,18 @@
 
 package org.sigma.core.web;
 
+import org.apache.commons.codec.binary.Base64;
 import org.sigma.core.domain.Empresa;
 import org.sigma.core.domain.FuenteHidrica;
+import org.sigma.core.domain.ManyMuestraHasManyParametro;
+import org.sigma.core.domain.ManyMuestraHasManyParametroPK;
 import org.sigma.core.domain.Muestra;
 import org.sigma.core.domain.Parametro;
 import org.sigma.core.domain.Proyecto;
 import org.sigma.core.domain.Rol;
-import org.sigma.core.domain.User;
-import org.sigma.core.service.EmpresaService;
-import org.sigma.core.service.FuenteHidricaService;
-import org.sigma.core.service.MuestraService;
-import org.sigma.core.service.ParametroService;
-import org.sigma.core.service.ProyectoService;
-import org.sigma.core.service.RolService;
-import org.sigma.core.service.UserService;
+import org.sigma.core.domain.SpatialRefSys;
+import org.sigma.core.domain.Usuario;
 import org.sigma.core.web.ApplicationConversionServiceFactoryBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.FormatterRegistry;
@@ -27,39 +23,10 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     
     declare @type: ApplicationConversionServiceFactoryBean: @Configurable;
     
-    @Autowired
-    EmpresaService ApplicationConversionServiceFactoryBean.empresaService;
-    
-    @Autowired
-    FuenteHidricaService ApplicationConversionServiceFactoryBean.fuenteHidricaService;
-    
-    @Autowired
-    MuestraService ApplicationConversionServiceFactoryBean.muestraService;
-    
-    @Autowired
-    ParametroService ApplicationConversionServiceFactoryBean.parametroService;
-    
-    @Autowired
-    ProyectoService ApplicationConversionServiceFactoryBean.proyectoService;
-    
-    @Autowired
-    RolService ApplicationConversionServiceFactoryBean.rolService;
-    
-    @Autowired
-    UserService ApplicationConversionServiceFactoryBean.userService;
-    
     public Converter<Empresa, String> ApplicationConversionServiceFactoryBean.getEmpresaToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<org.sigma.core.domain.Empresa, java.lang.String>() {
             public String convert(Empresa empresa) {
                 return new StringBuilder().append(empresa.getTipoempresa()).append(' ').append(empresa.getNombre()).append(' ').append(empresa.getRepresentantelegal()).append(' ').append(empresa.getRut()).toString();
-            }
-        };
-    }
-    
-    public Converter<Integer, Empresa> ApplicationConversionServiceFactoryBean.getIdToEmpresaConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.Integer, org.sigma.core.domain.Empresa>() {
-            public org.sigma.core.domain.Empresa convert(java.lang.Integer id) {
-                return empresaService.findEmpresa(id);
             }
         };
     }
@@ -80,14 +47,6 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
-    public Converter<Integer, FuenteHidrica> ApplicationConversionServiceFactoryBean.getIdToFuenteHidricaConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.Integer, org.sigma.core.domain.FuenteHidrica>() {
-            public org.sigma.core.domain.FuenteHidrica convert(java.lang.Integer id) {
-                return fuenteHidricaService.findFuenteHidrica(id);
-            }
-        };
-    }
-    
     public Converter<String, FuenteHidrica> ApplicationConversionServiceFactoryBean.getStringToFuenteHidricaConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.String, org.sigma.core.domain.FuenteHidrica>() {
             public org.sigma.core.domain.FuenteHidrica convert(String id) {
@@ -96,18 +55,26 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
-    public Converter<Muestra, String> ApplicationConversionServiceFactoryBean.getMuestraToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<org.sigma.core.domain.Muestra, java.lang.String>() {
-            public String convert(Muestra muestra) {
-                return new StringBuilder().append(muestra.getResponsable()).append(' ').append(muestra.getProducto()).append(' ').append(muestra.getLugarToma()).append(' ').append(muestra.getFoto()).toString();
+    public Converter<ManyMuestraHasManyParametro, String> ApplicationConversionServiceFactoryBean.getManyMuestraHasManyParametroToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<org.sigma.core.domain.ManyMuestraHasManyParametro, java.lang.String>() {
+            public String convert(ManyMuestraHasManyParametro manyMuestraHasManyParametro) {
+                return new StringBuilder().append(manyMuestraHasManyParametro.getConcentracion()).append(' ').append(manyMuestraHasManyParametro.getTecAnalitic()).toString();
             }
         };
     }
     
-    public Converter<Integer, Muestra> ApplicationConversionServiceFactoryBean.getIdToMuestraConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.Integer, org.sigma.core.domain.Muestra>() {
-            public org.sigma.core.domain.Muestra convert(java.lang.Integer id) {
-                return muestraService.findMuestra(id);
+    public Converter<String, ManyMuestraHasManyParametro> ApplicationConversionServiceFactoryBean.getStringToManyMuestraHasManyParametroConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, org.sigma.core.domain.ManyMuestraHasManyParametro>() {
+            public org.sigma.core.domain.ManyMuestraHasManyParametro convert(String id) {
+                return getObject().convert(getObject().convert(id, ManyMuestraHasManyParametroPK.class), ManyMuestraHasManyParametro.class);
+            }
+        };
+    }
+    
+    public Converter<Muestra, String> ApplicationConversionServiceFactoryBean.getMuestraToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<org.sigma.core.domain.Muestra, java.lang.String>() {
+            public String convert(Muestra muestra) {
+                return new StringBuilder().append(muestra.getResponsable()).append(' ').append(muestra.getProducto()).append(' ').append(muestra.getLugarToma()).append(' ').append(muestra.getFoto()).toString();
             }
         };
     }
@@ -128,14 +95,6 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
-    public Converter<Integer, Parametro> ApplicationConversionServiceFactoryBean.getIdToParametroConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.Integer, org.sigma.core.domain.Parametro>() {
-            public org.sigma.core.domain.Parametro convert(java.lang.Integer id) {
-                return parametroService.findParametro(id);
-            }
-        };
-    }
-    
     public Converter<String, Parametro> ApplicationConversionServiceFactoryBean.getStringToParametroConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.String, org.sigma.core.domain.Parametro>() {
             public org.sigma.core.domain.Parametro convert(String id) {
@@ -148,14 +107,6 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         return new org.springframework.core.convert.converter.Converter<org.sigma.core.domain.Proyecto, java.lang.String>() {
             public String convert(Proyecto proyecto) {
                 return new StringBuilder().append(proyecto.getInvolucrados()).append(' ').append(proyecto.getNombre()).append(' ').append(proyecto.getEncargado()).toString();
-            }
-        };
-    }
-    
-    public Converter<Integer, Proyecto> ApplicationConversionServiceFactoryBean.getIdToProyectoConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.Integer, org.sigma.core.domain.Proyecto>() {
-            public org.sigma.core.domain.Proyecto convert(java.lang.Integer id) {
-                return proyectoService.findProyecto(id);
             }
         };
     }
@@ -176,14 +127,6 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
-    public Converter<Integer, Rol> ApplicationConversionServiceFactoryBean.getIdToRolConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.Integer, org.sigma.core.domain.Rol>() {
-            public org.sigma.core.domain.Rol convert(java.lang.Integer id) {
-                return rolService.findRol(id);
-            }
-        };
-    }
-    
     public Converter<String, Rol> ApplicationConversionServiceFactoryBean.getStringToRolConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.String, org.sigma.core.domain.Rol>() {
             public org.sigma.core.domain.Rol convert(String id) {
@@ -192,52 +135,75 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
-    public Converter<User, String> ApplicationConversionServiceFactoryBean.getUserToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<org.sigma.core.domain.User, java.lang.String>() {
-            public String convert(User user) {
-                return new StringBuilder().append(user.getAlias()).append(' ').append(user.getMail()).append(' ').append(user.getNombre()).toString();
+    public Converter<SpatialRefSys, String> ApplicationConversionServiceFactoryBean.getSpatialRefSysToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<org.sigma.core.domain.SpatialRefSys, java.lang.String>() {
+            public String convert(SpatialRefSys spatialRefSys) {
+                return new StringBuilder().append(spatialRefSys.getAuthName()).append(' ').append(spatialRefSys.getAuthSrid()).append(' ').append(spatialRefSys.getSrtext()).append(' ').append(spatialRefSys.getProj4text()).toString();
             }
         };
     }
     
-    public Converter<Integer, User> ApplicationConversionServiceFactoryBean.getIdToUserConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.Integer, org.sigma.core.domain.User>() {
-            public org.sigma.core.domain.User convert(java.lang.Integer id) {
-                return userService.findUser(id);
+    public Converter<String, SpatialRefSys> ApplicationConversionServiceFactoryBean.getStringToSpatialRefSysConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, org.sigma.core.domain.SpatialRefSys>() {
+            public org.sigma.core.domain.SpatialRefSys convert(String id) {
+                return getObject().convert(getObject().convert(id, Integer.class), SpatialRefSys.class);
             }
         };
     }
     
-    public Converter<String, User> ApplicationConversionServiceFactoryBean.getStringToUserConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.String, org.sigma.core.domain.User>() {
-            public org.sigma.core.domain.User convert(String id) {
-                return getObject().convert(getObject().convert(id, Integer.class), User.class);
+    public Converter<Usuario, String> ApplicationConversionServiceFactoryBean.getUsuarioToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<org.sigma.core.domain.Usuario, java.lang.String>() {
+            public String convert(Usuario usuario) {
+                return new StringBuilder().append(usuario.getAlias()).append(' ').append(usuario.getMail()).append(' ').append(usuario.getNombre()).toString();
+            }
+        };
+    }
+    
+    public Converter<String, Usuario> ApplicationConversionServiceFactoryBean.getStringToUsuarioConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, org.sigma.core.domain.Usuario>() {
+            public org.sigma.core.domain.Usuario convert(String id) {
+                return getObject().convert(getObject().convert(id, Integer.class), Usuario.class);
+            }
+        };
+    }
+    
+    public Converter<String, ManyMuestraHasManyParametroPK> ApplicationConversionServiceFactoryBean.getJsonToManyMuestraHasManyParametroPKConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, org.sigma.core.domain.ManyMuestraHasManyParametroPK>() {
+            public ManyMuestraHasManyParametroPK convert(String encodedJson) {
+                return ManyMuestraHasManyParametroPK.fromJsonToManyMuestraHasManyParametroPK(new String(Base64.decodeBase64(encodedJson)));
+            }
+        };
+    }
+    
+    public Converter<ManyMuestraHasManyParametroPK, String> ApplicationConversionServiceFactoryBean.getManyMuestraHasManyParametroPKToJsonConverter() {
+        return new org.springframework.core.convert.converter.Converter<org.sigma.core.domain.ManyMuestraHasManyParametroPK, java.lang.String>() {
+            public String convert(ManyMuestraHasManyParametroPK manyMuestraHasManyParametroPK) {
+                return Base64.encodeBase64URLSafeString(manyMuestraHasManyParametroPK.toJson().getBytes());
             }
         };
     }
     
     public void ApplicationConversionServiceFactoryBean.installLabelConverters(FormatterRegistry registry) {
         registry.addConverter(getEmpresaToStringConverter());
-        registry.addConverter(getIdToEmpresaConverter());
         registry.addConverter(getStringToEmpresaConverter());
         registry.addConverter(getFuenteHidricaToStringConverter());
-        registry.addConverter(getIdToFuenteHidricaConverter());
         registry.addConverter(getStringToFuenteHidricaConverter());
+        registry.addConverter(getManyMuestraHasManyParametroToStringConverter());
+        registry.addConverter(getStringToManyMuestraHasManyParametroConverter());
         registry.addConverter(getMuestraToStringConverter());
-        registry.addConverter(getIdToMuestraConverter());
         registry.addConverter(getStringToMuestraConverter());
         registry.addConverter(getParametroToStringConverter());
-        registry.addConverter(getIdToParametroConverter());
         registry.addConverter(getStringToParametroConverter());
         registry.addConverter(getProyectoToStringConverter());
-        registry.addConverter(getIdToProyectoConverter());
         registry.addConverter(getStringToProyectoConverter());
         registry.addConverter(getRolToStringConverter());
-        registry.addConverter(getIdToRolConverter());
         registry.addConverter(getStringToRolConverter());
-        registry.addConverter(getUserToStringConverter());
-        registry.addConverter(getIdToUserConverter());
-        registry.addConverter(getStringToUserConverter());
+        registry.addConverter(getSpatialRefSysToStringConverter());
+        registry.addConverter(getStringToSpatialRefSysConverter());
+        registry.addConverter(getUsuarioToStringConverter());
+        registry.addConverter(getStringToUsuarioConverter());
+        registry.addConverter(getJsonToManyMuestraHasManyParametroPKConverter());
+        registry.addConverter(getManyMuestraHasManyParametroPKToJsonConverter());
     }
     
     public void ApplicationConversionServiceFactoryBean.afterPropertiesSet() {

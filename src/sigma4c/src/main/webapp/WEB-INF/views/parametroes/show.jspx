@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/jquery/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/jquery/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <page:show id="ps_org_sigma_core_domain_Parametro" object="${parametro}" path="/parametroes" z="bJgwyT8H6RWsUFYV0cuqudtYdSY=">
-        <field:display field="muestras" id="s_org_sigma_core_domain_Parametro_muestras" object="${parametro}" z="juTu/ZRfkPdGerZPb7pVwApFMfQ="/>
         <field:display field="nombre" id="s_org_sigma_core_domain_Parametro_nombre" object="${parametro}" z="wc4VLfwrlNQjtgzCM8gtNHpfiW0="/>
         <field:display field="unidad" id="s_org_sigma_core_domain_Parametro_unidad" object="${parametro}" z="yEtGZn+8oEtJkFA75JVuOldVmrE="/>
         <field:display field="concentracion" id="s_org_sigma_core_domain_Parametro_concentracion" object="${parametro}" z="cogHtF6aM9wy5yzLG9RD4NX5I28="/>

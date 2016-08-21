@@ -4,28 +4,26 @@
 package org.sigma.core.domain;
 
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import org.sigma.core.domain.Rol;
-import org.sigma.core.domain.User;
+import org.sigma.core.domain.Usuario;
 
 privileged aspect Rol_Roo_DbManaged {
     
-    @ManyToMany
-    @JoinTable(name = "many_user_has_many_rol", joinColumns = { @JoinColumn(name = "id_rol", nullable = false) }, inverseJoinColumns = { @JoinColumn(name = "id_user", nullable = false) })
-    private Set<User> Rol.users;
+    @OneToMany(mappedBy = "idRol", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    private Set<Usuario> Rol.usuarios;
     
     @Column(name = "nombre")
     private String Rol.nombre;
     
-    public Set<User> Rol.getUsers() {
-        return users;
+    public Set<Usuario> Rol.getUsuarios() {
+        return usuarios;
     }
     
-    public void Rol.setUsers(Set<User> users) {
-        this.users = users;
+    public void Rol.setUsuarios(Set<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
     
     public String Rol.getNombre() {
