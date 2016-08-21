@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>FuenteHidrica list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Geometria</th>
+                <th>Nombre</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for fuenteHidrica in fuenteHidricas %}
+            <tr>
+                <td><a href="{{ path('fuentehidrica_show', { 'id': fuenteHidrica.id }) }}">{{ fuenteHidrica.id }}</a></td>
+                <td>{{ fuenteHidrica.geometria }}</td>
+                <td>{{ fuenteHidrica.nombre }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('fuentehidrica_show', { 'id': fuenteHidrica.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('fuentehidrica_edit', { 'id': fuenteHidrica.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fuentehidrica_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
