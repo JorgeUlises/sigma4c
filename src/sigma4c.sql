@@ -51,6 +51,7 @@ ALTER TABLE public.proyecto OWNER TO postgres;
 -- DROP TABLE IF EXISTS public.muestra CASCADE;
 CREATE TABLE public.muestra(
 	id serial NOT NULL,
+	id_fuente_hidrica integer,
 	responsable character varying,
 	producto character varying,
 	lugar_toma character varying,
@@ -60,7 +61,7 @@ CREATE TABLE public.muestra(
 	fecha_recepcion date,
 	fecha_analisis date,
 	tipo_muestreo character varying,
-	id_fuente_hidrica integer,
+	geometria geometry(POINT, 4326),
 	CONSTRAINT muestra_id PRIMARY KEY (id)
 
 );
@@ -72,7 +73,7 @@ ALTER TABLE public.muestra OWNER TO postgres;
 -- DROP TABLE IF EXISTS public.fuente_hidrica CASCADE;
 CREATE TABLE public.fuente_hidrica(
 	id serial NOT NULL,
-	geometria character varying,
+	geometria geometry(MULTILINESTRING, 4326),
 	nombre character varying,
 	CONSTRAINT fuente_hidrica_id PRIMARY KEY (id)
 
@@ -148,19 +149,20 @@ CREATE TABLE public.rol(
 ALTER TABLE public.rol OWNER TO postgres;
 -- ddl-end --
 
--- object: public."user" | type: TABLE --
--- DROP TABLE IF EXISTS public."user" CASCADE;
-CREATE TABLE public."user"(
+-- object: public.usuario | type: TABLE --
+-- DROP TABLE IF EXISTS public.usuario CASCADE;
+CREATE TABLE public.usuario(
 	id serial NOT NULL,
+	id_empresa integer,
 	alias character varying,
 	mail character varying,
 	nombre character varying,
-	id_empresa integer,
+	id_rol integer,
 	CONSTRAINT user_id PRIMARY KEY (id)
 
 );
 -- ddl-end --
-ALTER TABLE public."user" OWNER TO postgres;
+ALTER TABLE public.usuario OWNER TO postgres;
 -- ddl-end --
 
 -- object: public.paramlist | type: TYPE --
@@ -187,34 +189,10 @@ ALTER TABLE public.parametro OWNER TO postgres;
 -- ddl-end --
 
 -- object: empresa_fk | type: CONSTRAINT --
--- ALTER TABLE public."user" DROP CONSTRAINT IF EXISTS empresa_fk CASCADE;
-ALTER TABLE public."user" ADD CONSTRAINT empresa_fk FOREIGN KEY (id_empresa)
+-- ALTER TABLE public.usuario DROP CONSTRAINT IF EXISTS empresa_fk CASCADE;
+ALTER TABLE public.usuario ADD CONSTRAINT empresa_fk FOREIGN KEY (id_empresa)
 REFERENCES public.empresa (id) MATCH FULL
 ON DELETE SET NULL ON UPDATE CASCADE;
--- ddl-end --
-
--- object: public.many_user_has_many_rol | type: TABLE --
--- DROP TABLE IF EXISTS public.many_user_has_many_rol CASCADE;
-CREATE TABLE public.many_user_has_many_rol(
-	id_user integer,
-	id_rol integer,
-	CONSTRAINT many_user_has_many_rol_pk PRIMARY KEY (id_user,id_rol)
-
-);
--- ddl-end --
-
--- object: user_fk | type: CONSTRAINT --
--- ALTER TABLE public.many_user_has_many_rol DROP CONSTRAINT IF EXISTS user_fk CASCADE;
-ALTER TABLE public.many_user_has_many_rol ADD CONSTRAINT user_fk FOREIGN KEY (id_user)
-REFERENCES public."user" (id) MATCH FULL
-ON DELETE RESTRICT ON UPDATE CASCADE;
--- ddl-end --
-
--- object: rol_fk | type: CONSTRAINT --
--- ALTER TABLE public.many_user_has_many_rol DROP CONSTRAINT IF EXISTS rol_fk CASCADE;
-ALTER TABLE public.many_user_has_many_rol ADD CONSTRAINT rol_fk FOREIGN KEY (id_rol)
-REFERENCES public.rol (id) MATCH FULL
-ON DELETE RESTRICT ON UPDATE CASCADE;
 -- ddl-end --
 
 -- object: public.many_muestra_has_many_parametro | type: TABLE --
@@ -222,6 +200,8 @@ ON DELETE RESTRICT ON UPDATE CASCADE;
 CREATE TABLE public.many_muestra_has_many_parametro(
 	id_muestra integer,
 	id_parametro integer,
+	concentracion double precision,
+	tec_analitic character varying,
 	CONSTRAINT many_muestra_has_many_parametro_pk PRIMARY KEY (id_muestra,id_parametro)
 
 );
@@ -253,6 +233,13 @@ CREATE SEQUENCE public."hibernate.secuence"
 	OWNED BY NONE;
 -- ddl-end --
 ALTER SEQUENCE public."hibernate.secuence" OWNER TO postgres;
+-- ddl-end --
+
+-- object: rol_fk | type: CONSTRAINT --
+-- ALTER TABLE public.usuario DROP CONSTRAINT IF EXISTS rol_fk CASCADE;
+ALTER TABLE public.usuario ADD CONSTRAINT rol_fk FOREIGN KEY (id_rol)
+REFERENCES public.rol (id) MATCH FULL
+ON DELETE SET NULL ON UPDATE CASCADE;
 -- ddl-end --
 
 
