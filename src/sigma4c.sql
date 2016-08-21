@@ -93,59 +93,11 @@ CREATE TABLE public.fuente_hidrica(
 ALTER TABLE public.fuente_hidrica OWNER TO sigma4c;
 -- ddl-end --
 
--- object: public.many_proyecto_has_many_empresa | type: TABLE --
--- DROP TABLE IF EXISTS public.many_proyecto_has_many_empresa CASCADE;
-CREATE TABLE public.many_proyecto_has_many_empresa(
-	id_proyecto integer,
-	id_empresa integer,
-	CONSTRAINT many_proyecto_has_many_empresa_pk PRIMARY KEY (id_proyecto,id_empresa)
-
-);
--- ddl-end --
-
--- object: proyecto_fk | type: CONSTRAINT --
--- ALTER TABLE public.many_proyecto_has_many_empresa DROP CONSTRAINT IF EXISTS proyecto_fk CASCADE;
-ALTER TABLE public.many_proyecto_has_many_empresa ADD CONSTRAINT proyecto_fk FOREIGN KEY (id_proyecto)
-REFERENCES public.proyecto (id) MATCH FULL
-ON DELETE RESTRICT ON UPDATE CASCADE;
--- ddl-end --
-
--- object: empresa_fk | type: CONSTRAINT --
--- ALTER TABLE public.many_proyecto_has_many_empresa DROP CONSTRAINT IF EXISTS empresa_fk CASCADE;
-ALTER TABLE public.many_proyecto_has_many_empresa ADD CONSTRAINT empresa_fk FOREIGN KEY (id_empresa)
-REFERENCES public.empresa (id) MATCH FULL
-ON DELETE RESTRICT ON UPDATE CASCADE;
--- ddl-end --
-
 -- object: fuente_hidrica_fk | type: CONSTRAINT --
 -- ALTER TABLE public.muestra DROP CONSTRAINT IF EXISTS fuente_hidrica_fk CASCADE;
 ALTER TABLE public.muestra ADD CONSTRAINT fuente_hidrica_fk FOREIGN KEY (id_fuente_hidrica)
 REFERENCES public.fuente_hidrica (id) MATCH FULL
 ON DELETE SET NULL ON UPDATE CASCADE;
--- ddl-end --
-
--- object: public.many_proyecto_has_many_fuente_hidrica | type: TABLE --
--- DROP TABLE IF EXISTS public.many_proyecto_has_many_fuente_hidrica CASCADE;
-CREATE TABLE public.many_proyecto_has_many_fuente_hidrica(
-	id_proyecto integer,
-	id_fuente_hidrica integer,
-	CONSTRAINT many_proyecto_has_many_fuente_hidrica_pk PRIMARY KEY (id_proyecto,id_fuente_hidrica)
-
-);
--- ddl-end --
-
--- object: proyecto_fk | type: CONSTRAINT --
--- ALTER TABLE public.many_proyecto_has_many_fuente_hidrica DROP CONSTRAINT IF EXISTS proyecto_fk CASCADE;
-ALTER TABLE public.many_proyecto_has_many_fuente_hidrica ADD CONSTRAINT proyecto_fk FOREIGN KEY (id_proyecto)
-REFERENCES public.proyecto (id) MATCH FULL
-ON DELETE RESTRICT ON UPDATE CASCADE;
--- ddl-end --
-
--- object: fuente_hidrica_fk | type: CONSTRAINT --
--- ALTER TABLE public.many_proyecto_has_many_fuente_hidrica DROP CONSTRAINT IF EXISTS fuente_hidrica_fk CASCADE;
-ALTER TABLE public.many_proyecto_has_many_fuente_hidrica ADD CONSTRAINT fuente_hidrica_fk FOREIGN KEY (id_fuente_hidrica)
-REFERENCES public.fuente_hidrica (id) MATCH FULL
-ON DELETE RESTRICT ON UPDATE CASCADE;
 -- ddl-end --
 
 -- object: public.rol | type: TABLE --
@@ -188,10 +140,8 @@ ALTER TYPE public.paramlist OWNER TO sigma4c;
 -- DROP TABLE IF EXISTS public.parametro CASCADE;
 CREATE TABLE public.parametro(
 	id serial NOT NULL,
-	nombre public.paramlist,
+	nombre character varying,
 	unidad character varying,
-	concentracion character varying,
-	tec_analitic character varying,
 	CONSTRAINT parametro_id PRIMARY KEY (id)
 
 );
@@ -204,32 +154,6 @@ ALTER TABLE public.parametro OWNER TO sigma4c;
 ALTER TABLE public.usuario ADD CONSTRAINT empresa_fk FOREIGN KEY (id_empresa)
 REFERENCES public.empresa (id) MATCH FULL
 ON DELETE SET NULL ON UPDATE CASCADE;
--- ddl-end --
-
--- object: public.many_muestra_has_many_parametro | type: TABLE --
--- DROP TABLE IF EXISTS public.many_muestra_has_many_parametro CASCADE;
-CREATE TABLE public.many_muestra_has_many_parametro(
-	id_muestra integer,
-	id_parametro integer,
-	concentracion double precision,
-	tec_analitic character varying,
-	CONSTRAINT many_muestra_has_many_parametro_pk PRIMARY KEY (id_muestra,id_parametro)
-
-);
--- ddl-end --
-
--- object: muestra_fk | type: CONSTRAINT --
--- ALTER TABLE public.many_muestra_has_many_parametro DROP CONSTRAINT IF EXISTS muestra_fk CASCADE;
-ALTER TABLE public.many_muestra_has_many_parametro ADD CONSTRAINT muestra_fk FOREIGN KEY (id_muestra)
-REFERENCES public.muestra (id) MATCH FULL
-ON DELETE RESTRICT ON UPDATE CASCADE;
--- ddl-end --
-
--- object: parametro_fk | type: CONSTRAINT --
--- ALTER TABLE public.many_muestra_has_many_parametro DROP CONSTRAINT IF EXISTS parametro_fk CASCADE;
-ALTER TABLE public.many_muestra_has_many_parametro ADD CONSTRAINT parametro_fk FOREIGN KEY (id_parametro)
-REFERENCES public.parametro (id) MATCH FULL
-ON DELETE RESTRICT ON UPDATE CASCADE;
 -- ddl-end --
 
 -- object: public.hibernate_sequence | type: SEQUENCE --
@@ -251,6 +175,86 @@ ALTER SEQUENCE public.hibernate_sequence OWNER TO sigma4c;
 ALTER TABLE public.usuario ADD CONSTRAINT rol_fk FOREIGN KEY (id_rol)
 REFERENCES public.rol (id) MATCH FULL
 ON DELETE SET NULL ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: public.many_proyecto_has_many_empresa | type: TABLE --
+-- DROP TABLE IF EXISTS public.many_proyecto_has_many_empresa CASCADE;
+CREATE TABLE public.many_proyecto_has_many_empresa(
+	id_proyecto integer,
+	id_empresa integer,
+	CONSTRAINT many_proyecto_has_many_empresa_pk PRIMARY KEY (id_proyecto,id_empresa)
+
+);
+-- ddl-end --
+ALTER TABLE public.many_proyecto_has_many_empresa OWNER TO sigma4c;
+-- ddl-end --
+
+-- object: proyecto_fk | type: CONSTRAINT --
+-- ALTER TABLE public.many_proyecto_has_many_empresa DROP CONSTRAINT IF EXISTS proyecto_fk CASCADE;
+ALTER TABLE public.many_proyecto_has_many_empresa ADD CONSTRAINT proyecto_fk FOREIGN KEY (id_proyecto)
+REFERENCES public.proyecto (id) MATCH FULL
+ON DELETE CASCADE ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: empresa_fk | type: CONSTRAINT --
+-- ALTER TABLE public.many_proyecto_has_many_empresa DROP CONSTRAINT IF EXISTS empresa_fk CASCADE;
+ALTER TABLE public.many_proyecto_has_many_empresa ADD CONSTRAINT empresa_fk FOREIGN KEY (id_empresa)
+REFERENCES public.empresa (id) MATCH FULL
+ON DELETE CASCADE ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: public.many_muestra_has_many_parametro | type: TABLE --
+-- DROP TABLE IF EXISTS public.many_muestra_has_many_parametro CASCADE;
+CREATE TABLE public.many_muestra_has_many_parametro(
+	concentracion double precision,
+	tec_analitic character varying,
+	id_muestra integer,
+	id_parametro integer,
+	CONSTRAINT many_muestra_has_many_parametro_pk PRIMARY KEY (id_muestra,id_parametro)
+
+);
+-- ddl-end --
+ALTER TABLE public.many_muestra_has_many_parametro OWNER TO sigma4c;
+-- ddl-end --
+
+-- object: muestra_fk | type: CONSTRAINT --
+-- ALTER TABLE public.many_muestra_has_many_parametro DROP CONSTRAINT IF EXISTS muestra_fk CASCADE;
+ALTER TABLE public.many_muestra_has_many_parametro ADD CONSTRAINT muestra_fk FOREIGN KEY (id_muestra)
+REFERENCES public.muestra (id) MATCH FULL
+ON DELETE CASCADE ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: parametro_fk | type: CONSTRAINT --
+-- ALTER TABLE public.many_muestra_has_many_parametro DROP CONSTRAINT IF EXISTS parametro_fk CASCADE;
+ALTER TABLE public.many_muestra_has_many_parametro ADD CONSTRAINT parametro_fk FOREIGN KEY (id_parametro)
+REFERENCES public.parametro (id) MATCH FULL
+ON DELETE CASCADE ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: public.many_proyecto_has_many_fuente_hidrica | type: TABLE --
+-- DROP TABLE IF EXISTS public.many_proyecto_has_many_fuente_hidrica CASCADE;
+CREATE TABLE public.many_proyecto_has_many_fuente_hidrica(
+	id_proyecto integer,
+	id_fuente_hidrica integer,
+	CONSTRAINT many_proyecto_has_many_fuente_hidrica_pk PRIMARY KEY (id_proyecto,id_fuente_hidrica)
+
+);
+-- ddl-end --
+ALTER TABLE public.many_proyecto_has_many_fuente_hidrica OWNER TO sigma4c;
+-- ddl-end --
+
+-- object: proyecto_fk | type: CONSTRAINT --
+-- ALTER TABLE public.many_proyecto_has_many_fuente_hidrica DROP CONSTRAINT IF EXISTS proyecto_fk CASCADE;
+ALTER TABLE public.many_proyecto_has_many_fuente_hidrica ADD CONSTRAINT proyecto_fk FOREIGN KEY (id_proyecto)
+REFERENCES public.proyecto (id) MATCH FULL
+ON DELETE CASCADE ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: fuente_hidrica_fk | type: CONSTRAINT --
+-- ALTER TABLE public.many_proyecto_has_many_fuente_hidrica DROP CONSTRAINT IF EXISTS fuente_hidrica_fk CASCADE;
+ALTER TABLE public.many_proyecto_has_many_fuente_hidrica ADD CONSTRAINT fuente_hidrica_fk FOREIGN KEY (id_fuente_hidrica)
+REFERENCES public.fuente_hidrica (id) MATCH FULL
+ON DELETE CASCADE ON UPDATE CASCADE;
 -- ddl-end --
 
 
