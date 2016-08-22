@@ -55,7 +55,7 @@ class Parametro
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -78,7 +78,7 @@ class Parametro
     /**
      * Get nombre
      *
-     * @return string 
+     * @return string
      */
     public function getNombre()
     {
@@ -101,7 +101,7 @@ class Parametro
     /**
      * Get unidad
      *
-     * @return string 
+     * @return string
      */
     public function getUnidad()
     {
@@ -134,10 +134,15 @@ class Parametro
     /**
      * Get idMuestra
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIdMuestra()
     {
         return $this->idMuestra;
+    }
+
+    public function __toString()
+    {
+        return $this->nombre;
     }
 }

@@ -320,4 +320,8 @@ class Empresa
     {
         return $this->idProyecto;
     }
+    public function __toString()
+    {
+        return $this->nombre;
+    }
 }
