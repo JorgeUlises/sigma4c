@@ -67,7 +67,7 @@ img { width: auto; height: auto; max-width: 100%; font-size: 0; vertical-align: 
 
 .no-bg .header { background: transparent; }
 
-.logo { float: left; width: 218px; height: 57px; background: url("images/logo.png") no-repeat 0 0; }
+.logo { float: left; width: 218px; height: 60px; background: url("images/logo_4c.png") no-repeat 0 0; }
 
 .navbar-collapse .site-navigation .nav {float: right; padding-top: 5px; }
 .navbar-collapse .site-navigation .nav ul { list-style: none outside none; }
