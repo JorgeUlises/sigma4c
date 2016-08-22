@@ -26,7 +26,7 @@ class EmpresaType extends AbstractType
             ->add('idProyecto')
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */

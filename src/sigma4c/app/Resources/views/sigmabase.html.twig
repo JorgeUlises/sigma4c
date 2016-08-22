@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>{% block title %}Sigma4C{% endblock %}</title>
+  {% block stylesheets %}{% endblock %}
+  <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+  <link rel="pingback" href="http://pearanalytics.com/xmlrpc.php">
+  <link rel="shortcut icon" href="http://38r0us9g9l1438rwf2z2tcsz.wpengine.netdna-cdn.com/wp-content/themes/pear-analytics/assets/css/images/favicon.ico">
+
+  <link rel="stylesheet" href="{{ asset('css/css_002.css') }}" type="text/css" media="all">
+  <link rel="stylesheet" href="{{ asset('css/style_002.css') }}" type="text/css" media="all">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css" media="all">
+
+  <link href="{{ asset('css/owl.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/owl_002.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/component.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ asset('css/easy-responsive-tabs.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ asset('css/twentytwenty.css') }}" rel="stylesheet" type="text/css">
+
+  <script src="{{ asset('js/jquery-1.11.0.min.js') }}" type="text/javascript" charset="utf-8"></script>
+  <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript" charset="utf-8"></script>
+
+  <style type="text/css">
+    img.wp-smiley,
+    img.emoji {
+      display: inline !important;
+      border: none !important;
+      box-shadow: none !important;
+      height: 1em !important;
+      width: 1em !important;
+      margin: 0 .07em !important;
+      vertical-align: -0.1em !important;
+      background: none !important;
+      padding: 0 !important;
+    }
+  </style>
+  <link rel="stylesheet" id="otw_grid_manager-css" href="{{ asset('css/otw-grid.css') }}" type="text/css" media="all">
+  <link rel="stylesheet" id="general_foundicons-css" href="{{ asset('css/general_foundicons.css') }}" type="text/css" media="all">
+  <link rel="stylesheet" id="social_foundicons-css" href="{{ asset('css/social_foundicons.css') }}" type="text/css" media="all">
+  <link rel="stylesheet" id="otw_shortocde-css" href="{{ asset('css/otw_shortcode.css') }}" type="text/css" media="all">
+  <link rel="stylesheet" id="ajax-load-more-css" href="{{ asset('css/ajax-load-more.css') }}" type="text/css" media="all">
+  <link rel="stylesheet" id="ajaxy-sf-common-css" href="{{ asset('css/common.css') }}" type="text/css" media="all">
+  <link rel="stylesheet" id="ajaxy-sf-selective-css" href="{{ asset('css/selective.css') }}" type="text/css" media="all">
+  <link rel="stylesheet" id="ajaxy-sf-theme-css" href="{{ asset('css/style.css') }}" type="text/css" media="all">
+  <link rel="stylesheet" id="rs-plugin-settings-css" href="{{ asset('css/settings.css') }}" type="text/css" media="all">
+  <style id="rs-plugin-settings-inline-css" type="text/css">
+    #rs-demo-id {}
+  </style>
+  <link rel="stylesheet" id="tt-public-css-main-css" href="{{ asset('css/public-main.css') }}" type="text/css" media="all">
+  <link rel="stylesheet" id="tt-public-css-theme-css" href="{{ asset('css/light.css') }}" type="text/css" media="all">
+  <link rel="stylesheet" id="wprmenu.css-css" href="{{ asset('css/wprmenu.css') }}" type="text/css" media="all">
+  <link rel="stylesheet" id="wprmenu-font-css" href="{{ asset('css/css.css') }}" type="text/css" media="all">
+  <!-- End of Async Drift Code -->
+  <!-- end: Drift Code. -->
+  <style id="wprmenu_css" type="text/css">
+    /* apply appearance settings */
+
+    #wprmenu_bar {
+      background: #94c248;
+    }
+
+    #wprmenu_bar .menu_title,
+    #wprmenu_bar .wprmenu_icon_menu {
+      color: #F2F2F2;
+    }
+
+    #wprmenu_menu {
+      background: #a0cc5b!important;
+    }
+
+    #wprmenu_menu.wprmenu_levels ul li {
+      border-bottom: 1px solid #a0cc5b;
+      border-top: 1px solid #a0cc5b;
+    }
+
+    #wprmenu_menu ul li a {
+      color: #eeeeee;
+    }
+
+    #wprmenu_menu ul li a:hover {
+      color: #ffffff;
+    }
+
+    #wprmenu_menu.wprmenu_levels a.wprmenu_parent_item {
+      border-left: 1px solid #a0cc5b;
+    }
+
+    #wprmenu_menu .wprmenu_icon_par {
+      color: #eeeeee;
+    }
+
+    #wprmenu_menu .wprmenu_icon_par:hover {
+      color: #ffffff;
+    }
+
+    #wprmenu_menu.wprmenu_levels ul li ul {
+      border-top: 1px solid #a0cc5b;
+    }
+
+    #wprmenu_bar .wprmenu_icon span {
+      background: #FFFFFF;
+    }
+
+    #wprmenu_menu,
+    #wprmenu_menu ul,
+    #wprmenu_menu li {
+      border-bottom: none!important;
+    }
+
+    #wprmenu_menu.wprmenu_levels > ul {
+      border-bottom: 1px solid #a0cc5b!important;
+    }
+
+    .wprmenu_no_border_bottom {
+      border-bottom: none!important;
+    }
+
+    #wprmenu_menu.wprmenu_levels ul li ul {
+      border-top: none!important;
+    }
+
+    #wprmenu_menu.left {
+      width: 100%;
+      left: -100%;
+      right: auto;
+    }
+
+    #wprmenu_menu.right {
+      width: 100%;
+      right: -100%;
+      left: auto;
+    }
+
+    #wprmenu_bar .wprmenu_icon {
+      float: right!important;
+      margin-right: 0px!important;
+    }
+
+    #wprmenu_bar .bar_logo {
+      pading-left: 0px;
+    }
+    /* show the bar and hide othere navigation elements */
+
+    @media only screen and (max-width: 992px) {
+      html {
+        padding-top: 42px!important;
+      }
+      #wprmenu_bar {
+        display: block!important;
+      }
+      div#wpadminbar {
+        position: fixed;
+      }
+    }
+  </style>
+  <!-- My Custom CSS -->
+  <link rel="stylesheet" id="mccss_stylesheet" href="{{ asset('css/my_style.css') }}" type="text/css" media="all">
+  <!-- My Custom CSS -->
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+      <div class="container cf">
+
+
+        <a href="http://pearanalytics.com/" class="logo notext">Pear</a>
+        <button type="button request-button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse navbar-main-collapse">
+          <nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+            <ul id="menu-main-menu" class="nav navbar-nav">
+              <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/empresa">Empresa</a></li>
+              <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/proyecto">Proyecto</a></li>
+              <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/fuentehidrica">Fuente Hídrica</a></li>
+              <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/muestra">Muestra</a></li>
+              <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/parametro">Parámetro</a></li>
+              <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/rol">Rol</a></li>
+              <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/usuario">Usuario</a></li>
+            </ul>
+          </nav>
+        </div>
+        <!-- /.nav -->
+      </div>
+      <!-- /.container -->
+    </div>
+    <!-- /.header -->
+
+    <section class="section-items advancedAnalytics">
+      <div class="container cf">
+        {% block body %}{% endblock %}
+      </div>
+    </section>
+  </div>
+  <!-- /.wrapper -->
+  <div class="footer-bar">
+    <div class="container cf">
+      <div class="row">
+        <div class="col-md-5 com-xs-12">
+          <p class="left"><i class="fa fa-envelope-o"></i> Email
+            <a href="mailto:info@pearanalytics.com">
+              <strong>Info@pearanalytics.com</strong>
+            </a>
+          </p>
+        </div>
+
+        <div class="col-md-4 col-xs-12">
+          <p class="right"><i class="fa fa-phone"></i> Give us a call
+            <a href="tel:%28888%29%20427-2178">
+              <strong>(888) 427-2178</strong>
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- /.container -->
+  </div>
+
+
+  <div class="footer">
+    <div class="top">
+      <div class="container cf">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="widget widget-connect">
+              <a href="http://pearanalytics.com/" class="footer-logo notext">&nbsp;</a>
+
+              <div class="socials">
+
+                <p>140 Heimer Road, Suite 195</p>
+                <p>San Antonio, TX 78232</p>
+                <p>(888)427-2178</p>
+
+                <ul>
+                  <li>
+                    <a href="https://twitter.com/pearanalytics" class="twitter-link">
+                      <i class="fa fa-twitter"></i>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="https://www.facebook.com/pearanalytics" class="facebook-link">
+                      <i class="fa fa-facebook"></i>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="http://www.linkedin.com/company/pear-analytics" class="linkedin-link">
+                      <i class="fa fa-linkedin"></i>
+                    </a>
+                  </li>
+                </ul>
+                <br>
+                <a href="https://www.google.com/partners/" target="_blank">
+                  <img src="{{ asset('css/google-partner.png') }}">
+                </a>
+                <br>
+                <br>
+                <a href="http://www.vistage.com/" target="_blank">
+                  <img src="{{ asset('css/vistage.png') }}">
+                </a>
+                <br>
+                <br>
+                <a href="http://www.hotjar.com/founding-members?utm_source=badge" target="_blank">
+                  <img src="{{ asset('css/founding-member.png') }}" alt="Hotjar Founding Member">
+                </a>
+              </div>
+              <!-- /.socials -->
+            </div>
+            <!-- /.widget -->
+          </div>
+
+          <div class="widget widget-double col-md-3">
+            <h4 class="widget-title">Quick Links</h4>
+
+            <ul id="menu-double-left" class="menu">
+              <li id="menu-item-4881" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4881"><a href="http://pearanalytics.com/internet-marketing-blog/">Blog</a></li>
+              <li id="menu-item-4882" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4882"><a href="http://pearanalytics.com/locate-us/">Map Us</a></li>
+              <li id="menu-item-5053" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5053"><a href="http://pearanalytics.com/meet-the-team">Team</a></li>
+            </ul>
+            <ul id="menu-double-right" class="menu">
+              <li id="menu-item-4883" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4883"><a href="http://pearanalytics.com/internet-marketing-case-studies">Case Studies</a></li>
+            </ul>
+          </div>
+          <!-- /.widget -->
+
+          <div class="widget col-md-3">
+            <h4 class="widget-title">SOLUTIONS</h4>
+
+            <ul id="menu-solutions" class="menu">
+              <li id="menu-item-4884" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4884"><a href="http://pearanalytics.com/blog/category/search-engine-marketing/">Search Engine Marketing</a></li>
+              <li id="menu-item-5047" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5047"><a href="http://pearanalytics.com/blog/category/paid-search/">Paid Search</a></li>
+              <li id="menu-item-5048" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5048"><a href="http://pearanalytics.com/blog/category/search-engine-optimization/">Search Engine Optimization</a></li>
+              <li id="menu-item-5049" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5049"><a href="http://pearanalytics.com/blog/category/web-analytics/">Web Analytics</a></li>
+            </ul>
+          </div>
+          <!-- /.widget -->
+
+          <div class="widget col-md-3">
+            <h4 class="widget-title">Support</h4>
+
+            <ul id="menu-support" class="menu">
+              <li id="menu-item-4885" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4885"><a href="http://pearanalytics.com/internet-marketing-blog/">Help Articles</a></li>
+            </ul>
+          </div>
+          <!-- /.widget -->
+        </div>
+      </div>
+      <!-- /.container -->
+    </div>
+    <!-- /.top -->
+
+    <div class="bottom">
+      <div class="container cf">
+        <div class="row">
+          <div class="col-md-6">
+            <p class="copyright"> © 2016
+              <strong>Pear Analytics.</strong> All rights reserved.
+              <span>|</span> <a href="http://pearanalytics.com/terms-and-conditions/">Privacy Policy  &amp;  Terms</a> </p>
+          </div>
+          <div class="col-md-6">
+          </div>
+        </div>
+      </div>
+      <!-- /.container -->
+    </div>
+    <!-- /.bottom -->
+  </div>
+  <!-- /.footer -->
+
+
+  {% block javascripts %}{% endblock %}
+</body>
+
+</html>

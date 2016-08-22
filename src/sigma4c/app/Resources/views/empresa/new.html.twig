@@ -1,16 +1,61 @@
-{% extends 'base.html.twig' %}
+{% extends 'sigmabase.html.twig' %}
 
 {% block body %}
-    <h1>Empresa creation</h1>
+    <h1>Nueva Empresa</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+        <div class="form-group">
+          {{ form_label(form.tipoempresa, 'Tipo Empresa') }}
+          {{ form_errors(form.tipoempresa) }}
+          {{ form_widget(form.tipoempresa, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+          {{ form_label(form.nombre, 'Nombre') }}
+          {{ form_errors(form.nombre) }}
+          {{ form_widget(form.nombre, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+          {{ form_label(form.representantelegal, 'Representante Legal') }}
+          {{ form_errors(form.representantelegal) }}
+          {{ form_widget(form.representantelegal, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+          {{ form_label(form.rut, 'RUT') }}
+          {{ form_errors(form.rut) }}
+          {{ form_widget(form.rut, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+          {{ form_label(form.nit, 'NIT') }}
+          {{ form_errors(form.nit) }}
+          {{ form_widget(form.nit, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+          {{ form_label(form.email, 'Email') }}
+          {{ form_errors(form.email) }}
+          {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+          {{ form_label(form.ciudad, 'Ciudad') }}
+          {{ form_errors(form.ciudad) }}
+          {{ form_widget(form.ciudad, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+          {{ form_label(form.direccion, 'Dirección') }}
+          {{ form_errors(form.direccion) }}
+          {{ form_widget(form.direccion, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+          {{ form_label(form.idProyecto, 'Proyecto') }}
+          {{ form_errors(form.idProyecto) }}
+          {{ form_widget(form.idProyecto, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <input class="btn btn-default" type="submit" value="Crear" />
     {{ form_end(form) }}
+    <br />
 
-    <ul>
+    <ul class="list-inline">
         <li>
-            <a href="{{ path('empresa_index') }}">Back to the list</a>
+            <a class="btn btn-info" href="{{ path('empresa_index') }}">Volver</a>
         </li>
     </ul>
 {% endblock %}
