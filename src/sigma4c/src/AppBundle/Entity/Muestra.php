@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use CrEOF\Spatial\PHP\Types\Geometry\Point;
 
 /**
  * Muestra
@@ -129,7 +130,7 @@ class Muestra
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -152,7 +153,7 @@ class Muestra
     /**
      * Get responsable
      *
-     * @return string 
+     * @return string
      */
     public function getResponsable()
     {
@@ -175,7 +176,7 @@ class Muestra
     /**
      * Get producto
      *
-     * @return string 
+     * @return string
      */
     public function getProducto()
     {
@@ -198,7 +199,7 @@ class Muestra
     /**
      * Get lugarToma
      *
-     * @return string 
+     * @return string
      */
     public function getLugarToma()
     {
@@ -221,7 +222,7 @@ class Muestra
     /**
      * Get foto
      *
-     * @return string 
+     * @return string
      */
     public function getFoto()
     {
@@ -244,7 +245,7 @@ class Muestra
     /**
      * Get nMuestras
      *
-     * @return integer 
+     * @return integer
      */
     public function getNMuestras()
     {
@@ -267,7 +268,7 @@ class Muestra
     /**
      * Get fechaToma
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getFechaToma()
     {
@@ -290,7 +291,7 @@ class Muestra
     /**
      * Get fechaRecepcion
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getFechaRecepcion()
     {
@@ -313,7 +314,7 @@ class Muestra
     /**
      * Get fechaAnalisis
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getFechaAnalisis()
     {
@@ -336,7 +337,7 @@ class Muestra
     /**
      * Get tipoMuestreo
      *
-     * @return string 
+     * @return string
      */
     public function getTipoMuestreo()
     {
@@ -351,7 +352,8 @@ class Muestra
      */
     public function setGeometria($geometria)
     {
-        $this->geometria = $geometria;
+        $point = new Point(-73.7562317, 3.6525792, 4326);
+        $this->geometria = $point;
 
         return $this;
     }
@@ -359,7 +361,7 @@ class Muestra
     /**
      * Get geometria
      *
-     * @return geometry 
+     * @return geometry
      */
     public function getGeometria()
     {
@@ -382,7 +384,7 @@ class Muestra
     /**
      * Get idFuenteHidrica
      *
-     * @return \AppBundle\Entity\FuenteHidrica 
+     * @return \AppBundle\Entity\FuenteHidrica
      */
     public function getIdFuenteHidrica()
     {
@@ -415,10 +417,15 @@ class Muestra
     /**
      * Get idParametro
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIdParametro()
     {
         return $this->idParametro;
+    }
+
+    public function __toString()
+    {
+        return $this->producto;
     }
 }

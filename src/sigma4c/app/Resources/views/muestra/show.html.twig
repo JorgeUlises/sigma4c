@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Muestra</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ muestra.id }}</td>
+            </tr>
+            <tr>
+                <th>Responsable</th>
+                <td>{{ muestra.responsable }}</td>
+            </tr>
+            <tr>
+                <th>Producto</th>
+                <td>{{ muestra.producto }}</td>
+            </tr>
+            <tr>
+                <th>Lugartoma</th>
+                <td>{{ muestra.lugarToma }}</td>
+            </tr>
+            <tr>
+                <th>Foto</th>
+                <td>{{ muestra.foto }}</td>
+            </tr>
+            <tr>
+                <th>Nmuestras</th>
+                <td>{{ muestra.nMuestras }}</td>
+            </tr>
+            <tr>
+                <th>Fechatoma</th>
+                <td>{% if muestra.fechaToma %}{{ muestra.fechaToma|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Fecharecepcion</th>
+                <td>{% if muestra.fechaRecepcion %}{{ muestra.fechaRecepcion|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Fechaanalisis</th>
+                <td>{% if muestra.fechaAnalisis %}{{ muestra.fechaAnalisis|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Tipomuestreo</th>
+                <td>{{ muestra.tipoMuestreo }}</td>
+            </tr>
+            <tr>
+                <th>Geometria</th>
+                <td>{{ muestra.geometria }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('muestra_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('muestra_edit', { 'id': muestra.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

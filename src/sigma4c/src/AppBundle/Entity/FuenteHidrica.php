@@ -3,6 +3,9 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use CrEOF\Spatial\PHP\Types\Geometry\LineString;
+use CrEOF\Spatial\PHP\Types\Geometry\Point;
+use CrEOF\Spatial\PHP\Types\Geometry\MultiLineString;
 
 /**
  * FuenteHidrica
@@ -55,7 +58,7 @@ class FuenteHidrica
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -70,7 +73,28 @@ class FuenteHidrica
      */
     public function setGeometria($geometria)
     {
-        $this->geometria = $geometria;
+      $lineStrings = array(
+          new LineString(
+              array(
+                  new Point(0, 0),
+                  new Point(10, 0),
+                  new Point(10, 10),
+                  new Point(0, 10),
+                  new Point(0, 0)
+              )
+          ),
+          new LineString(
+              array(
+                  new Point(0, 0),
+                  new Point(10, 0),
+                  new Point(10, 10),
+                  new Point(0, 10),
+                  new Point(0, 0)
+              )
+          )
+      );
+      $multiLineString = new MultiLineString($lineStrings, 4326);
+        $this->geometria = $multiLineString;
 
         return $this;
     }
@@ -78,7 +102,7 @@ class FuenteHidrica
     /**
      * Get geometria
      *
-     * @return geometry 
+     * @return geometry
      */
     public function getGeometria()
     {
@@ -101,7 +125,7 @@ class FuenteHidrica
     /**
      * Get nombre
      *
-     * @return string 
+     * @return string
      */
     public function getNombre()
     {
@@ -134,10 +158,15 @@ class FuenteHidrica
     /**
      * Get idProyecto
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIdProyecto()
     {
         return $this->idProyecto;
+    }
+    
+    public function __toString()
+    {
+        return $this->nombre;
     }
 }

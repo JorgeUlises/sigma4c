@@ -86,7 +86,7 @@ class Proyecto
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -109,7 +109,7 @@ class Proyecto
     /**
      * Get involucrados
      *
-     * @return string 
+     * @return string
      */
     public function getInvolucrados()
     {
@@ -132,7 +132,7 @@ class Proyecto
     /**
      * Get nombre
      *
-     * @return string 
+     * @return string
      */
     public function getNombre()
     {
@@ -155,7 +155,7 @@ class Proyecto
     /**
      * Get encargado
      *
-     * @return string 
+     * @return string
      */
     public function getEncargado()
     {
@@ -188,7 +188,7 @@ class Proyecto
     /**
      * Get idEmpresa
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIdEmpresa()
     {
@@ -221,10 +221,14 @@ class Proyecto
     /**
      * Get idFuenteHidrica
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIdFuenteHidrica()
     {
         return $this->idFuenteHidrica;
+    }
+    public function __toString()
+    {
+        return $this->nombre;
     }
 }
