@@ -1,9 +1,9 @@
 {% extends 'sigmabase.html.twig' %}
 
 {% block body %}
-    <h1>FuenteHidrica list</h1>
+    <h1>Lista Fuentes Hidricas</h1>
 
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
@@ -19,12 +19,12 @@
                 <td>{{ fuenteHidrica.geometria }}</td>
                 <td>{{ fuenteHidrica.nombre }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('fuentehidrica_show', { 'id': fuenteHidrica.id }) }}">show</a>
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a title="Ver" alt="Ver" href="{{ path('fuentehidrica_show', { 'id': fuenteHidrica.id }) }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
                         </li>
-                        <li>
-                            <a href="{{ path('fuentehidrica_edit', { 'id': fuenteHidrica.id }) }}">edit</a>
+                        <li class="list-inline-item">
+                            <a title="Editar" alt="Editar" href="{{ path('fuentehidrica_edit', { 'id': fuenteHidrica.id }) }}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                         </li>
                     </ul>
                 </td>
@@ -33,9 +33,9 @@
         </tbody>
     </table>
 
-    <ul>
+    <ul class="list-inline">
         <li>
-            <a href="{{ path('fuentehidrica_new') }}">Create a new entry</a>
+            <a class="btn btn-default" href="{{ path('fuentehidrica_new') }}">Nuevo</a>
         </li>
     </ul>
 {% endblock %}
