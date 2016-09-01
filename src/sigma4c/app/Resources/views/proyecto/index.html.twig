@@ -1,7 +1,7 @@
 {% extends 'sigmabase.html.twig' %}
 
 {% block body %}
-    <h1>Proyecto list</h1>
+    <h1>Lista de Proyectos</h1>
 
     <table class="table table-inverse">
         <thead>
@@ -21,12 +21,12 @@
                 <td>{{ proyecto.nombre }}</td>
                 <td>{{ proyecto.encargado }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('proyecto_show', { 'id': proyecto.id }) }}">show</a>
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="{{ path('proyecto_show', { 'id': proyecto.id }) }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
                         </li>
-                        <li>
-                            <a href="{{ path('proyecto_edit', { 'id': proyecto.id }) }}">edit</a>
+                        <li class="list-inline-item">
+                            <a href="{{ path('proyecto_edit', { 'id': proyecto.id }) }}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                         </li>
                     </ul>
                 </td>
@@ -35,9 +35,9 @@
         </tbody>
     </table>
 
-    <ul>
+    <ul class="list-inline">
         <li>
-            <a href="{{ path('proyecto_new') }}">Create a new entry</a>
+            <a class="btn btn-default" href="{{ path('proyecto_new') }}">Nuevo</a>
         </li>
     </ul>
 {% endblock %}

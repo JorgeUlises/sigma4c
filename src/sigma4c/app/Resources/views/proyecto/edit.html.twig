@@ -1,21 +1,46 @@
 {% extends 'sigmabase.html.twig' %}
 
 {% block body %}
-    <h1>Proyecto edit</h1>
+    <h1>Editar Proyecto</h1>
 
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
-
-    <ul>
+    <div class="form-group">
+        {{ form_label(edit_form.involucrados, 'Involucrados') }}
+        {{ form_errors(edit_form.involucrados) }}
+        {{ form_widget(edit_form.involucrados, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(edit_form.nombre, 'Nombre Proyecto') }}
+        {{ form_errors(edit_form.nombre) }}
+        {{ form_widget(edit_form.nombre, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(edit_form.encargado, 'Encargado') }}
+        {{ form_errors(edit_form.encargado) }}
+        {{ form_widget(edit_form.encargado, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(edit_form.idEmpresa, 'Empresa') }}
+        {{ form_errors(edit_form.idEmpresa) }}
+        {{ form_widget(edit_form.idEmpresa, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(edit_form.idFuenteHidrica, 'Fuente Hidríca') }}
+        {{ form_errors(edit_form.idFuenteHidrica) }}
+        {{ form_widget(edit_form.idFuenteHidrica, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <ul class="list-inline">
         <li>
-            <a href="{{ path('proyecto_index') }}">Back to the list</a>
+            <input class="btn btn-default"  type="submit" value="Guardar"/>
+        </li>
+        <li>
+            <a class="btn btn-info" href="{{ path('proyecto_index') }}">Volver</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input class="btn btn-danger" type="submit" value="Eliminar">
             {{ form_end(delete_form) }}
         </li>
     </ul>
+    {{ form_end(edit_form) }}
 {% endblock %}
