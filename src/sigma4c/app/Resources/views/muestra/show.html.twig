@@ -52,16 +52,16 @@
         </tbody>
     </table>
 
-    <ul>
+    <ul class="list-inline">
         <li>
-            <a href="{{ path('muestra_index') }}">Back to the list</a>
+            <a class="btn btn-info" href="{{ path('muestra_index') }}">Volver</a>
         </li>
         <li>
-            <a href="{{ path('muestra_edit', { 'id': muestra.id }) }}">Edit</a>
+            <a class="btn btn-primary" href="{{ path('muestra_edit', { 'id': muestra.id }) }}">Editar</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input class="btn btn-danger" type="submit" value="Eliminar">
             {{ form_end(delete_form) }}
         </li>
     </ul>

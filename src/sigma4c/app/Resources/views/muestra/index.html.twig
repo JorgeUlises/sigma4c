@@ -1,9 +1,9 @@
 {% extends 'sigmabase.html.twig' %}
 
 {% block body %}
-    <h1>Muestra list</h1>
+    <h1>Lista Muestras</h1>
 
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
@@ -11,13 +11,13 @@
                 <th>Producto</th>
                 <th>Lugartoma</th>
                 <th>Foto</th>
-                <th>Nmuestras</th>
-                <th>Fechatoma</th>
-                <th>Fecharecepcion</th>
-                <th>Fechaanalisis</th>
-                <th>Tipomuestreo</th>
-                <th>Geometria</th>
-                <th>Actions</th>
+                <th>Num Muestras</th>
+                <th>Fecha Toma</th>
+                <th>Fecha Recepción</th>
+                <th>Fecha Analisis</th>
+                <th>Tipo Muestreo</th>
+                <th>Geometría</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -35,12 +35,12 @@
                 <td>{{ muestra.tipoMuestreo }}</td>
                 <td>{{ muestra.geometria }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('muestra_show', { 'id': muestra.id }) }}">show</a>
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a title="Ver" alt="Ver" href="{{ path('muestra_show', { 'id': muestra.id }) }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
                         </li>
-                        <li>
-                            <a href="{{ path('muestra_edit', { 'id': muestra.id }) }}">edit</a>
+                        <li class="list-inline-item">
+                            <a title="Editar" alt="Editar" href="{{ path('muestra_edit', { 'id': muestra.id }) }}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                         </li>
                     </ul>
                 </td>
@@ -49,9 +49,9 @@
         </tbody>
     </table>
 
-    <ul>
+    <ul class="list-inline">
         <li>
-            <a href="{{ path('muestra_new') }}">Create a new entry</a>
+          <a class="btn btn-default" href="{{ path('muestra_new') }}">Nuevo</a>
         </li>
     </ul>
 {% endblock %}
