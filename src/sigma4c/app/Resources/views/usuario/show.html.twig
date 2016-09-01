@@ -3,7 +3,7 @@
 {% block body %}
     <h1>Usuario</h1>
 
-    <table>
+    <table class="table">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -24,16 +24,16 @@
         </tbody>
     </table>
 
-    <ul>
+    <ul class="list-inline">
         <li>
-            <a href="{{ path('usuario_index') }}">Back to the list</a>
+            <a class="btn btn-info" href="{{ path('usuario_index') }}">Volver</a>
         </li>
         <li>
-            <a href="{{ path('usuario_edit', { 'id': usuario.id }) }}">Edit</a>
+            <a class="btn btn-primary" href="{{ path('usuario_edit', { 'id': usuario.id }) }}">Editar</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input class="btn btn-danger" type="submit" value="Eliminar">
             {{ form_end(delete_form) }}
         </li>
     </ul>
