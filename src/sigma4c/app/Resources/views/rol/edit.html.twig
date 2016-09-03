@@ -1,21 +1,26 @@
 {% extends 'sigmabase.html.twig' %}
 
 {% block body %}
-    <h1>Rol edit</h1>
+    <h1>Editar Rol</h1>
 
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+    <div class="form-group">
+        {{ form_label(edit_form.nombre, 'Tipo Empresa') }}
+        {{ form_errors(edit_form.nombre) }}
+        {{ form_widget(edit_form.nombre, {'attr': {'class': 'form-control'}}) }}
+    </div>
+        <ul class="list-inline">
+            <li>
+                <input class="btn btn-default"  type="submit" value="Guardar"/>
+            </li>
+            <li>
+                <a class="btn btn-info" href="{{ path('rol_index') }}">Volver</a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
+                    <input class="btn btn-danger" type="submit" value="Eliminar">
+                {{ form_end(delete_form) }}
+            </li>
+        </ul>
     {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('rol_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
 {% endblock %}

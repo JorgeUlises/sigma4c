@@ -1,16 +1,21 @@
 {% extends 'sigmabase.html.twig' %}
 
 {% block body %}
-    <h1>Rol creation</h1>
+    <h1>Crear Rol</h1>
 
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+    <div class="form-group">
+        {{ form_label(form.nombre, 'Tipo Empresa') }}
+        {{ form_errors(form.nombre) }}
+        {{ form_widget(form.nombre, {'attr': {'class': 'form-control'}}) }}
+    </div>
+        <input class="btn btn-default" type="submit" value="Crear"/>
     {{ form_end(form) }}
+    <br/>
 
-    <ul>
+    <ul class="list-inline">
         <li>
-            <a href="{{ path('rol_index') }}">Back to the list</a>
+            <a class="btn btn-info" href="{{ path('rol_index') }}">Volver</a>
         </li>
     </ul>
 {% endblock %}

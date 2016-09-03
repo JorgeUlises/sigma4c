@@ -1,9 +1,9 @@
 {% extends 'sigmabase.html.twig' %}
 
 {% block body %}
-    <h1>Rol list</h1>
+    <h1>Lista de Roles</h1>
 
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
@@ -17,12 +17,12 @@
                 <td><a href="{{ path('rol_show', { 'id': rol.id }) }}">{{ rol.id }}</a></td>
                 <td>{{ rol.nombre }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('rol_show', { 'id': rol.id }) }}">show</a>
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="{{ path('rol_show', { 'id': rol.id }) }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
                         </li>
-                        <li>
-                            <a href="{{ path('rol_edit', { 'id': rol.id }) }}">edit</a>
+                        <li class="list-inline-item">
+                            <a href="{{ path('rol_edit', { 'id': rol.id }) }}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                         </li>
                     </ul>
                 </td>
@@ -32,8 +32,8 @@
     </table>
 
     <ul>
-        <li>
-            <a href="{{ path('rol_new') }}">Create a new entry</a>
+        <li class="list-inline">
+            <a class="btn btn-default" href="{{ path('rol_new') }}">Nuevo</a>
         </li>
     </ul>
 {% endblock %}
