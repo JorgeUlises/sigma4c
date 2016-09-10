@@ -51,10 +51,13 @@ var map = new ol.Map({
   view: view
 })
 
-var listenerKey = map.on('postrender', function(e) {
-  ol.Observable.unByKey(listenerKey)
+var listenerKey = function(e) {
+  window.alert('hi')
   setInitialPoint()
-})
+  map.un('postrender', listenerKey)
+  map.unByKey(id)
+}
+var id = map.on('postrender', listenerKey)
 
 var geolocation = new ol.Geolocation({
   projection: view.getProjection()
@@ -182,8 +185,8 @@ function puntoTerminado() {
         var coordenadas = geometry.getCoordinates()
         var x = coordenadas[0]
         var y = coordenadas[1]
-        el("muestra_geometria").value = x + "," + y
-        console.log(x + "," + y)
+        el('muestra_geometria').value = x + ' ' + y
+        console.log(x + ' ' + y)
       }
     }
   }
@@ -196,18 +199,23 @@ function puntoTerminado() {
 addInteraction()
 
 function setInitialPoint() {
-  var coordenadas = el("muestra_geometria").value.split(' ')
-  console.log(coordenadas);
+  var coordenadas = el('muestra_geometria').value.split(' ')
+  console.log(coordenadas)
+  if (coordenadas === '') {
+    return
+  }
   var x = coordenadas[0]
   var y = coordenadas[1]
-  view.setZoom(16)
+
+  var feature = new ol.Feature()
+  positionFeature.setGeometry(
+    coordenadas ? new ol.geom.Point(coordenadas) : null
+  )
+  feature.setStyle(estiloPunto)
+
+  source.addFeature(feature)
   view.setCenter([x, y])
-  //var point = new ol.geom.Point([x, y])
-  //var feature = new ol.Feature({
-  //  geometry: point
-  //})
-  //feature.setStyle(estiloPunto)
-  //source.addFeature(feature)
+  view.setZoom(20)
 }
 
 </script>
