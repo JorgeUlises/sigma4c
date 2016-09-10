@@ -18,15 +18,15 @@
   <input id="track" type="checkbox" />
 </label>
 <p>
-  Exactitud de la posición : <code id="accuracy"></code>&nbsp;&nbsp;
-  Altitud : <code id="altitude"></code>&nbsp;&nbsp;
-  Exactitud de la altura : <code id="altitudeAccuracy"></code>&nbsp;&nbsp;
-  Nutación : <code id="heading"></code>&nbsp;&nbsp;
-  Velocidad : <code id="speed"></code>
+  Exactitud de la posición: <code id="accuracy"></code>&nbsp;&nbsp;
+  Altitud: <code id="altitude"></code>&nbsp;&nbsp;
+  Exactitud de la altura: <code id="altitudeAccuracy"></code>&nbsp;&nbsp;
+  Nutación: <code id="heading"></code>&nbsp;&nbsp;
+  Velocidad: <code id="speed"></code>
 </p>
 
 <script>
-var limpiarMapa = function () {
+function limpiarMapa () {
   features.clear()
   addInteraction()
   accuracyFeature.setGeometry()
@@ -34,9 +34,10 @@ var limpiarMapa = function () {
   source.addFeatures([accuracyFeature, positionFeature])
   geolocation.setTracking(false)
 }
+
 var raster = new ol.layer.Tile({
   source: new ol.source.OSM()
-});
+})
 
 var view = new ol.View({
   projection: 'EPSG:4326',
@@ -48,17 +49,22 @@ var map = new ol.Map({
   layers: [raster],
   target: 'map',
   view: view
-});
+})
+
+var listenerKey = map.on('postrender', function(e) {
+  ol.Observable.unByKey(listenerKey)
+  setInitialPoint()
+})
 
 var geolocation = new ol.Geolocation({
   projection: view.getProjection()
-});
+})
 
 function el(id) {
-  return document.getElementById(id);
+  return document.getElementById(id)
 }
 
-var listener = function() {
+function listener () {
   geolocation.setTracking(this.checked)
 }
 
@@ -77,12 +83,12 @@ geolocation.on('change', function() {
 
 // handle geolocation error.
 geolocation.on('error', function(error) {
-  var info = document.getElementById('info');
-  info.innerHTML = error.message;
-  info.style.display = '';
+  var info = document.getElementById('info')
+  info.innerHTML = error.message
+  info.style.display = ''
 })
 
-var accuracyFeature = new ol.Feature();
+var accuracyFeature = new ol.Feature()
 geolocation.on('change:accuracyGeometry', function() {
   accuracyFeature.setGeometry(geolocation.getAccuracyGeometry())
   dataExtent = source.getExtent()
@@ -90,7 +96,7 @@ geolocation.on('change:accuracyGeometry', function() {
 })
 
 var positionFeature = new ol.Feature()
-positionFeature.setStyle(new ol.style.Style({
+var estiloPunto = new ol.style.Style({
   image: new ol.style.Circle({
     radius: 6,
     fill: new ol.style.Fill({
@@ -101,12 +107,14 @@ positionFeature.setStyle(new ol.style.Style({
       width: 2
     })
   })
-}))
+})
+positionFeature.setStyle(estiloPunto)
 
 geolocation.on('change:position', function() {
-var coordinates = geolocation.getPosition();
-positionFeature.setGeometry(coordinates ?
-   new ol.geom.Point(coordinates) : null);
+  var coordinates = geolocation.getPosition()
+  positionFeature.setGeometry(
+    coordinates ? new ol.geom.Point(coordinates) : null
+  )
 })
 
 var features = new ol.Collection()
@@ -128,9 +136,9 @@ var featureOverlay = new ol.layer.Vector({
       })
     })
   })
-});
+})
 source.addFeatures([accuracyFeature, positionFeature])
-featureOverlay.setMap(map);
+featureOverlay.setMap(map)
 
 var modify = new ol.interaction.Modify({
   features: features,
@@ -139,12 +147,12 @@ var modify = new ol.interaction.Modify({
   // of existing vertices
   deleteCondition: function(event) {
     return ol.events.condition.shiftKeyOnly(event) &&
-        ol.events.condition.singleClick(event);
+        ol.events.condition.singleClick(event)
   }
 })
 map.addInteraction(modify)
 
-var draw; // global so we can remove it later
+var draw // global so we can remove it later
 
 function addInteraction() {
   draw = new ol.interaction.Draw({
@@ -152,7 +160,7 @@ function addInteraction() {
     type: 'Point'
   })
   draw.on('drawend', drawEnd)
-  map.addInteraction(draw);
+  map.addInteraction(draw)
 }
 
 var drawEnd = function() {
@@ -160,8 +168,7 @@ var drawEnd = function() {
   setTimeout(puntoTerminado, 1000)
 }
 
-function puntoTerminado(event) {
-  console.log(event);
+function puntoTerminado() {
   //window.alert('punto terminado')
   var featuresSource = source.getFeatures()
   //var featuresCollection = source.getFeaturesCollection().getArray()
@@ -187,5 +194,20 @@ function puntoTerminado(event) {
  * Handle change event.
  */
 addInteraction()
+
+function setInitialPoint() {
+  var coordenadas = el("muestra_geometria").value.split(' ')
+  console.log(coordenadas);
+  var x = coordenadas[0]
+  var y = coordenadas[1]
+  view.setZoom(16)
+  view.setCenter([x, y])
+  //var point = new ol.geom.Point([x, y])
+  //var feature = new ol.Feature({
+  //  geometry: point
+  //})
+  //feature.setStyle(estiloPunto)
+  //source.addFeature(feature)
+}
 
 </script>

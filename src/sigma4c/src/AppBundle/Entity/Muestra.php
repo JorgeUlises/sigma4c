@@ -352,10 +352,10 @@ class Muestra
      */
     public function setGeometria($geometria)
     {
-        var_dump($geometria);
-        $coordenadas = $geometria.explode(',');
+        $coordenadas = explode(',', $geometria);
+        //var_dump($coordenadas);die;
         $x = $coordenadas[0];
-        $y = $coordenadas[0];
+        $y = $coordenadas[1];
         $point = new Point($x, $y, 4326);
         $this->geometria = $point;
 

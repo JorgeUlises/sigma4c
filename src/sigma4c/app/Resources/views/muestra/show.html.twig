@@ -18,7 +18,7 @@
                 <td>{{ muestra.producto }}</td>
             </tr>
             <tr>
-                <th>Lugartoma</th>
+                <th>Lugar de Toma</th>
                 <td>{{ muestra.lugarToma }}</td>
             </tr>
             <tr>
@@ -26,27 +26,27 @@
                 <td>{{ muestra.foto }}</td>
             </tr>
             <tr>
-                <th>Nmuestras</th>
+                <th>Num Muestras</th>
                 <td>{{ muestra.nMuestras }}</td>
             </tr>
             <tr>
-                <th>Fechatoma</th>
+                <th>Fecha Toma</th>
                 <td>{% if muestra.fechaToma %}{{ muestra.fechaToma|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Fecharecepcion</th>
+                <th>Fecha Recepción</th>
                 <td>{% if muestra.fechaRecepcion %}{{ muestra.fechaRecepcion|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Fechaanalisis</th>
+                <th>Fecha Análisis</th>
                 <td>{% if muestra.fechaAnalisis %}{{ muestra.fechaAnalisis|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Tipomuestreo</th>
+                <th>Tipo Muestreo</th>
                 <td>{{ muestra.tipoMuestreo }}</td>
             </tr>
             <tr>
-                <th>Geometria</th>
+                <th>Geometría</th>
                 <td>{{ muestra.geometria }}</td>
             </tr>
         </tbody>
