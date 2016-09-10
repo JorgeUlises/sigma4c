@@ -24,12 +24,12 @@ class MuestraType extends AbstractType
             ->add('fechaRecepcion', 'date')
             ->add('fechaAnalisis', 'date')
             ->add('tipoMuestreo')
-            ->add('geometria')
+            ->add('geometria', 'hidden')
             ->add('idFuenteHidrica')
             ->add('idParametro')
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */
