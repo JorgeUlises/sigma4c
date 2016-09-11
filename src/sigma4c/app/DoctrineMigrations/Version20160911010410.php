@@ -26,6 +26,7 @@ class Version20160911010410 extends AbstractMigration
         DROP TABLE IF EXISTS public.many_proyecto_has_many_empresa CASCADE;
         DROP TABLE IF EXISTS public.proyecto CASCADE;
         DROP TABLE IF EXISTS public.fuente_hidrica CASCADE;
+        DROP TABLE IF EXISTS public.many_proyecto_has_many_fuente_hidrica CASCADE;
         DROP TABLE IF EXISTS public.punto_control CASCADE;
         DROP TABLE IF EXISTS public.muestra CASCADE;
         DROP TABLE IF EXISTS public.many_muestra_has_many_parametro CASCADE;
