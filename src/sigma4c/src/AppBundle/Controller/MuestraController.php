@@ -2,12 +2,17 @@
 
 namespace AppBundle\Controller;
 
+require_once dirname(__FILE__).'/../../../vendor/autoload.php';
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Muestra;
 use AppBundle\Form\MuestraType;
+
+use Spipu\Html2Pdf\Html2Pdf;
+use Spipu\Html2Pdf\Exception\Html2PdfException;
+use Spipu\Html2Pdf\Exception\ExceptionFormatter;
 
 /**
  * Muestra controller.
@@ -59,6 +64,39 @@ class MuestraController extends Controller
         ));
     }
 
+    /**
+     * Lists all Muestra entities.
+     *
+     * @Route("/exportPdf", name="muestra_exportPdf")
+     * @Method("GET")
+     */
+     public function exportPdfAction()
+     {
+        $em = $this->getDoctrine()->getManager();
+
+        $muestras = $em->getRepository('AppBundle:Muestra')->findAll();
+
+//        return $this->render('muestra/index.html.twig', array(
+//            'muestras' => $muestras,
+//        ));
+        try {
+            //ob_start();
+            //include dirname(__FILE__).'/res/exemple00.php';
+            //echo "Hola Mundo";
+            //$content = ob_get_clean();
+            $content = $this->render('muestra/pdf.html.twig', array(
+                'muestras' => $muestras,
+            ));
+            $html2pdf = new \Html2Pdf('P', 'A4', 'fr');
+            $html2pdf->setDefaultFont('Arial');
+            $html2pdf->writeHTML($content);
+            $html2pdf->Output('exemple00.pdf');
+        } catch (Html2PdfException $e) {
+            $formatter = new ExceptionFormatter($e);
+            echo $formatter->getHtmlMessage();
+        }
+    }
+-
     /**
      * Finds and displays a Muestra entity.
      *
