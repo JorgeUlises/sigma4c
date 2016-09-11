@@ -6,72 +6,28 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Proyecto
- *
- * @ORM\Table(name="proyecto")
- * @ORM\Entity
  */
 class Proyecto
 {
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="proyecto_id_seq", allocationSize=1, initialValue=1)
-     */
-    private $id;
-
-    /**
      * @var string
-     *
-     * @ORM\Column(name="involucrados", type="string", nullable=true)
-     */
-    private $involucrados;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nombre", type="string", nullable=true)
      */
     private $nombre;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="encargado", type="string", nullable=true)
+     * @var geometry
      */
-    private $encargado;
+    private $geometria;
+
+    /**
+     * @var integer
+     */
+    private $id;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Empresa", inversedBy="idProyecto")
-     * @ORM\JoinTable(name="many_proyecto_has_many_empresa",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="id_proyecto", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="id_empresa", referencedColumnName="id")
-     *   }
-     * )
      */
     private $idEmpresa;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="FuenteHidrica", inversedBy="idProyecto")
-     * @ORM\JoinTable(name="many_proyecto_has_many_fuente_hidrica",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="id_proyecto", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="id_fuente_hidrica", referencedColumnName="id")
-     *   }
-     * )
-     */
-    private $idFuenteHidrica;
 
     /**
      * Constructor
@@ -79,41 +35,6 @@ class Proyecto
     public function __construct()
     {
         $this->idEmpresa = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->idFuenteHidrica = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set involucrados
-     *
-     * @param string $involucrados
-     * @return Proyecto
-     */
-    public function setInvolucrados($involucrados)
-    {
-        $this->involucrados = $involucrados;
-
-        return $this;
-    }
-
-    /**
-     * Get involucrados
-     *
-     * @return string
-     */
-    public function getInvolucrados()
-    {
-        return $this->involucrados;
     }
 
     /**
@@ -132,7 +53,7 @@ class Proyecto
     /**
      * Get nombre
      *
-     * @return string
+     * @return string 
      */
     public function getNombre()
     {
@@ -140,26 +61,36 @@ class Proyecto
     }
 
     /**
-     * Set encargado
+     * Set geometria
      *
-     * @param string $encargado
+     * @param geometry $geometria
      * @return Proyecto
      */
-    public function setEncargado($encargado)
+    public function setGeometria($geometria)
     {
-        $this->encargado = $encargado;
+        $this->geometria = $geometria;
 
         return $this;
     }
 
     /**
-     * Get encargado
+     * Get geometria
      *
-     * @return string
+     * @return geometry 
      */
-    public function getEncargado()
+    public function getGeometria()
     {
-        return $this->encargado;
+        return $this->geometria;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -188,47 +119,10 @@ class Proyecto
     /**
      * Get idEmpresa
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getIdEmpresa()
     {
         return $this->idEmpresa;
-    }
-
-    /**
-     * Add idFuenteHidrica
-     *
-     * @param \AppBundle\Entity\FuenteHidrica $idFuenteHidrica
-     * @return Proyecto
-     */
-    public function addIdFuenteHidrica(\AppBundle\Entity\FuenteHidrica $idFuenteHidrica)
-    {
-        $this->idFuenteHidrica[] = $idFuenteHidrica;
-
-        return $this;
-    }
-
-    /**
-     * Remove idFuenteHidrica
-     *
-     * @param \AppBundle\Entity\FuenteHidrica $idFuenteHidrica
-     */
-    public function removeIdFuenteHidrica(\AppBundle\Entity\FuenteHidrica $idFuenteHidrica)
-    {
-        $this->idFuenteHidrica->removeElement($idFuenteHidrica);
-    }
-
-    /**
-     * Get idFuenteHidrica
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getIdFuenteHidrica()
-    {
-        return $this->idFuenteHidrica;
-    }
-    public function __toString()
-    {
-        return $this->nombre;
     }
 }

@@ -5,7 +5,7 @@ php composer-setup.php
 sudo cp composer.phar /usr/local/bin/composer
 cd sigma4c/
 composer install
-sudo vim /etc/php.ini 
+sudo vim /etc/php.ini
 composer install
 composer require CrEOF/doctrine2-spatial
 vim app/config/config.yml
@@ -13,3 +13,41 @@ vim app/config/parameters.yml
 php app/console doctrine:mapping:import AppBundle annotation
 php app/console doctrine:generate:entities AppBundle
 
+
+#Para actualizar TODO de la base de datos:
+#rm -rf src/AppBundle/Resources/config/doctrine/*.orm.xml
+php app/console doctrine:mapping:import AppBundle
+#rm -rf src/AppBundle/Entity/*.php~
+#rm -rf src/AppBundle/Entity/*.php
+rm src/AppBundle/Resources/config/doctrine/MigrationVersions.orm.xml
+php app/console generate:doctrine:entities AppBundle
+rm -rf src/AppBundle/Form/*.php
+php app/console generate:doctrine:form "AppBundle:Empresa"
+rm -rf src/AppBundle/Controller/*.php
+php app/console generate:doctrine:crud --entity=AppBundle:Empresa
+
+php app/console generate:doctrine:form "AppBundle:Proyecto"
+php app/console generate:doctrine:crud --entity=AppBundle:Proyecto
+
+php app/console generate:doctrine:form "AppBundle:Parametro"
+php app/console generate:doctrine:crud --entity=AppBundle:Parametro
+
+php app/console generate:doctrine:form "AppBundle:Rol"
+php app/console generate:doctrine:crud --entity=AppBundle:Rol
+
+php app/console generate:doctrine:form "AppBundle:Usuario"
+php app/console generate:doctrine:crud --entity=AppBundle:Usuario
+
+php app/console generate:doctrine:form "AppBundle:Muestra"
+php app/console generate:doctrine:crud --entity=AppBundle:Muestra
+
+php app/console generate:doctrine:form "AppBundle:PuntoControl"
+php app/console generate:doctrine:crud --entity=AppBundle:PuntoControl
+
+
+#Para traer ¿O actulizar? SOLO una entidad de la base de datos:
+#?php app/console doctrine:mapping:import AppBundle:Norma
+php app/console doctrine:mapping:import AppBundle:Norma
+php app/console generate:doctrine:entities AppBundle:Norma
+php app/console generate:doctrine:form "AppBundle:Norma"
+php app/console generate:doctrine:crud --entity=AppBundle:Norma

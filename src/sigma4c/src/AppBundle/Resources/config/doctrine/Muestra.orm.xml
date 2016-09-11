@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Muestra" table="muestra">
+    <indexes>
+      <index name="IDX_70FE1350352AD971" columns="id_punto_control"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="responsable" type="string" column="responsable" nullable="true"/>
+    <field name="elementoAmbiental" type="string" column="elemento_ambiental" length="200" nullable="true"/>
+    <field name="fotos" type="string" column="fotos" length="500" nullable="true"/>
+    <field name="fechaToma" type="datetime" column="fecha_toma" nullable="true"/>
+    <field name="fechaRecepcion" type="datetime" column="fecha_recepcion" nullable="true"/>
+    <field name="fechaAnalisis" type="datetime" column="fecha_analisis" nullable="true"/>
+    <field name="tipoMuestreo" type="string" column="tipo_muestreo" length="200" nullable="true"/>
+    <many-to-one field="idPuntoControl" target-entity="PuntoControl">
+      <join-columns>
+        <join-column name="id_punto_control" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-many field="idParametro" target-entity="Parametro" inversed-by="idMuestra">
+      <join-table name="many_muestra_has_many_parametro">
+        <join-columns>
+          <join-column name="id_muestra" referenced-column-name="id"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="id_parametro" referenced-column-name="id"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+  </entity>
+</doctrine-mapping>

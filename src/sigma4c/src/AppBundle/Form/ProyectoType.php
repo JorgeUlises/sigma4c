@@ -15,11 +15,9 @@ class ProyectoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('involucrados')
             ->add('nombre')
-            ->add('encargado')
+            ->add('geometria')
             ->add('idEmpresa')
-            ->add('idFuenteHidrica')
         ;
     }
     

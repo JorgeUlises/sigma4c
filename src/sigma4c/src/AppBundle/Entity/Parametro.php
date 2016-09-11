@@ -6,40 +6,26 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Parametro
- *
- * @ORM\Table(name="parametro")
- * @ORM\Entity
  */
 class Parametro
 {
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="parametro_id_seq", allocationSize=1, initialValue=1)
-     */
-    private $id;
-
-    /**
      * @var string
-     *
-     * @ORM\Column(name="nombre", type="string", nullable=true)
      */
     private $nombre;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="unidad", type="string", nullable=true)
      */
     private $unidad;
 
     /**
+     * @var integer
+     */
+    private $id;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Muestra", mappedBy="idParametro")
      */
     private $idMuestra;
 
@@ -49,17 +35,6 @@ class Parametro
     public function __construct()
     {
         $this->idMuestra = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**
@@ -78,7 +53,7 @@ class Parametro
     /**
      * Get nombre
      *
-     * @return string
+     * @return string 
      */
     public function getNombre()
     {
@@ -101,11 +76,21 @@ class Parametro
     /**
      * Get unidad
      *
-     * @return string
+     * @return string 
      */
     public function getUnidad()
     {
         return $this->unidad;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -134,15 +119,10 @@ class Parametro
     /**
      * Get idMuestra
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getIdMuestra()
     {
         return $this->idMuestra;
-    }
-
-    public function __toString()
-    {
-        return $this->nombre;
     }
 }

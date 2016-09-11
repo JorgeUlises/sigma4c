@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class EmpresaType extends AbstractType
+class PuntoControlType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,12 +15,8 @@ class EmpresaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nombre')
-            ->add('nit')
-            ->add('email')
-            ->add('ciudad')
-            ->add('direccion')
-            ->add('telefono')
+            ->add('etiqueta')
+            ->add('geometria')
             ->add('idProyecto')
         ;
     }
@@ -31,7 +27,7 @@ class EmpresaType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Empresa'
+            'data_class' => 'AppBundle\Entity\PuntoControl'
         ));
     }
 }

@@ -6,82 +6,46 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Empresa
- *
- * @ORM\Table(name="empresa")
- * @ORM\Entity
  */
 class Empresa
 {
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="empresa_id_seq", allocationSize=1, initialValue=1)
-     */
-    private $id;
-
-    /**
      * @var string
-     *
-     * @ORM\Column(name="tipoempresa", type="string", nullable=true)
-     */
-    private $tipoempresa;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nombre", type="string", nullable=true)
      */
     private $nombre;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="representantelegal", type="string", nullable=true)
-     */
-    private $representantelegal;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="rut", type="string", nullable=true)
-     */
-    private $rut;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nit", type="string", nullable=true)
      */
     private $nit;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="email", type="string", nullable=true)
      */
     private $email;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="ciudad", type="string", nullable=true)
      */
     private $ciudad;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="direccion", type="string", nullable=true)
      */
     private $direccion;
 
     /**
+     * @var string
+     */
+    private $telefono;
+
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Proyecto", mappedBy="idEmpresa")
      */
     private $idProyecto;
 
@@ -91,40 +55,6 @@ class Empresa
     public function __construct()
     {
         $this->idProyecto = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set tipoempresa
-     *
-     * @param string $tipoempresa
-     * @return Empresa
-     */
-    public function setTipoempresa($tipoempresa)
-    {
-        $this->tipoempresa = $tipoempresa;
-
-        return $this;
-    }
-
-    /**
-     * Get tipoempresa
-     *
-     * @return string 
-     */
-    public function getTipoempresa()
-    {
-        return $this->tipoempresa;
     }
 
     /**
@@ -148,52 +78,6 @@ class Empresa
     public function getNombre()
     {
         return $this->nombre;
-    }
-
-    /**
-     * Set representantelegal
-     *
-     * @param string $representantelegal
-     * @return Empresa
-     */
-    public function setRepresentantelegal($representantelegal)
-    {
-        $this->representantelegal = $representantelegal;
-
-        return $this;
-    }
-
-    /**
-     * Get representantelegal
-     *
-     * @return string 
-     */
-    public function getRepresentantelegal()
-    {
-        return $this->representantelegal;
-    }
-
-    /**
-     * Set rut
-     *
-     * @param string $rut
-     * @return Empresa
-     */
-    public function setRut($rut)
-    {
-        $this->rut = $rut;
-
-        return $this;
-    }
-
-    /**
-     * Get rut
-     *
-     * @return string 
-     */
-    public function getRut()
-    {
-        return $this->rut;
     }
 
     /**
@@ -289,6 +173,39 @@ class Empresa
     }
 
     /**
+     * Set telefono
+     *
+     * @param string $telefono
+     * @return Empresa
+     */
+    public function setTelefono($telefono)
+    {
+        $this->telefono = $telefono;
+
+        return $this;
+    }
+
+    /**
+     * Get telefono
+     *
+     * @return string 
+     */
+    public function getTelefono()
+    {
+        return $this->telefono;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
      * Add idProyecto
      *
      * @param \AppBundle\Entity\Proyecto $idProyecto
@@ -319,9 +236,5 @@ class Empresa
     public function getIdProyecto()
     {
         return $this->idProyecto;
-    }
-    public function __toString()
-    {
-        return $this->nombre;
     }
 }

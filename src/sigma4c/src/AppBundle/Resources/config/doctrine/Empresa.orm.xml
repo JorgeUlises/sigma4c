@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Empresa" table="empresa">
+    <id name="id" type="integer" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="nombre" type="string" column="nombre" length="200" nullable="true"/>
+    <field name="nit" type="string" column="nit" length="200" nullable="true"/>
+    <field name="email" type="string" column="email" length="255" nullable="true"/>
+    <field name="ciudad" type="string" column="ciudad" length="200" nullable="true"/>
+    <field name="direccion" type="string" column="direccion" length="200" nullable="true"/>
+    <field name="telefono" type="string" column="telefono" length="50" nullable="true"/>
+    <many-to-many field="idProyecto" target-entity="Proyecto" mapped-by="idEmpresa"/>
+  </entity>
+</doctrine-mapping>

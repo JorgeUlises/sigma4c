@@ -3,118 +3,59 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use CrEOF\Spatial\PHP\Types\Geometry\Point;
 
 /**
  * Muestra
- *
- * @ORM\Table(name="muestra", indexes={@ORM\Index(name="IDX_70FE1350E15F1503", columns={"id_fuente_hidrica"})})
- * @ORM\Entity
  */
 class Muestra
 {
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="muestra_id_seq", allocationSize=1, initialValue=1)
-     */
-    private $id;
-
-    /**
      * @var string
-     *
-     * @ORM\Column(name="responsable", type="string", nullable=true)
      */
     private $responsable;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="producto", type="string", nullable=true)
      */
-    private $producto;
+    private $elementoAmbiental;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="lugar_toma", type="string", nullable=true)
      */
-    private $lugarToma;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="foto", type="string", nullable=true)
-     */
-    private $foto;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="n_muestras", type="integer", nullable=true)
-     */
-    private $nMuestras;
+    private $fotos;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="fecha_toma", type="date", nullable=true)
      */
     private $fechaToma;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="fecha_recepcion", type="date", nullable=true)
      */
     private $fechaRecepcion;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="fecha_analisis", type="date", nullable=true)
      */
     private $fechaAnalisis;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="tipo_muestreo", type="string", nullable=true)
      */
     private $tipoMuestreo;
 
     /**
-     * @var geometry
-     *
-     * @ORM\Column(name="geometria", type="geometry", nullable=true)
+     * @var integer
      */
-    private $geometria;
+    private $id;
 
     /**
-     * @var \FuenteHidrica
-     *
-     * @ORM\ManyToOne(targetEntity="FuenteHidrica")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_fuente_hidrica", referencedColumnName="id")
-     * })
+     * @var \AppBundle\Entity\PuntoControl
      */
-    private $idFuenteHidrica;
+    private $idPuntoControl;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Parametro", inversedBy="idMuestra")
-     * @ORM\JoinTable(name="many_muestra_has_many_parametro",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="id_muestra", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="id_parametro", referencedColumnName="id")
-     *   }
-     * )
      */
     private $idParametro;
 
@@ -124,17 +65,6 @@ class Muestra
     public function __construct()
     {
         $this->idParametro = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**
@@ -153,7 +83,7 @@ class Muestra
     /**
      * Get responsable
      *
-     * @return string
+     * @return string 
      */
     public function getResponsable()
     {
@@ -161,95 +91,49 @@ class Muestra
     }
 
     /**
-     * Set producto
+     * Set elementoAmbiental
      *
-     * @param string $producto
+     * @param string $elementoAmbiental
      * @return Muestra
      */
-    public function setProducto($producto)
+    public function setElementoAmbiental($elementoAmbiental)
     {
-        $this->producto = $producto;
+        $this->elementoAmbiental = $elementoAmbiental;
 
         return $this;
     }
 
     /**
-     * Get producto
+     * Get elementoAmbiental
      *
-     * @return string
+     * @return string 
      */
-    public function getProducto()
+    public function getElementoAmbiental()
     {
-        return $this->producto;
+        return $this->elementoAmbiental;
     }
 
     /**
-     * Set lugarToma
+     * Set fotos
      *
-     * @param string $lugarToma
+     * @param string $fotos
      * @return Muestra
      */
-    public function setLugarToma($lugarToma)
+    public function setFotos($fotos)
     {
-        $this->lugarToma = $lugarToma;
+        $this->fotos = $fotos;
 
         return $this;
     }
 
     /**
-     * Get lugarToma
+     * Get fotos
      *
-     * @return string
+     * @return string 
      */
-    public function getLugarToma()
+    public function getFotos()
     {
-        return $this->lugarToma;
-    }
-
-    /**
-     * Set foto
-     *
-     * @param string $foto
-     * @return Muestra
-     */
-    public function setFoto($foto)
-    {
-        $this->foto = $foto;
-
-        return $this;
-    }
-
-    /**
-     * Get foto
-     *
-     * @return string
-     */
-    public function getFoto()
-    {
-        return $this->foto;
-    }
-
-    /**
-     * Set nMuestras
-     *
-     * @param integer $nMuestras
-     * @return Muestra
-     */
-    public function setNMuestras($nMuestras)
-    {
-        $this->nMuestras = $nMuestras;
-
-        return $this;
-    }
-
-    /**
-     * Get nMuestras
-     *
-     * @return integer
-     */
-    public function getNMuestras()
-    {
-        return $this->nMuestras;
+        return $this->fotos;
     }
 
     /**
@@ -268,7 +152,7 @@ class Muestra
     /**
      * Get fechaToma
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getFechaToma()
     {
@@ -291,7 +175,7 @@ class Muestra
     /**
      * Get fechaRecepcion
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getFechaRecepcion()
     {
@@ -314,7 +198,7 @@ class Muestra
     /**
      * Get fechaAnalisis
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getFechaAnalisis()
     {
@@ -337,7 +221,7 @@ class Muestra
     /**
      * Get tipoMuestreo
      *
-     * @return string
+     * @return string 
      */
     public function getTipoMuestreo()
     {
@@ -345,54 +229,36 @@ class Muestra
     }
 
     /**
-     * Set geometria
+     * Get id
      *
-     * @param geometry $geometria
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set idPuntoControl
+     *
+     * @param \AppBundle\Entity\PuntoControl $idPuntoControl
      * @return Muestra
      */
-    public function setGeometria($geometria)
+    public function setIdPuntoControl(\AppBundle\Entity\PuntoControl $idPuntoControl = null)
     {
-        $coordenadas = explode(' ', $geometria);
-        //var_dump($coordenadas);die;
-        $x = $coordenadas[0];
-        $y = $coordenadas[1];
-        $point = new Point($x, $y, 4326);
-        $this->geometria = $point;
+        $this->idPuntoControl = $idPuntoControl;
 
         return $this;
     }
 
     /**
-     * Get geometria
+     * Get idPuntoControl
      *
-     * @return geometry
+     * @return \AppBundle\Entity\PuntoControl 
      */
-    public function getGeometria()
+    public function getIdPuntoControl()
     {
-        return $this->geometria;
-    }
-
-    /**
-     * Set idFuenteHidrica
-     *
-     * @param \AppBundle\Entity\FuenteHidrica $idFuenteHidrica
-     * @return Muestra
-     */
-    public function setIdFuenteHidrica(\AppBundle\Entity\FuenteHidrica $idFuenteHidrica = null)
-    {
-        $this->idFuenteHidrica = $idFuenteHidrica;
-
-        return $this;
-    }
-
-    /**
-     * Get idFuenteHidrica
-     *
-     * @return \AppBundle\Entity\FuenteHidrica
-     */
-    public function getIdFuenteHidrica()
-    {
-        return $this->idFuenteHidrica;
+        return $this->idPuntoControl;
     }
 
     /**
@@ -421,15 +287,10 @@ class Muestra
     /**
      * Get idParametro
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getIdParametro()
     {
         return $this->idParametro;
-    }
-
-    public function __toString()
-    {
-        return $this->producto;
     }
 }

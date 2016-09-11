@@ -6,64 +6,108 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Usuario
- *
- * @ORM\Table(name="usuario", indexes={@ORM\Index(name="IDX_2265B05D664AF320", columns={"id_empresa"}), @ORM\Index(name="IDX_2265B05D90F1D76D", columns={"id_rol"})})
- * @ORM\Entity
  */
 class Usuario
 {
     /**
+     * @var string
+     */
+    private $nickname;
+
+    /**
+     * @var string
+     */
+    private $email;
+
+    /**
+     * @var string
+     */
+    private $clave;
+
+    /**
      * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="usuario_id_seq", allocationSize=1, initialValue=1)
      */
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="alias", type="string", nullable=true)
-     */
-    private $alias;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="mail", type="string", nullable=true)
-     */
-    private $mail;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nombre", type="string", nullable=true)
-     */
-    private $nombre;
-
-    /**
-     * @var \Empresa
-     *
-     * @ORM\ManyToOne(targetEntity="Empresa")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_empresa", referencedColumnName="id")
-     * })
-     */
-    private $idEmpresa;
-
-    /**
-     * @var \Rol
-     *
-     * @ORM\ManyToOne(targetEntity="Rol")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_rol", referencedColumnName="id")
-     * })
+     * @var \AppBundle\Entity\Rol
      */
     private $idRol;
 
+    /**
+     * @var \AppBundle\Entity\Empresa
+     */
+    private $idEmpresa;
 
+
+    /**
+     * Set nickname
+     *
+     * @param string $nickname
+     * @return Usuario
+     */
+    public function setNickname($nickname)
+    {
+        $this->nickname = $nickname;
+
+        return $this;
+    }
+
+    /**
+     * Get nickname
+     *
+     * @return string 
+     */
+    public function getNickname()
+    {
+        return $this->nickname;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return Usuario
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set clave
+     *
+     * @param string $clave
+     * @return Usuario
+     */
+    public function setClave($clave)
+    {
+        $this->clave = $clave;
+
+        return $this;
+    }
+
+    /**
+     * Get clave
+     *
+     * @return string 
+     */
+    public function getClave()
+    {
+        return $this->clave;
+    }
 
     /**
      * Get id
@@ -73,98 +117,6 @@ class Usuario
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set alias
-     *
-     * @param string $alias
-     * @return Usuario
-     */
-    public function setAlias($alias)
-    {
-        $this->alias = $alias;
-
-        return $this;
-    }
-
-    /**
-     * Get alias
-     *
-     * @return string 
-     */
-    public function getAlias()
-    {
-        return $this->alias;
-    }
-
-    /**
-     * Set mail
-     *
-     * @param string $mail
-     * @return Usuario
-     */
-    public function setMail($mail)
-    {
-        $this->mail = $mail;
-
-        return $this;
-    }
-
-    /**
-     * Get mail
-     *
-     * @return string 
-     */
-    public function getMail()
-    {
-        return $this->mail;
-    }
-
-    /**
-     * Set nombre
-     *
-     * @param string $nombre
-     * @return Usuario
-     */
-    public function setNombre($nombre)
-    {
-        $this->nombre = $nombre;
-
-        return $this;
-    }
-
-    /**
-     * Get nombre
-     *
-     * @return string 
-     */
-    public function getNombre()
-    {
-        return $this->nombre;
-    }
-
-    /**
-     * Set idEmpresa
-     *
-     * @param \AppBundle\Entity\Empresa $idEmpresa
-     * @return Usuario
-     */
-    public function setIdEmpresa(\AppBundle\Entity\Empresa $idEmpresa = null)
-    {
-        $this->idEmpresa = $idEmpresa;
-
-        return $this;
-    }
-
-    /**
-     * Get idEmpresa
-     *
-     * @return \AppBundle\Entity\Empresa 
-     */
-    public function getIdEmpresa()
-    {
-        return $this->idEmpresa;
     }
 
     /**
@@ -188,5 +140,28 @@ class Usuario
     public function getIdRol()
     {
         return $this->idRol;
+    }
+
+    /**
+     * Set idEmpresa
+     *
+     * @param \AppBundle\Entity\Empresa $idEmpresa
+     * @return Usuario
+     */
+    public function setIdEmpresa(\AppBundle\Entity\Empresa $idEmpresa = null)
+    {
+        $this->idEmpresa = $idEmpresa;
+
+        return $this;
+    }
+
+    /**
+     * Get idEmpresa
+     *
+     * @return \AppBundle\Entity\Empresa 
+     */
+    public function getIdEmpresa()
+    {
+        return $this->idEmpresa;
     }
 }
