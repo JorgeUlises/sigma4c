@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.8.2" last-position="144,95" last-zoom="0.85"
+<dbmodel pgmodeler-ver="0.8.1" last-position="0,90" last-zoom="0.85"
 	 default-schema="public" default-owner="sigma4c">
 <role name="sigma4c"
       password="abc123">
@@ -14,39 +14,39 @@ CAUTION: Do not modify this file unless you know what you are doing.
 CREATE EXTENSION postgis_topology;]]></prepended-sql>
 </database>
 
-<schema name="public" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
+<schema name="public" protected="true" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
 </schema>
 
 <table name="empresa">
 	<schema name="public"/>
 	<role name="sigma4c"/>
-	<position x="360" y="680"/>
+	<comment><![CDATA[Datos basicos de la empresa]]></comment>
+	<position x="344.706" y="525.882"/>
 	<column name="id" not-null="true">
 		<type name="serial"/>
 	</column>
-	<column name="tipoempresa">
-		<type name="character varying"/>
-	</column>
 	<column name="nombre">
-		<type name="character varying"/>
-	</column>
-	<column name="representantelegal">
-		<type name="character varying"/>
-	</column>
-	<column name="rut">
-		<type name="character varying"/>
+		<type name="character varying" length="200"/>
+		<comment><![CDATA[nombre completo de la empresa]]></comment>
 	</column>
 	<column name="nit">
-		<type name="character varying"/>
+		<type name="character varying" length="200"/>
+		<comment><![CDATA[Identificacion NIT de la empresa]]></comment>
 	</column>
 	<column name="email">
-		<type name="character varying"/>
+		<type name="character varying" length="255"/>
 	</column>
 	<column name="ciudad">
-		<type name="character varying"/>
+		<type name="character varying" length="200"/>
+		<comment><![CDATA[Ciudad de la Sede Principal]]></comment>
 	</column>
 	<column name="direccion">
-		<type name="character varying"/>
+		<type name="character varying" length="200"/>
+		<comment><![CDATA[Direccion de la Sede Principal]]></comment>
+	</column>
+	<column name="telefono">
+		<type name="character varying" length="50"/>
+		<comment><![CDATA[Numero Telefonico]]></comment>
 	</column>
 	<constraint name="empresa_id" type="pk-constr" table="public.empresa">
 		<columns names="id" ref-type="src-columns"/>
@@ -56,18 +56,18 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 <table name="proyecto">
 	<schema name="public"/>
 	<role name="sigma4c"/>
-	<position x="380" y="360"/>
+	<comment><![CDATA[Datos basicos del proyecto]]></comment>
+	<position x="216.471" y="190.588"/>
 	<column name="id" not-null="true">
 		<type name="serial"/>
 	</column>
-	<column name="involucrados">
-		<type name="character varying"/>
-	</column>
 	<column name="nombre">
 		<type name="character varying"/>
+		<comment><![CDATA[Nombre del proyecto]]></comment>
 	</column>
-	<column name="encargado">
-		<type name="character varying"/>
+	<column name="geometria">
+		<type name="geometry" spatial-type="POLYGON" variation="0" srid="4326"/>
+		<comment><![CDATA[Geometria del Bloque]]></comment>
 	</column>
 	<constraint name="proyecto_id" type="pk-constr" table="public.proyecto">
 		<columns names="id" ref-type="src-columns"/>
@@ -77,89 +77,67 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 <table name="muestra">
 	<schema name="public"/>
 	<role name="sigma4c"/>
-	<position x="1040" y="143"/>
+	<comment><![CDATA[Muestra que se toma en un lugar e instante determinado]]></comment>
+	<position x="1085.88" y="295.941"/>
 	<column name="id" not-null="true">
 		<type name="serial"/>
 	</column>
 	<column name="responsable">
 		<type name="character varying"/>
+		<comment><![CDATA[Persona que toma la muestra]]></comment>
 	</column>
-	<column name="producto">
-		<type name="character varying"/>
+	<column name="elemento_ambiental">
+		<type name="character varying" length="200"/>
+		<comment><![CDATA[Pendiente de descripcion]]></comment>
 	</column>
-	<column name="lugar_toma">
-		<type name="character varying"/>
-	</column>
-	<column name="foto">
-		<type name="character varying"/>
-	</column>
-	<column name="n_muestras">
-		<type name="integer"/>
+	<column name="fotos">
+		<type name="character varying" length="500"/>
+		<comment><![CDATA[La muestra puede tener varias fotos asociadas]]></comment>
 	</column>
 	<column name="fecha_toma">
-		<type name="date"/>
+		<type name="timestamp"/>
+		<comment><![CDATA[Fecha y hora de toma de la muestra]]></comment>
 	</column>
 	<column name="fecha_recepcion">
-		<type name="date"/>
+		<type name="timestamp"/>
+		<comment><![CDATA[Fecha y hora en que se recibe la muestra]]></comment>
 	</column>
 	<column name="fecha_analisis">
-		<type name="date"/>
+		<type name="timestamp"/>
+		<comment><![CDATA[Fecha y hora en que se analiza la muestra]]></comment>
 	</column>
 	<column name="tipo_muestreo">
-		<type name="character varying"/>
-	</column>
-	<column name="geometria">
-		<type name="geometry" spatial-type="POINT" variation="0" srid="4326"/>
+		<type name="character varying" length="200"/>
+		<comment><![CDATA[Falta por describir]]></comment>
 	</column>
 	<constraint name="muestra_id" type="pk-constr" table="public.muestra">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
 
 	<customidxs object-type="column">
-		<object name="id_fuente_hidrica" index="1"/>
+		<object name="id_punto_control" index="1"/>
 	</customidxs>
 
 	<customidxs object-type="constraint">
-		<object name="fuente_hidrica_fk" index="1"/>
+		<object name="punto_control_fk" index="1"/>
 	</customidxs>
 </table>
-
-<table name="fuente_hidrica">
-	<schema name="public"/>
-	<role name="sigma4c"/>
-	<position x="340" y="143"/>
-	<column name="id" not-null="true">
-		<type name="serial"/>
-	</column>
-	<column name="geometria">
-		<type name="geometry" spatial-type="MULTILINESTRING" variation="0" srid="4326"/>
-	</column>
-	<column name="nombre">
-		<type name="character varying"/>
-	</column>
-	<constraint name="fuente_hidrica_id" type="pk-constr" table="public.fuente_hidrica">
-		<columns names="id" ref-type="src-columns"/>
-	</constraint>
-</table>
-
-<relationship name="fuente_hidirca_has_many_muestra" type="rel1n"
-	 src-col-pattern="{sc}_{st}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 custom-color="#7562e7"
-	 src-table="public.fuente_hidrica"
-	 dst-table="public.muestra"
-	 src-required="false" dst-required="false"/>
 
 <table name="rol">
 	<schema name="public"/>
 	<role name="sigma4c"/>
-	<position x="760" y="603"/>
+	<comment><![CDATA[Nivel de privilegios del usuario]]></comment>
+	<position x="775.294" y="507.706"/>
 	<column name="id" not-null="true">
 		<type name="serial"/>
 	</column>
 	<column name="nombre">
 		<type name="character varying"/>
+		<comment><![CDATA[Nombre designado al ROL]]></comment>
+	</column>
+	<column name="descripcion">
+		<type name="varchar" length="100"/>
+		<comment><![CDATA[Permisos detallados sobre el rol]]></comment>
 	</column>
 	<constraint name="rol_id" type="pk-constr" table="public.rol">
 		<columns names="id" ref-type="src-columns"/>
@@ -169,18 +147,22 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 <table name="usuario">
 	<schema name="public"/>
 	<role name="sigma4c"/>
-	<position x="740" y="343"/>
+	<comment><![CDATA[Datos basicos del usuario]]></comment>
+	<position x="361.176" y="692.412"/>
 	<column name="id" not-null="true">
 		<type name="serial"/>
 	</column>
-	<column name="alias">
-		<type name="character varying"/>
+	<column name="nickname">
+		<type name="character varying" length="50"/>
+		<comment><![CDATA[Nombre de usuario corto y sin espacios, ojala en minusculas]]></comment>
 	</column>
-	<column name="mail">
-		<type name="character varying"/>
+	<column name="email">
+		<type name="character varying" length="255"/>
+		<comment><![CDATA[correo en minusculas]]></comment>
 	</column>
-	<column name="nombre">
-		<type name="character varying"/>
+	<column name="clave">
+		<type name="character varying" length="255"/>
+		<comment><![CDATA[clave en sha512 con salt]]></comment>
 	</column>
 	<constraint name="user_id" type="pk-constr" table="public.usuario">
 		<columns names="id" ref-type="src-columns"/>
@@ -188,7 +170,7 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 
 	<customidxs object-type="column">
 		<object name="id_empresa" index="1"/>
-		<object name="id_rol" index="5"/>
+		<object name="id_rol" index="2"/>
 	</customidxs>
 
 	<customidxs object-type="constraint">
@@ -200,7 +182,8 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 <table name="parametro">
 	<schema name="public"/>
 	<role name="sigma4c"/>
-	<position x="1120" y="603"/>
+	<comment><![CDATA[Parametros que conforman la muestra como PH y demas]]></comment>
+	<position x="1108.24" y="700.647"/>
 	<column name="id" not-null="true">
 		<type name="serial"/>
 	</column>
@@ -244,17 +227,17 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 <table name="many_muestra_has_many_parametro">
 	<schema name="public"/>
 	<role name="sigma4c"/>
-	<position x="1060" y="420"/>
+	<position x="1103.53" y="550.588"/>
 	<column name="concentracion">
 		<type name="double precision"/>
 	</column>
-	<column name="tec_analitic">
+	<column name="tec_analitica">
 		<type name="character varying"/>
 	</column>
 
 	<customidxs object-type="column">
-		<object name="id_muestra" index="2"/>
-		<object name="id_parametro" index="3"/>
+		<object name="id_muestra" index="0"/>
+		<object name="id_parametro" index="1"/>
 	</customidxs>
 
 	<customidxs object-type="constraint">
@@ -282,12 +265,16 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 	 dst-table="public.many_muestra_has_many_parametro"
 	 src-required="true" dst-required="false"
 	 identifier="true"
-/>
+>
+	<label ref-type="name-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
 
 <table name="many_proyecto_has_many_empresa">
 	<schema name="public"/>
 	<role name="sigma4c"/>
-	<position x="400" y="520"/>
+	<position x="358.824" y="374.118"/>
 
 	<customidxs object-type="column">
 		<object name="id_empresa" index="1"/>
@@ -321,41 +308,51 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 	 identifier="true"
 />
 
-<table name="many_proyecto_has_many_fuente_hidrica">
+<table name="punto_control">
 	<schema name="public"/>
 	<role name="sigma4c"/>
-	<position x="370" y="243"/>
+	<comment><![CDATA[Punto donde se toman muchas muestras]]></comment>
+	<position x="737.647" y="170.588"/>
+	<column name="id" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="etiqueta">
+		<type name="varchar" length="200"/>
+		<comment><![CDATA[Etiqueta o tag descriptivo del proyecto]]></comment>
+	</column>
+	<column name="geometria">
+		<type name="geometry" spatial-type="POINT" variation="0" srid="4326"/>
+		<comment><![CDATA[Punto representativo de donde se toman las muestras]]></comment>
+	</column>
+	<constraint name="punto_control_pk" type="pk-constr" table="public.punto_control">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
 
 	<customidxs object-type="column">
-		<object name="id_fuente_hidrica" index="1"/>
-		<object name="id_proyecto" index="0"/>
+		<object name="id_proyecto" index="1"/>
 	</customidxs>
 
 	<customidxs object-type="constraint">
-		<object name="fuente_hidrica_fk" index="2"/>
-		<object name="many_proyecto_has_many_fuente_hidrica_pk" index="0"/>
-		<object name="proyecto_fk" index="1"/>
+		<object name="proyecto_fk" index="0"/>
 	</customidxs>
 </table>
 
-<relationship name="proyecto_has_many_many_proyecto_has_many_fuente_hidrica" type="rel1n"
+<relationship name="proyecto_has_many_punto_control" type="rel1n"
 	 src-col-pattern="{sc}_{st}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
+	 custom-color="#590300"
 	 src-table="public.proyecto"
-	 dst-table="public.many_proyecto_has_many_fuente_hidrica"
-	 src-required="true" dst-required="false"
-	 identifier="true"
-/>
+	 dst-table="public.punto_control"
+	 src-required="false" dst-required="false"/>
 
-<relationship name="fuente_hidrica_has_many_many_proyecto_has_many_fuente_hidrica" type="rel1n"
+<relationship name="punto_control_has_many_muestra" type="rel1n"
 	 src-col-pattern="{sc}_{st}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 src-table="public.fuente_hidrica"
-	 dst-table="public.many_proyecto_has_many_fuente_hidrica"
-	 src-required="true" dst-required="false"
-	 identifier="true"
-/>
+	 custom-color="#cefc2e"
+	 src-table="public.punto_control"
+	 dst-table="public.muestra"
+	 src-required="false" dst-required="false"/>
 
 </dbmodel>

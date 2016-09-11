@@ -1,446 +1,285 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-CAUTION: Do not modify this file unless you know what you are doing.
-         Unexpected results may occur if the code is changed deliberately.
--->
-<dbmodel pgmodeler-ver="0.8.2" last-position="0,0" last-zoom="0.8"
-	 default-schema="public" default-owner="postgres">
-<role name="sigma4c"
-      inherit="true"
-      login="true"
-      encrypted="true"
-      password="********">
-</role>
+-- Prepended SQL commands --
+CREATE EXTENSION postgis;
+CREATE EXTENSION postgis_topology;
+---
 
-<database name="sigma4c" encoding="UTF8" lc-collate="en_US" lc-ctype="en_US">
-	<role name="sigma4c"/>
-	<tablespace name="pg_default"/>
-</database>
+-- Database generated with pgModeler (PostgreSQL Database Modeler).
+-- pgModeler  version: 0.8.1
+-- PostgreSQL version: 9.4
+-- Project Site: pgmodeler.com.br
+-- Model Author: ---
 
-<schema name="public" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
-</schema>
+-- object: sigma4c | type: ROLE --
+-- DROP ROLE IF EXISTS sigma4c;
+CREATE ROLE sigma4c WITH 
+	UNENCRYPTED PASSWORD 'abc123';
+-- ddl-end --
 
-<extension name="postgis" cur-version="2.1.8">
-	<schema name="public"/>
-	<comment><![CDATA[PostGIS geometry, geography, and raster spatial types and functions]]></comment>
-</extension>
 
-<schema name="topology" rect-visible="true" fill-color="#e8a15b">
-	<role name="postgres"/>
-</schema>
+-- Database creation must be done outside an multicommand file.
+-- These commands were put in this file only for convenience.
+-- -- object: sigma4c | type: DATABASE --
+-- -- DROP DATABASE IF EXISTS sigma4c;
+-- CREATE DATABASE sigma4c
+-- ;
+-- -- ddl-end --
+-- 
 
-<extension name="postgis_topology" cur-version="2.1.8">
-	<schema name="topology"/>
-	<comment><![CDATA[PostGIS topology spatial types and functions]]></comment>
-</extension>
+-- object: public.empresa | type: TABLE --
+-- DROP TABLE IF EXISTS public.empresa CASCADE;
+CREATE TABLE public.empresa(
+	id serial NOT NULL,
+	nombre character varying(200),
+	nit character varying(200),
+	email character varying(255),
+	ciudad character varying(200),
+	direccion character varying(200),
+	telefono character varying(50),
+	CONSTRAINT empresa_id PRIMARY KEY (id)
 
-<sequence name="empresa_id_seq"
-	 start="1" increment="1"
-	 min-value="1" max-value="9223372036854775807"
-	 cache="1" cycle="false">
-	<schema name="public"/>
-	<role name="sigma4c"/>
-</sequence>
+);
+-- ddl-end --
+COMMENT ON TABLE public.empresa IS 'Datos basicos de la empresa';
+-- ddl-end --
+COMMENT ON COLUMN public.empresa.nombre IS 'nombre completo de la empresa';
+-- ddl-end --
+COMMENT ON COLUMN public.empresa.nit IS 'Identificacion NIT de la empresa';
+-- ddl-end --
+COMMENT ON COLUMN public.empresa.ciudad IS 'Ciudad de la Sede Principal';
+-- ddl-end --
+COMMENT ON COLUMN public.empresa.direccion IS 'Direccion de la Sede Principal';
+-- ddl-end --
+COMMENT ON COLUMN public.empresa.telefono IS 'Numero Telefonico';
+-- ddl-end --
+ALTER TABLE public.empresa OWNER TO sigma4c;
+-- ddl-end --
 
-<table name="empresa">
-	<schema name="public"/>
-	<role name="sigma4c"/>
-	<position x="100" y="60"/>
-	<column name="id" not-null="true" sequence="public.empresa_id_seq">
-		<type name="integer"/>
-	</column>
-	<column name="tipoempresa">
-		<type name="character varying"/>
-	</column>
-	<column name="nombre">
-		<type name="character varying"/>
-	</column>
-	<column name="representantelegal">
-		<type name="character varying"/>
-	</column>
-	<column name="rut">
-		<type name="character varying"/>
-	</column>
-	<column name="nit">
-		<type name="character varying"/>
-	</column>
-	<column name="email">
-		<type name="character varying"/>
-	</column>
-	<column name="ciudad">
-		<type name="character varying"/>
-	</column>
-	<column name="direccion">
-		<type name="character varying"/>
-	</column>
-	<constraint name="empresa_id" type="pk-constr" table="public.empresa">
-		<columns names="id" ref-type="src-columns"/>
-	</constraint>
-</table>
+-- object: public.proyecto | type: TABLE --
+-- DROP TABLE IF EXISTS public.proyecto CASCADE;
+CREATE TABLE public.proyecto(
+	id serial NOT NULL,
+	nombre character varying,
+	geometria geometry(POLYGON, 4326),
+	CONSTRAINT proyecto_id PRIMARY KEY (id)
 
-<sequence name="proyecto_id_seq"
-	 start="1" increment="1"
-	 min-value="1" max-value="9223372036854775807"
-	 cache="1" cycle="false">
-	<schema name="public"/>
-	<role name="sigma4c"/>
-</sequence>
+);
+-- ddl-end --
+COMMENT ON TABLE public.proyecto IS 'Datos basicos del proyecto';
+-- ddl-end --
+COMMENT ON COLUMN public.proyecto.nombre IS 'Nombre del proyecto';
+-- ddl-end --
+COMMENT ON COLUMN public.proyecto.geometria IS 'Geometria del Bloque';
+-- ddl-end --
+ALTER TABLE public.proyecto OWNER TO sigma4c;
+-- ddl-end --
 
-<table name="proyecto">
-	<schema name="public"/>
-	<role name="sigma4c"/>
-	<position x="600" y="260"/>
-	<column name="id" not-null="true" sequence="public.proyecto_id_seq">
-		<type name="integer"/>
-	</column>
-	<column name="involucrados">
-		<type name="character varying"/>
-	</column>
-	<column name="nombre">
-		<type name="character varying"/>
-	</column>
-	<column name="encargado">
-		<type name="character varying"/>
-	</column>
-	<constraint name="proyecto_id" type="pk-constr" table="public.proyecto">
-		<columns names="id" ref-type="src-columns"/>
-	</constraint>
-</table>
+-- object: public.muestra | type: TABLE --
+-- DROP TABLE IF EXISTS public.muestra CASCADE;
+CREATE TABLE public.muestra(
+	id serial NOT NULL,
+	id_punto_control integer,
+	responsable character varying,
+	elemento_ambiental character varying(200),
+	fotos character varying(500),
+	fecha_toma timestamp,
+	fecha_recepcion timestamp,
+	fecha_analisis timestamp,
+	tipo_muestreo character varying(200),
+	CONSTRAINT muestra_id PRIMARY KEY (id)
 
-<sequence name="muestra_id_seq"
-	 start="1" increment="1"
-	 min-value="1" max-value="9223372036854775807"
-	 cache="1" cycle="false">
-	<schema name="public"/>
-	<role name="sigma4c"/>
-</sequence>
+);
+-- ddl-end --
+COMMENT ON TABLE public.muestra IS 'Muestra que se toma en un lugar e instante determinado';
+-- ddl-end --
+COMMENT ON COLUMN public.muestra.responsable IS 'Persona que toma la muestra';
+-- ddl-end --
+COMMENT ON COLUMN public.muestra.elemento_ambiental IS 'Pendiente de descripcion';
+-- ddl-end --
+COMMENT ON COLUMN public.muestra.fotos IS 'La muestra puede tener varias fotos asociadas';
+-- ddl-end --
+COMMENT ON COLUMN public.muestra.fecha_toma IS 'Fecha y hora de toma de la muestra';
+-- ddl-end --
+COMMENT ON COLUMN public.muestra.fecha_recepcion IS 'Fecha y hora en que se recibe la muestra';
+-- ddl-end --
+COMMENT ON COLUMN public.muestra.fecha_analisis IS 'Fecha y hora en que se analiza la muestra';
+-- ddl-end --
+COMMENT ON COLUMN public.muestra.tipo_muestreo IS 'Falta por describir';
+-- ddl-end --
+ALTER TABLE public.muestra OWNER TO sigma4c;
+-- ddl-end --
 
-<table name="muestra">
-	<schema name="public"/>
-	<role name="sigma4c"/>
-	<position x="1200" y="480"/>
-	<column name="id" not-null="true" sequence="public.muestra_id_seq">
-		<type name="integer"/>
-	</column>
-	<column name="id_fuente_hidrica">
-		<type name="integer"/>
-	</column>
-	<column name="responsable">
-		<type name="character varying"/>
-	</column>
-	<column name="producto">
-		<type name="character varying"/>
-	</column>
-	<column name="lugar_toma">
-		<type name="character varying"/>
-	</column>
-	<column name="foto">
-		<type name="character varying"/>
-	</column>
-	<column name="n_muestras">
-		<type name="integer"/>
-	</column>
-	<column name="fecha_toma">
-		<type name="date"/>
-	</column>
-	<column name="fecha_recepcion">
-		<type name="date"/>
-	</column>
-	<column name="fecha_analisis">
-		<type name="date"/>
-	</column>
-	<column name="tipo_muestreo">
-		<type name="character varying"/>
-	</column>
-	<column name="geometria">
-		<type name="geometry"/>
-	</column>
-	<constraint name="muestra_id" type="pk-constr" table="public.muestra">
-		<columns names="id" ref-type="src-columns"/>
-	</constraint>
-</table>
+-- object: public.rol | type: TABLE --
+-- DROP TABLE IF EXISTS public.rol CASCADE;
+CREATE TABLE public.rol(
+	id serial NOT NULL,
+	nombre character varying,
+	descripcion varchar(100),
+	CONSTRAINT rol_id PRIMARY KEY (id)
 
-<sequence name="fuente_hidrica_id_seq"
-	 start="1" increment="1"
-	 min-value="1" max-value="9223372036854775807"
-	 cache="1" cycle="false">
-	<schema name="public"/>
-	<role name="sigma4c"/>
-</sequence>
+);
+-- ddl-end --
+COMMENT ON TABLE public.rol IS 'Nivel de privilegios del usuario';
+-- ddl-end --
+COMMENT ON COLUMN public.rol.nombre IS 'Nombre designado al ROL';
+-- ddl-end --
+COMMENT ON COLUMN public.rol.descripcion IS 'Permisos detallados sobre el rol';
+-- ddl-end --
+ALTER TABLE public.rol OWNER TO sigma4c;
+-- ddl-end --
 
-<table name="fuente_hidrica">
-	<schema name="public"/>
-	<role name="sigma4c"/>
-	<position x="1240" y="220"/>
-	<column name="id" not-null="true" sequence="public.fuente_hidrica_id_seq">
-		<type name="integer"/>
-	</column>
-	<column name="geometria">
-		<type name="geometry"/>
-	</column>
-	<column name="nombre">
-		<type name="character varying"/>
-	</column>
-	<constraint name="fuente_hidrica_id" type="pk-constr" table="public.fuente_hidrica">
-		<columns names="id" ref-type="src-columns"/>
-	</constraint>
-</table>
+-- object: public.usuario | type: TABLE --
+-- DROP TABLE IF EXISTS public.usuario CASCADE;
+CREATE TABLE public.usuario(
+	id serial NOT NULL,
+	id_empresa integer,
+	id_rol integer,
+	nickname character varying(50),
+	email character varying(255),
+	clave character varying(255),
+	CONSTRAINT user_id PRIMARY KEY (id)
 
-<sequence name="rol_id_seq"
-	 start="1" increment="1"
-	 min-value="1" max-value="9223372036854775807"
-	 cache="1" cycle="false">
-	<schema name="public"/>
-	<role name="sigma4c"/>
-</sequence>
+);
+-- ddl-end --
+COMMENT ON TABLE public.usuario IS 'Datos basicos del usuario';
+-- ddl-end --
+COMMENT ON COLUMN public.usuario.nickname IS 'Nombre de usuario corto y sin espacios, ojala en minusculas';
+-- ddl-end --
+COMMENT ON COLUMN public.usuario.email IS 'correo en minusculas';
+-- ddl-end --
+COMMENT ON COLUMN public.usuario.clave IS 'clave en sha512 con salt';
+-- ddl-end --
+ALTER TABLE public.usuario OWNER TO sigma4c;
+-- ddl-end --
 
-<table name="rol">
-	<schema name="public"/>
-	<role name="sigma4c"/>
-	<position x="1200" y="140"/>
-	<column name="id" not-null="true" sequence="public.rol_id_seq">
-		<type name="integer"/>
-	</column>
-	<column name="nombre">
-		<type name="character varying"/>
-	</column>
-	<constraint name="rol_id" type="pk-constr" table="public.rol">
-		<columns names="id" ref-type="src-columns"/>
-	</constraint>
-</table>
+-- object: public.parametro | type: TABLE --
+-- DROP TABLE IF EXISTS public.parametro CASCADE;
+CREATE TABLE public.parametro(
+	id serial NOT NULL,
+	nombre character varying,
+	unidad character varying,
+	CONSTRAINT parametro_id PRIMARY KEY (id)
 
-<sequence name="usuario_id_seq"
-	 start="1" increment="1"
-	 min-value="1" max-value="9223372036854775807"
-	 cache="1" cycle="false">
-	<schema name="public"/>
-	<role name="sigma4c"/>
-</sequence>
+);
+-- ddl-end --
+COMMENT ON TABLE public.parametro IS 'Parametros que conforman la muestra como PH y demas';
+-- ddl-end --
+ALTER TABLE public.parametro OWNER TO sigma4c;
+-- ddl-end --
 
-<table name="usuario">
-	<schema name="public"/>
-	<role name="sigma4c"/>
-	<position x="520" y="60"/>
-	<column name="id" not-null="true" sequence="public.usuario_id_seq">
-		<type name="integer"/>
-	</column>
-	<column name="id_empresa">
-		<type name="integer"/>
-	</column>
-	<column name="alias">
-		<type name="character varying"/>
-	</column>
-	<column name="mail">
-		<type name="character varying"/>
-	</column>
-	<column name="nombre">
-		<type name="character varying"/>
-	</column>
-	<column name="id_rol">
-		<type name="integer"/>
-	</column>
-	<constraint name="user_id" type="pk-constr" table="public.usuario">
-		<columns names="id" ref-type="src-columns"/>
-	</constraint>
-</table>
+-- object: empresa_fk | type: CONSTRAINT --
+-- ALTER TABLE public.usuario DROP CONSTRAINT IF EXISTS empresa_fk CASCADE;
+ALTER TABLE public.usuario ADD CONSTRAINT empresa_fk FOREIGN KEY (id_empresa)
+REFERENCES public.empresa (id) MATCH FULL
+ON DELETE SET NULL ON UPDATE CASCADE;
+-- ddl-end --
 
-<usertype name="paramlist" configuration="enumeration">
-	<schema name="public"/>
-	<role name="sigma4c"/>
-	<enumeration values="PH,CONDUCTIVIDAD,COLOR APARENTE,COLOR VERDADERO,SALINIDAD,TURBIEDAD,OXIGENO DISUELTO,DUREZA TOTAL,DIOXIDO DE CARBONO,ALCALINIDAD TOTAL,ACIDEZ TOTAL,SULFATOS,SOLIDOS TOTALES,SOLIDOS DISUELTOS TOTALES,SOLIDOS SUSPENDIDOS TOTALES,SOLIDOS SEDIMENTABLES,DBO5,DQO,NITROGENO AMONIACAL,NITRATOS,NITRITOS,FOSFORO TOTAL,FOSFATOS,FENOLES TOTALES,CLORUROS,BICARBONATOS,SODIO,POTASIO,PLOMO,NIQUEL,MERCURIO,MAGNESIO,HIERRO,CROMO HEXAVALENTE,COBRE,CALCIO,CADMIO,BARIO,ALUMINIO,TENSOACTIVOS,GRASAS Y ACEITES,HIDROCARBUROS TOTALES,PESTICIDAS ORGANOFOSFORADOS,PESTICIDAS ORGANOCLORADOS,COLIFORMES TOTALES,COLIFORMES FECALES"/>
-</usertype>
+-- object: public.hibernate_sequence | type: SEQUENCE --
+-- DROP SEQUENCE IF EXISTS public.hibernate_sequence CASCADE;
+CREATE SEQUENCE public.hibernate_sequence
+	INCREMENT BY 1
+	MINVALUE 0
+	MAXVALUE 2147483647
+	START WITH 1
+	CACHE 1
+	NO CYCLE
+	OWNED BY NONE;
+-- ddl-end --
+ALTER SEQUENCE public.hibernate_sequence OWNER TO sigma4c;
+-- ddl-end --
 
-<sequence name="parametro_id_seq"
-	 start="1" increment="1"
-	 min-value="1" max-value="9223372036854775807"
-	 cache="1" cycle="false">
-	<schema name="public"/>
-	<role name="sigma4c"/>
-</sequence>
+-- object: rol_fk | type: CONSTRAINT --
+-- ALTER TABLE public.usuario DROP CONSTRAINT IF EXISTS rol_fk CASCADE;
+ALTER TABLE public.usuario ADD CONSTRAINT rol_fk FOREIGN KEY (id_rol)
+REFERENCES public.rol (id) MATCH FULL
+ON DELETE SET NULL ON UPDATE CASCADE;
+-- ddl-end --
 
-<table name="parametro">
-	<schema name="public"/>
-	<role name="sigma4c"/>
-	<position x="120" y="560"/>
-	<column name="id" not-null="true" sequence="public.parametro_id_seq">
-		<type name="integer"/>
-	</column>
-	<column name="nombre">
-		<type name="character varying"/>
-	</column>
-	<column name="unidad">
-		<type name="character varying"/>
-	</column>
-	<constraint name="parametro_id" type="pk-constr" table="public.parametro">
-		<columns names="id" ref-type="src-columns"/>
-	</constraint>
-</table>
+-- object: public.many_muestra_has_many_parametro | type: TABLE --
+-- DROP TABLE IF EXISTS public.many_muestra_has_many_parametro CASCADE;
+CREATE TABLE public.many_muestra_has_many_parametro(
+	id_muestra integer,
+	id_parametro integer,
+	concentracion double precision,
+	tec_analitica character varying,
+	CONSTRAINT many_muestra_has_many_parametro_pk PRIMARY KEY (id_muestra,id_parametro)
 
-<sequence name="hibernate_sequence"
-	 start="1" increment="1"
-	 min-value="0" max-value="2147483647"
-	 cache="1" cycle="false">
-	<schema name="public"/>
-	<role name="sigma4c"/>
-</sequence>
+);
+-- ddl-end --
+ALTER TABLE public.many_muestra_has_many_parametro OWNER TO sigma4c;
+-- ddl-end --
 
-<table name="many_proyecto_has_many_empresa">
-	<schema name="public"/>
-	<role name="sigma4c"/>
-	<position x="120" y="400"/>
-	<column name="id_proyecto" not-null="true">
-		<type name="integer"/>
-	</column>
-	<column name="id_empresa" not-null="true">
-		<type name="integer"/>
-	</column>
-	<constraint name="many_proyecto_has_many_empresa_pk" type="pk-constr" table="public.many_proyecto_has_many_empresa">
-		<columns names="id_proyecto,id_empresa" ref-type="src-columns"/>
-	</constraint>
-</table>
+-- object: muestra_fk | type: CONSTRAINT --
+-- ALTER TABLE public.many_muestra_has_many_parametro DROP CONSTRAINT IF EXISTS muestra_fk CASCADE;
+ALTER TABLE public.many_muestra_has_many_parametro ADD CONSTRAINT muestra_fk FOREIGN KEY (id_muestra)
+REFERENCES public.muestra (id) MATCH FULL
+ON DELETE CASCADE ON UPDATE CASCADE;
+-- ddl-end --
 
-<table name="many_muestra_has_many_parametro">
-	<schema name="public"/>
-	<role name="sigma4c"/>
-	<position x="660" y="580"/>
-	<column name="concentracion">
-		<type name="double precision"/>
-	</column>
-	<column name="tec_analitic">
-		<type name="character varying"/>
-	</column>
-	<column name="id_muestra" not-null="true">
-		<type name="integer"/>
-	</column>
-	<column name="id_parametro" not-null="true">
-		<type name="integer"/>
-	</column>
-	<constraint name="many_muestra_has_many_parametro_pk" type="pk-constr" table="public.many_muestra_has_many_parametro">
-		<columns names="id_muestra,id_parametro" ref-type="src-columns"/>
-	</constraint>
-</table>
+-- object: parametro_fk | type: CONSTRAINT --
+-- ALTER TABLE public.many_muestra_has_many_parametro DROP CONSTRAINT IF EXISTS parametro_fk CASCADE;
+ALTER TABLE public.many_muestra_has_many_parametro ADD CONSTRAINT parametro_fk FOREIGN KEY (id_parametro)
+REFERENCES public.parametro (id) MATCH FULL
+ON DELETE CASCADE ON UPDATE CASCADE;
+-- ddl-end --
 
-<table name="many_proyecto_has_many_fuente_hidrica">
-	<schema name="public"/>
-	<role name="sigma4c"/>
-	<position x="680" y="460"/>
-	<column name="id_proyecto" not-null="true">
-		<type name="integer"/>
-	</column>
-	<column name="id_fuente_hidrica" not-null="true">
-		<type name="integer"/>
-	</column>
-	<constraint name="many_proyecto_has_many_fuente_hidrica_pk" type="pk-constr" table="public.many_proyecto_has_many_fuente_hidrica">
-		<columns names="id_proyecto,id_fuente_hidrica" ref-type="src-columns"/>
-	</constraint>
-</table>
+-- object: public.many_proyecto_has_many_empresa | type: TABLE --
+-- DROP TABLE IF EXISTS public.many_proyecto_has_many_empresa CASCADE;
+CREATE TABLE public.many_proyecto_has_many_empresa(
+	id_proyecto integer,
+	id_empresa integer,
+	CONSTRAINT many_proyecto_has_many_empresa_pk PRIMARY KEY (id_proyecto,id_empresa)
 
-<constraint name="fuente_hidrica_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="CASCADE" del-action="SET NULL" ref-table="public.fuente_hidrica" table="public.muestra">
-	<columns names="id_fuente_hidrica" ref-type="src-columns"/>
-	<columns names="id" ref-type="dst-columns"/>
-</constraint>
+);
+-- ddl-end --
+ALTER TABLE public.many_proyecto_has_many_empresa OWNER TO sigma4c;
+-- ddl-end --
 
-<constraint name="empresa_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="CASCADE" del-action="SET NULL" ref-table="public.empresa" table="public.usuario">
-	<columns names="id_empresa" ref-type="src-columns"/>
-	<columns names="id" ref-type="dst-columns"/>
-</constraint>
+-- object: proyecto_fk | type: CONSTRAINT --
+-- ALTER TABLE public.many_proyecto_has_many_empresa DROP CONSTRAINT IF EXISTS proyecto_fk CASCADE;
+ALTER TABLE public.many_proyecto_has_many_empresa ADD CONSTRAINT proyecto_fk FOREIGN KEY (id_proyecto)
+REFERENCES public.proyecto (id) MATCH FULL
+ON DELETE CASCADE ON UPDATE CASCADE;
+-- ddl-end --
 
-<constraint name="rol_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="CASCADE" del-action="SET NULL" ref-table="public.rol" table="public.usuario">
-	<columns names="id_rol" ref-type="src-columns"/>
-	<columns names="id" ref-type="dst-columns"/>
-</constraint>
+-- object: empresa_fk | type: CONSTRAINT --
+-- ALTER TABLE public.many_proyecto_has_many_empresa DROP CONSTRAINT IF EXISTS empresa_fk CASCADE;
+ALTER TABLE public.many_proyecto_has_many_empresa ADD CONSTRAINT empresa_fk FOREIGN KEY (id_empresa)
+REFERENCES public.empresa (id) MATCH FULL
+ON DELETE CASCADE ON UPDATE CASCADE;
+-- ddl-end --
 
-<constraint name="proyecto_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.proyecto" table="public.many_proyecto_has_many_empresa">
-	<columns names="id_proyecto" ref-type="src-columns"/>
-	<columns names="id" ref-type="dst-columns"/>
-</constraint>
+-- object: public.punto_control | type: TABLE --
+-- DROP TABLE IF EXISTS public.punto_control CASCADE;
+CREATE TABLE public.punto_control(
+	id serial NOT NULL,
+	id_proyecto integer,
+	etiqueta varchar(200),
+	geometria geometry(POINT, 4326),
+	CONSTRAINT punto_control_pk PRIMARY KEY (id)
 
-<constraint name="empresa_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.empresa" table="public.many_proyecto_has_many_empresa">
-	<columns names="id_empresa" ref-type="src-columns"/>
-	<columns names="id" ref-type="dst-columns"/>
-</constraint>
+);
+-- ddl-end --
+COMMENT ON TABLE public.punto_control IS 'Punto donde se toman muchas muestras';
+-- ddl-end --
+COMMENT ON COLUMN public.punto_control.etiqueta IS 'Etiqueta o tag descriptivo del proyecto';
+-- ddl-end --
+COMMENT ON COLUMN public.punto_control.geometria IS 'Punto representativo de donde se toman las muestras';
+-- ddl-end --
+ALTER TABLE public.punto_control OWNER TO sigma4c;
+-- ddl-end --
 
-<constraint name="muestra_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.muestra" table="public.many_muestra_has_many_parametro">
-	<columns names="id_muestra" ref-type="src-columns"/>
-	<columns names="id" ref-type="dst-columns"/>
-</constraint>
+-- object: proyecto_fk | type: CONSTRAINT --
+-- ALTER TABLE public.punto_control DROP CONSTRAINT IF EXISTS proyecto_fk CASCADE;
+ALTER TABLE public.punto_control ADD CONSTRAINT proyecto_fk FOREIGN KEY (id_proyecto)
+REFERENCES public.proyecto (id) MATCH FULL
+ON DELETE SET NULL ON UPDATE CASCADE;
+-- ddl-end --
 
-<constraint name="parametro_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.parametro" table="public.many_muestra_has_many_parametro">
-	<columns names="id_parametro" ref-type="src-columns"/>
-	<columns names="id" ref-type="dst-columns"/>
-</constraint>
+-- object: punto_control_fk | type: CONSTRAINT --
+-- ALTER TABLE public.muestra DROP CONSTRAINT IF EXISTS punto_control_fk CASCADE;
+ALTER TABLE public.muestra ADD CONSTRAINT punto_control_fk FOREIGN KEY (id_punto_control)
+REFERENCES public.punto_control (id) MATCH FULL
+ON DELETE SET NULL ON UPDATE CASCADE;
+-- ddl-end --
 
-<constraint name="proyecto_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.proyecto" table="public.many_proyecto_has_many_fuente_hidrica">
-	<columns names="id_proyecto" ref-type="src-columns"/>
-	<columns names="id" ref-type="dst-columns"/>
-</constraint>
 
-<constraint name="fuente_hidrica_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.fuente_hidrica" table="public.many_proyecto_has_many_fuente_hidrica">
-	<columns names="id_fuente_hidrica" ref-type="src-columns"/>
-	<columns names="id" ref-type="dst-columns"/>
-</constraint>
-
-<relationship name="rel_muestra_fuente_hidrica" type="relfk"
-	 custom-color="#21a028"
-	 src-table="public.muestra"
-	 dst-table="public.fuente_hidrica"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_usuario_empresa" type="relfk"
-	 custom-color="#ce22b5"
-	 src-table="public.usuario"
-	 dst-table="public.empresa"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_usuario_rol" type="relfk"
-	 custom-color="#e59afe"
-	 src-table="public.usuario"
-	 dst-table="public.rol"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_many_proyecto_has_many_empresa_proyecto" type="relfk"
-	 custom-color="#f60fdc"
-	 src-table="public.many_proyecto_has_many_empresa"
-	 dst-table="public.proyecto"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_many_proyecto_has_many_empresa_empresa" type="relfk"
-	 custom-color="#75125f"
-	 src-table="public.many_proyecto_has_many_empresa"
-	 dst-table="public.empresa"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_many_muestra_has_many_parametro_muestra" type="relfk"
-	 custom-color="#e0cb26"
-	 src-table="public.many_muestra_has_many_parametro"
-	 dst-table="public.muestra"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_many_muestra_has_many_parametro_parametro" type="relfk"
-	 custom-color="#1c3b35"
-	 src-table="public.many_muestra_has_many_parametro"
-	 dst-table="public.parametro"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_many_proyecto_has_many_fuente_hidrica_proyecto" type="relfk"
-	 custom-color="#9a70e3"
-	 src-table="public.many_proyecto_has_many_fuente_hidrica"
-	 dst-table="public.proyecto"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_many_proyecto_has_many_fuente_hidrica_fuente_hidrica" type="relfk"
-	 custom-color="#8f5c77"
-	 src-table="public.many_proyecto_has_many_fuente_hidrica"
-	 dst-table="public.fuente_hidrica"
-	 src-required="false" dst-required="false"/>
-
-</dbmodel>
