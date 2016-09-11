@@ -96,7 +96,7 @@ class MuestraController extends Controller
             echo $formatter->getHtmlMessage();
         }
     }
--
+
     /**
      * Finds and displays a Muestra entity.
      *
