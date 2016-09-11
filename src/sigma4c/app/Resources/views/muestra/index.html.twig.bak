@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Muestra list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Responsable</th>
+                <th>Elementoambiental</th>
+                <th>Fotos</th>
+                <th>Fechatoma</th>
+                <th>Fecharecepcion</th>
+                <th>Fechaanalisis</th>
+                <th>Tipomuestreo</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for muestra in muestras %}
+            <tr>
+                <td><a href="{{ path('muestra_show', { 'id': muestra.id }) }}">{{ muestra.responsable }}</a></td>
+                <td>{{ muestra.elementoAmbiental }}</td>
+                <td>{{ muestra.fotos }}</td>
+                <td>{% if muestra.fechaToma %}{{ muestra.fechaToma|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if muestra.fechaRecepcion %}{{ muestra.fechaRecepcion|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if muestra.fechaAnalisis %}{{ muestra.fechaAnalisis|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ muestra.tipoMuestreo }}</td>
+                <td>{{ muestra.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('muestra_show', { 'id': muestra.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('muestra_edit', { 'id': muestra.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('muestra_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
