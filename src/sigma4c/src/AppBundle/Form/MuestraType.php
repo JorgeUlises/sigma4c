@@ -16,20 +16,17 @@ class MuestraType extends AbstractType
     {
         $builder
             ->add('responsable')
-            ->add('producto')
-            ->add('lugarToma')
-            ->add('foto')
-            ->add('nMuestras')
-            ->add('fechaToma', 'date')
-            ->add('fechaRecepcion', 'date')
-            ->add('fechaAnalisis', 'date')
+            ->add('elementoAmbiental')
+            ->add('fotos')
+            ->add('fechaToma', 'datetime')
+            ->add('fechaRecepcion', 'datetime')
+            ->add('fechaAnalisis', 'datetime')
             ->add('tipoMuestreo')
-            ->add('geometria', 'hidden')
-            ->add('idFuenteHidrica')
+            ->add('idPuntoControl')
             ->add('idParametro')
         ;
     }
-
+    
     /**
      * @param OptionsResolver $resolver
      */
