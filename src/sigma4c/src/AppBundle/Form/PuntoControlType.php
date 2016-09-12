@@ -20,7 +20,7 @@ class PuntoControlType extends AbstractType
             ->add('idProyecto')
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */

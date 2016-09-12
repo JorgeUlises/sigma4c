@@ -6,18 +6,18 @@
     <table class="table">
         <thead>
             <tr>
+                <th>Id</th>
                 <th>Etiqueta</th>
                 <th>Geometría</th>
-                <th>Id</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
         {% for puntoControl in puntoControls %}
             <tr>
-                <td><a href="{{ path('puntocontrol_show', { 'id': puntoControl.id }) }}">{{ puntoControl.etiqueta }}</a></td>
+                <td><a href="{{ path('puntocontrol_show', { 'id': puntoControl.id }) }}">{{ puntoControl.id }}</a></td>
+                <td>{{ puntoControl.etiqueta }}</td>
                 <td>{{ puntoControl.geometria }}</td>
-                <td>{{ puntoControl.id }}</td>
                 <td>
                     <ul class="list-inline">
                         <li class="list-inline-item">

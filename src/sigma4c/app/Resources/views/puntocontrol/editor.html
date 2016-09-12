@@ -26,6 +26,8 @@
 </p>
 
 <script>
+var idInputGeometria = 'punto_control_geometria'
+
 function limpiarMapa () {
   features.clear()
   addInteraction()
@@ -52,8 +54,8 @@ var map = new ol.Map({
 })
 
 var listenerKey = function(e) {
-  window.alert('hi')
-  setInitialPoint()
+  //window.alert('hi')
+  //setInitialPoint()
   map.un('postrender', listenerKey)
   map.unByKey(id)
 }
@@ -185,7 +187,7 @@ function puntoTerminado() {
         var coordenadas = geometry.getCoordinates()
         var x = coordenadas[0]
         var y = coordenadas[1]
-        el('muestra_geometria').value = x + ' ' + y
+        el(window.idInputGeometria).value = x + ' ' + y
         console.log(x + ' ' + y)
       }
     }
@@ -199,11 +201,12 @@ function puntoTerminado() {
 addInteraction()
 
 function setInitialPoint() {
-  var coordenadas = el('muestra_geometria').value.split(' ')
-  console.log(coordenadas)
+  var coordenadas = el(window.idInputGeometria).value
   if (coordenadas === '') {
     return
   }
+  coordenadas = coordenadas.split(' ')
+  console.log(coordenadas)
   var x = coordenadas[0]
   var y = coordenadas[1]
 

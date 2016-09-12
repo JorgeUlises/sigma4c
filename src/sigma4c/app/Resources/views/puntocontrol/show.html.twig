@@ -1,35 +1,35 @@
 {% extends 'sigmabase.html.twig' %}
 
 {% block body %}
-    <h1>PuntoControl</h1>
+    <h1>Punto de Control</h1>
 
     <table>
         <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ puntoControl.id }}</td>
+            </tr>
             <tr>
                 <th>Etiqueta</th>
                 <td>{{ puntoControl.etiqueta }}</td>
             </tr>
             <tr>
-                <th>Geometria</th>
+                <th>Geometría</th>
                 <td>{{ puntoControl.geometria }}</td>
-            </tr>
-            <tr>
-                <th>Id</th>
-                <td>{{ puntoControl.id }}</td>
             </tr>
         </tbody>
     </table>
 
-    <ul>
+    <ul class="list-inline">
         <li>
-            <a href="{{ path('puntocontrol_index') }}">Back to the list</a>
+            <a class="btn btn-info" href="{{ path('puntocontrol_index') }}">Volver</a>
         </li>
         <li>
-            <a href="{{ path('puntocontrol_edit', { 'id': puntoControl.id }) }}">Edit</a>
+            <a class="btn btn-primary" href="{{ path('puntocontrol_edit', { 'id': puntoControl.id }) }}">Editar</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input class="btn btn-danger" type="submit" value="Eliminar">
             {{ form_end(delete_form) }}
         </li>
     </ul>

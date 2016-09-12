@@ -53,7 +53,7 @@ class Proyecto
     /**
      * Get nombre
      *
-     * @return string 
+     * @return string
      */
     public function getNombre()
     {
@@ -76,7 +76,7 @@ class Proyecto
     /**
      * Get geometria
      *
-     * @return geometry 
+     * @return geometry
      */
     public function getGeometria()
     {
@@ -86,7 +86,7 @@ class Proyecto
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -119,10 +119,20 @@ class Proyecto
     /**
      * Get idEmpresa
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIdEmpresa()
     {
         return $this->idEmpresa;
+    }
+
+    /**
+     * Get display name
+     *
+     * @return String
+     */
+    public function __toString()
+    {
+        return $this->nombre;
     }
 }

@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use CrEOF\Spatial\PHP\Types\Geometry\Point;
 
 /**
  * PuntoControl
@@ -46,7 +47,7 @@ class PuntoControl
     /**
      * Get etiqueta
      *
-     * @return string 
+     * @return string
      */
     public function getEtiqueta()
     {
@@ -61,7 +62,12 @@ class PuntoControl
      */
     public function setGeometria($geometria)
     {
-        $this->geometria = $geometria;
+        $coordenadas = explode(' ', $geometria);
+        //var_dump($coordenadas);die;
+        $x = $coordenadas[0];
+        $y = $coordenadas[1];
+        $point = new Point($x, $y, 4326);
+        $this->geometria = $point;
 
         return $this;
     }
@@ -69,7 +75,7 @@ class PuntoControl
     /**
      * Get geometria
      *
-     * @return geometry 
+     * @return geometry
      */
     public function getGeometria()
     {
@@ -79,7 +85,7 @@ class PuntoControl
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -102,10 +108,20 @@ class PuntoControl
     /**
      * Get idProyecto
      *
-     * @return \AppBundle\Entity\Proyecto 
+     * @return \AppBundle\Entity\Proyecto
      */
     public function getIdProyecto()
     {
         return $this->idProyecto;
+    }
+
+    /**
+     * Get display name
+     *
+     * @return String
+     */
+    public function __toString()
+    {
+        return $this->etiqueta . $this->geometria;
     }
 }
