@@ -54,8 +54,8 @@ var map = new ol.Map({
 })
 
 var listenerKey = function(e) {
-  //window.alert('hi')
-  //setInitialPoint()
+  console.log('Listener PostRender')
+  setInitialPoint()
   map.un('postrender', listenerKey)
   map.unByKey(id)
 }
@@ -70,6 +70,9 @@ function el(id) {
 }
 
 function listener () {
+  if (this.checked) {
+    limpiarMapa()
+  }
   geolocation.setTracking(this.checked)
 }
 
@@ -155,6 +158,14 @@ var modify = new ol.interaction.Modify({
         ol.events.condition.singleClick(event)
   }
 })
+modify.on('modifyend', modifyEnd)
+
+function modifyEnd() {
+  console.log('Modify End')
+  setTimeout(puntoTerminado, 200)
+  //map.removeInteraction(modify)
+}
+
 map.addInteraction(modify)
 
 var draw // global so we can remove it later
@@ -168,9 +179,10 @@ function addInteraction() {
   map.addInteraction(draw)
 }
 
-var drawEnd = function() {
+function drawEnd() {
+  console.log('Draw End')
   map.removeInteraction(draw)
-  setTimeout(puntoTerminado, 1000)
+  setTimeout(puntoTerminado, 200)
 }
 
 function puntoTerminado() {
@@ -181,10 +193,10 @@ function puntoTerminado() {
   for (var i=0; i<featuresSource.length; i++) {
     var feature = featuresSource[i]
     var geometry = feature.getGeometry()
-    console.log(geometry)
     if (geometry != undefined) {
       if (geometry.getType() === 'Point') {
         var coordenadas = geometry.getCoordinates()
+        console.log(coordenadas)
         var x = coordenadas[0]
         var y = coordenadas[1]
         el(window.idInputGeometria).value = x + ' ' + y
@@ -205,20 +217,22 @@ function setInitialPoint() {
   if (coordenadas === '') {
     return
   }
+
   coordenadas = coordenadas.split(' ')
   console.log(coordenadas)
-  var x = coordenadas[0]
-  var y = coordenadas[1]
+  var x = parseFloat(coordenadas[0])
+  var y = parseFloat(coordenadas[1])
 
-  var feature = new ol.Feature()
-  positionFeature.setGeometry(
-    coordenadas ? new ol.geom.Point(coordenadas) : null
-  )
-  feature.setStyle(estiloPunto)
-
-  source.addFeature(feature)
   view.setCenter([x, y])
   view.setZoom(20)
+
+  var punto = new ol.geom.Point([x, y])
+  positionFeature.setGeometry(punto)
+
+  map.removeInteraction(draw)
+  //var feature = new ol.Feature()
+  //feature.setStyle(estiloPunto)
+  //source.addFeature(feature)
 }
 
 </script>

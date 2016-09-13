@@ -51,3 +51,6 @@ php app/console doctrine:mapping:import AppBundle:Norma
 php app/console generate:doctrine:entities AppBundle:Norma
 php app/console generate:doctrine:form "AppBundle:Norma"
 php app/console generate:doctrine:crud --entity=AppBundle:Norma
+
+#Instrucciones de migraciones:
+#https://symfonytricksandcheats.wordpress.com/category/migraciones/
