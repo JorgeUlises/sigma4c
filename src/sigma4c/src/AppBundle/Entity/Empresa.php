@@ -10,6 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Empresa
 {
     /**
+     * @var integer
+     */
+    private $id;
+
+    /**
      * @var string
      */
     private $nombre;
@@ -40,11 +45,6 @@ class Empresa
     private $telefono;
 
     /**
-     * @var integer
-     */
-    private $id;
-
-    /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $idProyecto;
@@ -73,7 +73,7 @@ class Empresa
     /**
      * Get nombre
      *
-     * @return string 
+     * @return string
      */
     public function getNombre()
     {
@@ -96,7 +96,7 @@ class Empresa
     /**
      * Get nit
      *
-     * @return string 
+     * @return string
      */
     public function getNit()
     {
@@ -119,7 +119,7 @@ class Empresa
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -142,7 +142,7 @@ class Empresa
     /**
      * Get ciudad
      *
-     * @return string 
+     * @return string
      */
     public function getCiudad()
     {
@@ -165,7 +165,7 @@ class Empresa
     /**
      * Get direccion
      *
-     * @return string 
+     * @return string
      */
     public function getDireccion()
     {
@@ -188,7 +188,7 @@ class Empresa
     /**
      * Get telefono
      *
-     * @return string 
+     * @return string
      */
     public function getTelefono()
     {
@@ -198,7 +198,7 @@ class Empresa
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -231,7 +231,7 @@ class Empresa
     /**
      * Get idProyecto
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIdProyecto()
     {

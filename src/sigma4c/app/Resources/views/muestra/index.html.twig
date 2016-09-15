@@ -8,15 +8,12 @@
             <tr>
                 <th>Id</th>
                 <th>Responsable</th>
-                <th>Producto</th>
-                <th>Lugartoma</th>
-                <th>Foto</th>
-                <th>Num Muestras</th>
+                <th>Elemento Ambiental</th>
+                <th>Fotos</th>
                 <th>Fecha Toma</th>
                 <th>Fecha Recepción</th>
                 <th>Fecha Analisis</th>
                 <th>Tipo Muestreo</th>
-                <th>Geometría</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -25,15 +22,12 @@
             <tr>
                 <td><a href="{{ path('muestra_show', { 'id': muestra.id }) }}">{{ muestra.id }}</a></td>
                 <td>{{ muestra.responsable }}</td>
-                <td>{{ muestra.producto }}</td>
-                <td>{{ muestra.lugarToma }}</td>
-                <td>{{ muestra.foto }}</td>
-                <td>{{ muestra.nMuestras }}</td>
+                <td>{{ muestra.elementoAmbiental }}</td>
+                <td>{{ muestra.fotos }}</td>
                 <td>{% if muestra.fechaToma %}{{ muestra.fechaToma|date('Y-m-d') }}{% endif %}</td>
                 <td>{% if muestra.fechaRecepcion %}{{ muestra.fechaRecepcion|date('Y-m-d') }}{% endif %}</td>
                 <td>{% if muestra.fechaAnalisis %}{{ muestra.fechaAnalisis|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ muestra.tipoMuestreo }}</td>
-                <td>{{ muestra.geometria }}</td>
                 <td>
                     <ul class="list-inline">
                         <li class="list-inline-item">

@@ -5,24 +5,9 @@
 
     {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
     <div class="form-group">
-        {{ form_label(form.tipoempresa, 'Tipo Empresa') }}
-        {{ form_errors(form.tipoempresa) }}
-        {{ form_widget(form.tipoempresa, {'attr': {'class': 'form-control'}}) }}
-    </div>
-    <div class="form-group">
         {{ form_label(form.nombre, 'Nombre') }}
         {{ form_errors(form.nombre) }}
         {{ form_widget(form.nombre, {'attr': {'class': 'form-control'}}) }}
-    </div>
-    <div class="form-group">
-        {{ form_label(form.representantelegal, 'Representante Legal') }}
-        {{ form_errors(form.representantelegal) }}
-        {{ form_widget(form.representantelegal, {'attr': {'class': 'form-control'}}) }}
-    </div>
-    <div class="form-group">
-        {{ form_label(form.rut, 'RUT') }}
-        {{ form_errors(form.rut) }}
-        {{ form_widget(form.rut, {'attr': {'class': 'form-control'}}) }}
     </div>
     <div class="form-group">
         {{ form_label(form.nit, 'NIT') }}
@@ -43,6 +28,11 @@
         {{ form_label(form.direccion, 'Dirección') }}
         {{ form_errors(form.direccion) }}
         {{ form_widget(form.direccion, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.telefono, 'Telefono') }}
+        {{ form_errors(form.telefono) }}
+        {{ form_widget(form.telefono, {'attr': {'class': 'form-control'}}) }}
     </div>
     <div class="form-group">
         {{ form_label(form.idProyecto, 'Proyecto') }}

@@ -10,24 +10,14 @@
       {{ form_widget(form.responsable, {'attr': {'class': 'form-control'}}) }}
     </div>
     <div class="form-group">
-      {{ form_label(form.producto, 'Producto') }}
-      {{ form_errors(form.producto) }}
-      {{ form_widget(form.producto, {'attr': {'class': 'form-control'}}) }}
+      {{ form_label(form.elementoAmbiental, 'Elemento Ambiental') }}
+      {{ form_errors(form.elementoAmbiental) }}
+      {{ form_widget(form.elementoAmbiental, {'attr': {'class': 'form-control'}}) }}
     </div>
     <div class="form-group">
-      {{ form_label(form.lugarToma, 'Lugar de Toma') }}
-      {{ form_errors(form.lugarToma) }}
-      {{ form_widget(form.lugarToma, {'attr': {'class': 'form-control'}}) }}
-    </div>
-    <div class="form-group">
-      {{ form_label(form.foto, 'Foto') }}
-      {{ form_errors(form.foto) }}
-      {{ form_widget(form.foto, {'attr': {'class': 'form-control'}}) }}
-    </div>
-    <div class="form-group">
-      {{ form_label(form.nMuestras, 'Número de Muestras') }}
-      {{ form_errors(form.nMuestras) }}
-      {{ form_widget(form.nMuestras, {'attr': {'class': 'form-control'}}) }}
+      {{ form_label(form.fotos, 'Foto') }}
+      {{ form_errors(form.fotos) }}
+      {{ form_widget(form.fotos, {'attr': {'class': 'form-control'}}) }}
     </div>
     <div class="form-group">
       {{ form_label(form.fechaToma, 'Fecha Toma') }}
@@ -50,15 +40,9 @@
       {{ form_widget(form.tipoMuestreo, {'attr': {'class': 'form-control'}}) }}
     </div>
     <div class="form-group">
-      {{ form_label(form.geometria, 'Geometría') }}
-      {% include 'muestra/editor.html' %}
-      {{ form_errors(form.geometria) }}
-      {{ form_widget(form.geometria, {'attr': {'class': 'form-control'}}) }}
-    </div>
-    <div class="form-group">
-      {{ form_label(form.idFuenteHidrica, 'Fuente Hídrica') }}
-      {{ form_errors(form.idFuenteHidrica) }}
-      {{ form_widget(form.idFuenteHidrica, {'attr': {'class': 'form-control'}}) }}
+      {{ form_label(form.idPuntoControl, 'Punto de Control') }}
+      {{ form_errors(form.idPuntoControl) }}
+      {{ form_widget(form.idPuntoControl, {'attr': {'class': 'form-control'}}) }}
     </div>
     <div class="form-group">
       {{ form_label(form.idParametro, 'Parámetro') }}

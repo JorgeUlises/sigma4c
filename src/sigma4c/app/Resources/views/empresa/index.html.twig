@@ -7,14 +7,12 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Tipo Empresa</th>
                 <th>Nombre</th>
-                <th>Representante Legal</th>
-                <th>RUT</th>
                 <th>NIT</th>
                 <th>Email</th>
                 <th>Ciudad</th>
                 <th>Dirección</th>
+                <th>Telefono</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -22,14 +20,13 @@
         {% for empresa in empresas %}
             <tr>
                 <td><a href="{{ path('empresa_show', { 'id': empresa.id }) }}">{{ empresa.id }}</a></td>
-                <td>{{ empresa.tipoempresa }}</td>
+                <td>{{ empresa.id }}</td>
                 <td>{{ empresa.nombre }}</td>
-                <td>{{ empresa.representantelegal }}</td>
-                <td>{{ empresa.rut }}</td>
                 <td>{{ empresa.nit }}</td>
                 <td>{{ empresa.email }}</td>
                 <td>{{ empresa.ciudad }}</td>
                 <td>{{ empresa.direccion }}</td>
+                <td>{{ empresa.telefono }}</td>
                 <td>
                     <ul class="list-inline">
                         <li class="list-inline-item">
