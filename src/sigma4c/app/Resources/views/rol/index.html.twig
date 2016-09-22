@@ -8,6 +8,7 @@
             <tr>
                 <th>Id</th>
                 <th>Nombre</th>
+                <th>Descripción</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -16,6 +17,7 @@
             <tr>
                 <td><a href="{{ path('rol_show', { 'id': rol.id }) }}">{{ rol.id }}</a></td>
                 <td>{{ rol.nombre }}</td>
+                <td>{{ rol.descripcion }}</td>
                 <td>
                     <ul class="list-inline">
                         <li class="list-inline-item">

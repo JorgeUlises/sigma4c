@@ -19,10 +19,10 @@
         {{ form_errors(edit_form.idMuestra) }}
         {{ form_widget(edit_form.idMuestra, {'attr': {'class': 'form-control'}}) }}
     </div>
+    <input class="btn btn-default"  type="submit" value="Guardar"/>
+    {{ form_end(edit_form) }}
+    <br/>
     <ul class="list-inline">
-        <li>
-            <input class="btn btn-default"  type="submit" value="Guardar"/>
-        </li>
         <li>
             <a class="btn btn-info" href="{{ path('parametro_index') }}">Volver</a>
         </li>
@@ -32,5 +32,4 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
-    {{ form_end(edit_form) }}
 {% endblock %}

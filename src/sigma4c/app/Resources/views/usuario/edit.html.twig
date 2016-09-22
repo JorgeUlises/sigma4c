@@ -5,19 +5,19 @@
 
     {{ form_start(edit_form, {'attr': {'class': 'form-horizontal'}}) }}
     <div class="form-group">
-        {{ form_label(edit_form.alias, 'Nombre') }}
-        {{ form_errors(edit_form.alias) }}
-        {{ form_widget(edit_form.alias, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(edit_form.nickname, 'Nombre') }}
+        {{ form_errors(edit_form.nickname) }}
+        {{ form_widget(edit_form.nickname, {'attr': {'class': 'form-control'}}) }}
     </div>
     <div class="form-group">
-        {{ form_label(edit_form.nombre, 'Nombre Completo') }}
-        {{ form_errors(edit_form.nombre) }}
-        {{ form_widget(edit_form.nombre, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(edit_form.email, 'Correo') }}
+        {{ form_errors(edit_form.email) }}
+        {{ form_widget(edit_form.email, {'attr': {'class': 'form-control'}}) }}
     </div>
     <div class="form-group">
-        {{ form_label(edit_form.mail, 'Correo') }}
-        {{ form_errors(edit_form.mail) }}
-        {{ form_widget(edit_form.mail, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(edit_form.clave, 'Contraseña') }}
+        {{ form_errors(edit_form.clave) }}
+        {{ form_widget(edit_form.clave, {'attr': {'class': 'form-control'}}) }}
     </div>
     <div class="form-group">
         {{ form_label(edit_form.idEmpresa, 'Empresa') }}
@@ -29,10 +29,10 @@
         {{ form_errors(edit_form.idRol) }}
         {{ form_widget(edit_form.idRol, {'attr': {'class': 'form-control'}}) }}
     </div>
+    <input class="btn btn-default"  type="submit" value="Guardar"/>
+    {{ form_end(edit_form) }}
+    <br/>
     <ul class="list-inline">
-        <li>
-            <input class="btn btn-default"  type="submit" value="Guardar"/>
-        </li>
         <li>
             <a class="btn btn-info" href="{{ path('usuario_index') }}">Volver</a>
         </li>
@@ -42,5 +42,4 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
-    {{ form_end(edit_form) }}
 {% endblock %}

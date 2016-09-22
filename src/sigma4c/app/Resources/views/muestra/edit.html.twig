@@ -49,18 +49,17 @@
   {{ form_errors(edit_form.idParametro) }}
   {{ form_widget(edit_form.idParametro, {'attr': {'class': 'form-control'}}) }}
 </div>
+<input class="btn btn-default" type="submit" value="Guardar"/>
+{{ form_end(edit_form) }}
+<br/>
 <ul class="list-inline">
-  <li>
-    <input class="btn btn-default" type="submit" value="Guardar"/>
-  </li>
   <li>
     <a class="btn btn-info" href="{{ path('muestra_index') }}">Volver</a>
   </li>
   <li>
     {{ form_start(delete_form) }}
-    <input class="btn btn-danger" type="submit" value="Eliminar">
+      <input class="btn btn-danger" type="submit" value="Eliminar">
     {{ form_end(delete_form) }}
   </li>
 </ul>
-{{ form_end(edit_form) }}
 {% endblock %}

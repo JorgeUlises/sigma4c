@@ -22,7 +22,7 @@ class UsuarioType extends AbstractType
             ->add('idEmpresa')
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */

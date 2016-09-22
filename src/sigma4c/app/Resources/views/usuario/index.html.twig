@@ -7,19 +7,17 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Alias</th>
-                <th>Mail</th>
                 <th>Nombre</th>
-                <th>Actions</th>
+                <th>Mail</th>
+                <th>Actiones</th>
             </tr>
         </thead>
         <tbody>
         {% for usuario in usuarios %}
             <tr>
                 <td><a href="{{ path('usuario_show', { 'id': usuario.id }) }}">{{ usuario.id }}</a></td>
-                <td>{{ usuario.alias }}</td>
-                <td>{{ usuario.mail }}</td>
-                <td>{{ usuario.nombre }}</td>
+                <td>{{ usuario.nickname }}</td>
+                <td>{{ usuario.email }}</td>
                 <td>
                     <ul class="list-inline">
                         <li class="list-inline-item">
