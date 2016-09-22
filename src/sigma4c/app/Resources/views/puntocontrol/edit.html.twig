@@ -24,13 +24,14 @@
     {{ form_end(edit_form) }}
     <br/>
     <ul class="list-inline">
-    <li>
-        <a class="btn btn-info" href="{{ path('puntocontrol_index') }}">Volver</a>
-    </li>
-    <li>
-        {{ form_start(delete_form) }}
-            <input class="btn btn-danger" type="submit" value="Eliminar">
-        {{ form_end(delete_form) }}
-    </li>
+      <li>
+          <a class="btn btn-info" href="{{ path('puntocontrol_index') }}">Volver</a>
+      </li>
+      <li>
+          {{ form_start(delete_form) }}
+              <input class="btn btn-danger" type="submit" value="Eliminar">
+          {{ form_end(delete_form) }}
+      </li>
+    </ul>
 
 {% endblock %}
