@@ -4,6 +4,11 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use CrEOF\Spatial\PHP\Types\Geometry\LineString;
+use CrEOF\Spatial\PHP\Types\Geometry\Point;
+use CrEOF\Spatial\PHP\Types\Geometry\Polygon;
+// use CrEOF\Spatial\PHP\Types\Geometry\MultiLineString;
+
 /**
  * Proyecto
  */
@@ -68,8 +73,44 @@ class Proyecto
      */
     public function setGeometria($geometria)
     {
-        $this->geometria = $geometria;
+        // $lineStrings = array(
+        //     new LineString(
+        //         array(
+        //             new Point(0, 0),
+        //             new Point(10, 0),
+        //             new Point(10, 10),
+        //             new Point(0, 10),
+        //             new Point(0, 0)
+        //         )
+        //     ),
+        //     new LineString(
+        //         array(
+        //             new Point(0, 0),
+        //             new Point(10, 0),
+        //             new Point(10, 10),
+        //             new Point(0, 10),
+        //             new Point(0, 0)
+        //         )
+        //     )
+        // );
+        // $multiLineString = new MultiLineString($lineStrings, 4326);
+        // $this->geometria = $multiLineString;
 
+        $rings = array(
+            new LineString(
+                array(
+                    new Point(0, 0),
+                    new Point(10, 0),
+                    new Point(10, 10),
+                    new Point(0, 10),
+                    new Point(0, 0)
+                )
+            )
+        );
+        //https://github.com/creof/doctrine2-spatial/blob/master/tests/CrEOF/Spatial/Tests/PHP/Types/Geometry/PolygonTest.php#L46
+        $polygon = new Polygon($rings, 4326);
+        $this->geometria = $polygon;
+        //  $this->geometria = $geometria;
         return $this;
     }
 
