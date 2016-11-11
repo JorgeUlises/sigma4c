@@ -190,13 +190,15 @@ function puntoTerminado() {
     if (geometry != undefined) {
       if (geometry.getType() === 'Polygon') {
         var coordenadas = geometry.getCoordinates()
-        var strCoordenadas = ""
+        var strCoordenadas = "("
         for (var i = 0; i < coordenadas.length; i++) {
           console.log(coordenadas[i])
           var x = coordenadas[i][0]
           var y = coordenadas[i][1]
-          strCoordenadas += ',' + x + ' ' + y
+          strCoordenadas += x + ' ' + y + ','
         }
+        strCoordenadas.substr(-1)
+        strCoordenadas += ')'
         el(window.idInputGeometria).value = strCoordenadas
       }
     }
