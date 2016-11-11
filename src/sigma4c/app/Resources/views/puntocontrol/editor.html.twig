@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="http://openlayers.org/en/v3.18.2/css/ol.css" type="text/css">
-<script src="http://openlayers.org/en/v3.18.2/build/ol.js"></script>
+<link href="{{ asset('css/ol.css') }}" rel="stylesheet" type="text/css">
+<script src="{{ asset('js/ol.js') }}"></script>
 
 <div id="map" class="map"></div>
 
@@ -8,11 +8,15 @@
     <button type="button" class="btn btn-default" onclick="limpiarMapa()">Limpiar</button>
   </li>
   <li>
-    <button type="button" class="btn btn-info" onclick="acercarGeoLocalizacion()">Zoom a mi ubicación</button>
+
   </li>
 </ul>
 
 <div id="info" style="display: none;"></div>
+<label for="track">
+  Activar Geo Localización
+  <input id="track" type="checkbox" />
+</label>
 <p>
   Exactitud de la posición: <code id="accuracy"></code>&nbsp;&nbsp;
   Altitud: <code id="altitude"></code>&nbsp;&nbsp;
@@ -22,14 +26,14 @@
 </p>
 
 <script>
-var idInputGeometria = 'proyecto_geometria'
+var idInputGeometria = 'punto_control_geometria'
 
 function limpiarMapa () {
   features.clear()
   addInteraction()
-  //accuracyFeature.setGeometry()
-  //positionFeature.setGeometry()
-  //source.addFeatures([accuracyFeature, positionFeature])
+  accuracyFeature.setGeometry()
+  positionFeature.setGeometry()
+  source.addFeatures([accuracyFeature, positionFeature])
   geolocation.setTracking(false)
 }
 
@@ -65,9 +69,14 @@ function el(id) {
   return document.getElementById(id)
 }
 
-function acercarGeoLocalizacion() {
-  geolocation.setTracking(true)
+function listener () {
+  if (this.checked) {
+    limpiarMapa()
+  }
+  geolocation.setTracking(this.checked)
 }
+
+el('track').addEventListener('change', listener)
 
 // update the HTML page when the position changes.
 geolocation.on('change', function() {
@@ -76,9 +85,8 @@ geolocation.on('change', function() {
   el('altitudeAccuracy').innerText = geolocation.getAltitudeAccuracy() + ' [m]'
   el('heading').innerText = geolocation.getHeading() + ' [rad]'
   el('speed').innerText = geolocation.getSpeed() + ' [m/s]'
-  //map.removeInteraction(draw)
-  //puntoTerminado()
-  geolocation.setTracking(false)
+  map.removeInteraction(draw)
+  puntoTerminado()
 })
 
 // handle geolocation error.
@@ -91,8 +99,7 @@ geolocation.on('error', function(error) {
 var accuracyFeature = new ol.Feature()
 geolocation.on('change:accuracyGeometry', function() {
   accuracyFeature.setGeometry(geolocation.getAccuracyGeometry())
-  //dataExtent = source.getExtent()
-  dataExtent = accuracyFeature.getGeometry().getExtent()
+  dataExtent = source.getExtent()
   view.fit(dataExtent, map.getSize())
 })
 
@@ -138,7 +145,7 @@ var featureOverlay = new ol.layer.Vector({
     })
   })
 })
-//source.addFeatures([accuracyFeature, positionFeature])
+source.addFeatures([accuracyFeature, positionFeature])
 featureOverlay.setMap(map)
 
 var modify = new ol.interaction.Modify({
@@ -166,7 +173,7 @@ var draw // global so we can remove it later
 function addInteraction() {
   draw = new ol.interaction.Draw({
     features: features,
-    type: 'Polygon'//Cambiar por http://openlayers.org/en/latest/examples/draw-features.html
+    type: 'Point'
   })
   draw.on('drawend', drawEnd)
   map.addInteraction(draw)
@@ -186,18 +193,14 @@ function puntoTerminado() {
   for (var i=0; i<featuresSource.length; i++) {
     var feature = featuresSource[i]
     var geometry = feature.getGeometry()
-    console.log(geometry.getType())
     if (geometry != undefined) {
-      if (geometry.getType() === 'Polygon') {
+      if (geometry.getType() === 'Point') {
         var coordenadas = geometry.getCoordinates()
-        var strCoordenadas = ""
-        for (var i = 0; i < coordenadas.length; i++) {
-          console.log(coordenadas[i])
-          var x = coordenadas[i][0]
-          var y = coordenadas[i][1]
-          strCoordenadas += ',' + x + ' ' + y
-        }
-        el(window.idInputGeometria).value = strCoordenadas
+        console.log(coordenadas)
+        var x = coordenadas[0]
+        var y = coordenadas[1]
+        el(window.idInputGeometria).value = x + ' ' + y
+        console.log(x + ' ' + y)
       }
     }
   }

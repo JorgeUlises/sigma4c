@@ -56,7 +56,7 @@ class Usuario
     /**
      * Get nickname
      *
-     * @return string 
+     * @return string
      */
     public function getNickname()
     {
@@ -79,7 +79,7 @@ class Usuario
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -102,7 +102,7 @@ class Usuario
     /**
      * Get clave
      *
-     * @return string 
+     * @return string
      */
     public function getClave()
     {
@@ -112,7 +112,7 @@ class Usuario
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -135,7 +135,7 @@ class Usuario
     /**
      * Get idRol
      *
-     * @return \AppBundle\Entity\Rol 
+     * @return \AppBundle\Entity\Rol
      */
     public function getIdRol()
     {
@@ -158,10 +158,20 @@ class Usuario
     /**
      * Get idEmpresa
      *
-     * @return \AppBundle\Entity\Empresa 
+     * @return \AppBundle\Entity\Empresa
      */
     public function getIdEmpresa()
     {
         return $this->idEmpresa;
+    }
+
+    /**
+     * Get display name
+     *
+     * @return String
+     */
+    public function __toString()
+    {
+        return $this->nickname;
     }
 }

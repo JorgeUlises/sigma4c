@@ -6,18 +6,18 @@
     <table class="table table-inverse">
         <thead>
             <tr>
+                <th>Id</th>
                 <th>Nombre</th>
                 <th>Geometria</th>
-                <th>Id</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for proyecto in proyectos %}
             <tr>
-                <td><a href="{{ path('proyecto_show', { 'id': proyecto.id }) }}">{{ proyecto.nombre }}</a></td>
+                <td><a href="{{ path('proyecto_show', { 'id': proyecto.id }) }}">{{ proyecto.id }}</a></td>
                 <td>{{ proyecto.geometria }}</td>
-                <td>{{ proyecto.id }}</td>
+                <td>{{ proyecto.nombre }}</td>
                 <td>
                 <ul class="list-inline">
                     <li class="list-inline-item">

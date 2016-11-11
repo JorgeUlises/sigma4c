@@ -41,7 +41,7 @@ class Rol
     /**
      * Get nombre
      *
-     * @return string 
+     * @return string
      */
     public function getNombre()
     {
@@ -64,7 +64,7 @@ class Rol
     /**
      * Get descripcion
      *
-     * @return string 
+     * @return string
      */
     public function getDescripcion()
     {
@@ -74,10 +74,20 @@ class Rol
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get display name
+     *
+     * @return String
+     */
+    public function __toString()
+    {
+        return $this->nombre;
     }
 }

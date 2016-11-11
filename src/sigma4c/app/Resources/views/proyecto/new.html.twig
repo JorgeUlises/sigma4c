@@ -11,7 +11,7 @@
     </div>
     <div class="form-group">
         {{ form_label(form.geometria, 'Geometría') }}
-        {% include 'proyecto/editor.html' %}
+        {% include 'proyecto/editor.html.twig' %}
         {{ form_errors(form.geometria) }}
         {{ form_widget(form.geometria, {'attr': {'class': 'form-control'}}) }}
     </div>

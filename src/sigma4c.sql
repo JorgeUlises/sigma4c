@@ -4,7 +4,7 @@ CREATE EXTENSION postgis_topology;
 ---
 
 -- Database generated with pgModeler (PostgreSQL Database Modeler).
--- pgModeler  version: 0.8.2
+-- pgModeler  version: 0.8.1
 -- PostgreSQL version: 9.4
 -- Project Site: pgmodeler.com.br
 -- Model Author: ---
@@ -29,17 +29,27 @@ CREATE ROLE sigma4c WITH
 -- DROP TABLE IF EXISTS public.empresa CASCADE;
 CREATE TABLE public.empresa(
 	id serial NOT NULL,
-	tipoempresa character varying,
-	nombre character varying,
-	representantelegal character varying,
-	rut character varying,
-	nit character varying,
-	email character varying,
-	ciudad character varying,
-	direccion character varying,
+	nombre character varying(200),
+	nit character varying(200),
+	email character varying(255),
+	ciudad character varying(200),
+	direccion character varying(200),
+	telefono character varying(50),
 	CONSTRAINT empresa_id PRIMARY KEY (id)
 
 );
+-- ddl-end --
+COMMENT ON TABLE public.empresa IS 'Datos basicos de la empresa';
+-- ddl-end --
+COMMENT ON COLUMN public.empresa.nombre IS 'nombre completo de la empresa';
+-- ddl-end --
+COMMENT ON COLUMN public.empresa.nit IS 'Identificacion NIT de la empresa';
+-- ddl-end --
+COMMENT ON COLUMN public.empresa.ciudad IS 'Ciudad de la Sede Principal';
+-- ddl-end --
+COMMENT ON COLUMN public.empresa.direccion IS 'Direccion de la Sede Principal';
+-- ddl-end --
+COMMENT ON COLUMN public.empresa.telefono IS 'Numero Telefonico';
 -- ddl-end --
 ALTER TABLE public.empresa OWNER TO sigma4c;
 -- ddl-end --
@@ -48,12 +58,17 @@ ALTER TABLE public.empresa OWNER TO sigma4c;
 -- DROP TABLE IF EXISTS public.proyecto CASCADE;
 CREATE TABLE public.proyecto(
 	id serial NOT NULL,
-	involucrados character varying,
 	nombre character varying,
-	encargado character varying,
+	geometria geometry(POLYGON, 4326),
 	CONSTRAINT proyecto_id PRIMARY KEY (id)
 
 );
+-- ddl-end --
+COMMENT ON TABLE public.proyecto IS 'Datos basicos del proyecto';
+-- ddl-end --
+COMMENT ON COLUMN public.proyecto.nombre IS 'Nombre del proyecto';
+-- ddl-end --
+COMMENT ON COLUMN public.proyecto.geometria IS 'Geometria del Bloque';
 -- ddl-end --
 ALTER TABLE public.proyecto OWNER TO sigma4c;
 -- ddl-end --
@@ -62,42 +77,35 @@ ALTER TABLE public.proyecto OWNER TO sigma4c;
 -- DROP TABLE IF EXISTS public.muestra CASCADE;
 CREATE TABLE public.muestra(
 	id serial NOT NULL,
-	id_fuente_hidrica integer,
+	id_punto_control integer,
 	responsable character varying,
-	producto character varying,
-	lugar_toma character varying,
-	foto character varying,
-	n_muestras integer,
-	fecha_toma date,
-	fecha_recepcion date,
-	fecha_analisis date,
-	tipo_muestreo character varying,
-	geometria geometry(POINT, 4326),
+	elemento_ambiental character varying(200),
+	fotos character varying(500),
+	fecha_toma timestamp,
+	fecha_recepcion timestamp,
+	fecha_analisis timestamp,
+	tipo_muestreo character varying(200),
 	CONSTRAINT muestra_id PRIMARY KEY (id)
 
 );
 -- ddl-end --
+COMMENT ON TABLE public.muestra IS 'Muestra que se toma en un lugar e instante determinado';
+-- ddl-end --
+COMMENT ON COLUMN public.muestra.responsable IS 'Persona que toma la muestra';
+-- ddl-end --
+COMMENT ON COLUMN public.muestra.elemento_ambiental IS 'Pendiente de descripcion';
+-- ddl-end --
+COMMENT ON COLUMN public.muestra.fotos IS 'La muestra puede tener varias fotos asociadas';
+-- ddl-end --
+COMMENT ON COLUMN public.muestra.fecha_toma IS 'Fecha y hora de toma de la muestra';
+-- ddl-end --
+COMMENT ON COLUMN public.muestra.fecha_recepcion IS 'Fecha y hora en que se recibe la muestra';
+-- ddl-end --
+COMMENT ON COLUMN public.muestra.fecha_analisis IS 'Fecha y hora en que se analiza la muestra';
+-- ddl-end --
+COMMENT ON COLUMN public.muestra.tipo_muestreo IS 'Falta por describir';
+-- ddl-end --
 ALTER TABLE public.muestra OWNER TO sigma4c;
--- ddl-end --
-
--- object: public.fuente_hidrica | type: TABLE --
--- DROP TABLE IF EXISTS public.fuente_hidrica CASCADE;
-CREATE TABLE public.fuente_hidrica(
-	id serial NOT NULL,
-	geometria geometry(MULTILINESTRING, 4326),
-	nombre character varying,
-	CONSTRAINT fuente_hidrica_id PRIMARY KEY (id)
-
-);
--- ddl-end --
-ALTER TABLE public.fuente_hidrica OWNER TO sigma4c;
--- ddl-end --
-
--- object: fuente_hidrica_fk | type: CONSTRAINT --
--- ALTER TABLE public.muestra DROP CONSTRAINT IF EXISTS fuente_hidrica_fk CASCADE;
-ALTER TABLE public.muestra ADD CONSTRAINT fuente_hidrica_fk FOREIGN KEY (id_fuente_hidrica)
-REFERENCES public.fuente_hidrica (id) MATCH FULL
-ON DELETE SET NULL ON UPDATE CASCADE;
 -- ddl-end --
 
 -- object: public.rol | type: TABLE --
@@ -105,9 +113,16 @@ ON DELETE SET NULL ON UPDATE CASCADE;
 CREATE TABLE public.rol(
 	id serial NOT NULL,
 	nombre character varying,
+	descripcion varchar(100),
 	CONSTRAINT rol_id PRIMARY KEY (id)
 
 );
+-- ddl-end --
+COMMENT ON TABLE public.rol IS 'Nivel de privilegios del usuario';
+-- ddl-end --
+COMMENT ON COLUMN public.rol.nombre IS 'Nombre designado al ROL';
+-- ddl-end --
+COMMENT ON COLUMN public.rol.descripcion IS 'Permisos detallados sobre el rol';
 -- ddl-end --
 ALTER TABLE public.rol OWNER TO sigma4c;
 -- ddl-end --
@@ -117,13 +132,21 @@ ALTER TABLE public.rol OWNER TO sigma4c;
 CREATE TABLE public.usuario(
 	id serial NOT NULL,
 	id_empresa integer,
-	alias character varying,
-	mail character varying,
-	nombre character varying,
 	id_rol integer,
+	nickname character varying(50),
+	email character varying(255),
+	clave character varying(255),
 	CONSTRAINT user_id PRIMARY KEY (id)
 
 );
+-- ddl-end --
+COMMENT ON TABLE public.usuario IS 'Datos basicos del usuario';
+-- ddl-end --
+COMMENT ON COLUMN public.usuario.nickname IS 'Nombre de usuario corto y sin espacios, ojala en minusculas';
+-- ddl-end --
+COMMENT ON COLUMN public.usuario.email IS 'correo en minusculas';
+-- ddl-end --
+COMMENT ON COLUMN public.usuario.clave IS 'clave en sha512 con salt';
 -- ddl-end --
 ALTER TABLE public.usuario OWNER TO sigma4c;
 -- ddl-end --
@@ -137,6 +160,8 @@ CREATE TABLE public.parametro(
 	CONSTRAINT parametro_id PRIMARY KEY (id)
 
 );
+-- ddl-end --
+COMMENT ON TABLE public.parametro IS 'Parametros que conforman la muestra como PH y demas';
 -- ddl-end --
 ALTER TABLE public.parametro OWNER TO sigma4c;
 -- ddl-end --
@@ -172,10 +197,10 @@ ON DELETE SET NULL ON UPDATE CASCADE;
 -- object: public.many_muestra_has_many_parametro | type: TABLE --
 -- DROP TABLE IF EXISTS public.many_muestra_has_many_parametro CASCADE;
 CREATE TABLE public.many_muestra_has_many_parametro(
-	concentracion double precision,
-	tec_analitic character varying,
 	id_muestra integer,
 	id_parametro integer,
+	concentracion double precision,
+	tec_analitica character varying,
 	CONSTRAINT many_muestra_has_many_parametro_pk PRIMARY KEY (id_muestra,id_parametro)
 
 );
@@ -223,30 +248,38 @@ REFERENCES public.empresa (id) MATCH FULL
 ON DELETE CASCADE ON UPDATE CASCADE;
 -- ddl-end --
 
--- object: public.many_proyecto_has_many_fuente_hidrica | type: TABLE --
--- DROP TABLE IF EXISTS public.many_proyecto_has_many_fuente_hidrica CASCADE;
-CREATE TABLE public.many_proyecto_has_many_fuente_hidrica(
+-- object: public.punto_control | type: TABLE --
+-- DROP TABLE IF EXISTS public.punto_control CASCADE;
+CREATE TABLE public.punto_control(
+	id serial NOT NULL,
 	id_proyecto integer,
-	id_fuente_hidrica integer,
-	CONSTRAINT many_proyecto_has_many_fuente_hidrica_pk PRIMARY KEY (id_proyecto,id_fuente_hidrica)
+	etiqueta varchar(200),
+	geometria geometry(POINT, 4326),
+	CONSTRAINT punto_control_pk PRIMARY KEY (id)
 
 );
 -- ddl-end --
-ALTER TABLE public.many_proyecto_has_many_fuente_hidrica OWNER TO sigma4c;
+COMMENT ON TABLE public.punto_control IS 'Punto donde se toman muchas muestras';
+-- ddl-end --
+COMMENT ON COLUMN public.punto_control.etiqueta IS 'Etiqueta o tag descriptivo del proyecto';
+-- ddl-end --
+COMMENT ON COLUMN public.punto_control.geometria IS 'Punto representativo de donde se toman las muestras';
+-- ddl-end --
+ALTER TABLE public.punto_control OWNER TO sigma4c;
 -- ddl-end --
 
 -- object: proyecto_fk | type: CONSTRAINT --
--- ALTER TABLE public.many_proyecto_has_many_fuente_hidrica DROP CONSTRAINT IF EXISTS proyecto_fk CASCADE;
-ALTER TABLE public.many_proyecto_has_many_fuente_hidrica ADD CONSTRAINT proyecto_fk FOREIGN KEY (id_proyecto)
+-- ALTER TABLE public.punto_control DROP CONSTRAINT IF EXISTS proyecto_fk CASCADE;
+ALTER TABLE public.punto_control ADD CONSTRAINT proyecto_fk FOREIGN KEY (id_proyecto)
 REFERENCES public.proyecto (id) MATCH FULL
-ON DELETE CASCADE ON UPDATE CASCADE;
+ON DELETE SET NULL ON UPDATE CASCADE;
 -- ddl-end --
 
--- object: fuente_hidrica_fk | type: CONSTRAINT --
--- ALTER TABLE public.many_proyecto_has_many_fuente_hidrica DROP CONSTRAINT IF EXISTS fuente_hidrica_fk CASCADE;
-ALTER TABLE public.many_proyecto_has_many_fuente_hidrica ADD CONSTRAINT fuente_hidrica_fk FOREIGN KEY (id_fuente_hidrica)
-REFERENCES public.fuente_hidrica (id) MATCH FULL
-ON DELETE CASCADE ON UPDATE CASCADE;
+-- object: punto_control_fk | type: CONSTRAINT --
+-- ALTER TABLE public.muestra DROP CONSTRAINT IF EXISTS punto_control_fk CASCADE;
+ALTER TABLE public.muestra ADD CONSTRAINT punto_control_fk FOREIGN KEY (id_punto_control)
+REFERENCES public.punto_control (id) MATCH FULL
+ON DELETE SET NULL ON UPDATE CASCADE;
 -- ddl-end --
 
 
