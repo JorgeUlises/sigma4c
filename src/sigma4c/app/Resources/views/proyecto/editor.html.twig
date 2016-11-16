@@ -189,7 +189,8 @@ function puntoTerminado() {
     console.log(geometry.getType())
     if (geometry != undefined) {
       if (geometry.getType() === 'Polygon') {
-        var coordenadas = geometry.getCoordinates()
+        var coordenadas = geometry.getCoordinates()[0]
+        window.coord= coordenadas
         var strCoordenadas = "("
         for (var i = 0; i < coordenadas.length; i++) {
           console.log(coordenadas[i])
@@ -197,7 +198,7 @@ function puntoTerminado() {
           var y = coordenadas[i][1]
           strCoordenadas += x + ' ' + y + ','
         }
-        strCoordenadas.substr(-1)
+        strCoordenadas = strCoordenadas.substring(0, strCoordenadas.length-1)
         strCoordenadas += ')'
         el(window.idInputGeometria).value = strCoordenadas
       }

@@ -73,6 +73,28 @@ class Proyecto
      */
     public function setGeometria($geometria)
     {
+      $parent = '/[\(\)]/i';
+      $nada = '$1';
+      $geometria = preg_replace($parent, $nada, $geometria);
+      $coordenadas = explode(',',$geometria);
+      //var_dump($coordenadas);
+      //echo('<br>');
+      $puntos = array();
+      foreach ($coordenadas as $key => $coordenada) {
+        $aux = explode(' ',$coordenada);
+        $x = $aux[0];
+        $y = $aux[1];
+        //var_dump('x:'.$x,'y:'.$y);
+        //echo('<br>');
+        $puntos[] = new Point($x, $y);
+      }
+      $lineStrings = array(
+           new LineString(
+           $puntos
+         )
+       );
+       //var_dump($lineStrings);
+
         // $lineStrings = array(
         //     new LineString(
         //         array(
@@ -96,19 +118,19 @@ class Proyecto
         // $multiLineString = new MultiLineString($lineStrings, 4326);
         // $this->geometria = $multiLineString;
 
-        $rings = array(
-            new LineString(
-                array(
-                    new Point(0, 0),
-                    new Point(10, 0),
-                    new Point(10, 10),
-                    new Point(0, 10),
-                    new Point(0, 0)
-                )
-            )
-        );
+        // $rings = array(
+        //     new LineString(
+        //         array(
+        //             new Point(0, 0),
+        //             new Point(10, 0),
+        //             new Point(10, 10),
+        //             new Point(0, 10),
+        //             new Point(0, 0)
+        //         )
+        //     )
+        // );
         //https://github.com/creof/doctrine2-spatial/blob/master/tests/CrEOF/Spatial/Tests/PHP/Types/Geometry/PolygonTest.php#L46
-        $polygon = new Polygon($rings, 4326);
+        $polygon = new Polygon($lineStrings, 4326);
         $this->geometria = $polygon;
         //  $this->geometria = $geometria;
         return $this;
