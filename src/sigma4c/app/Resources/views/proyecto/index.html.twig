@@ -16,8 +16,8 @@
         {% for proyecto in proyectos %}
             <tr>
                 <td><a href="{{ path('proyecto_show', { 'id': proyecto.id }) }}">{{ proyecto.id }}</a></td>
-                <td>{{ proyecto.geometria }}</td>
                 <td>{{ proyecto.nombre }}</td>
+                <td>{{ proyecto.geometria }}</td>
                 <td>
                 <ul class="list-inline">
                     <li class="list-inline-item">
