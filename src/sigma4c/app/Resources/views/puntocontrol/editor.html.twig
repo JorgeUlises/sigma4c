@@ -99,7 +99,7 @@ geolocation.on('error', function(error) {
 var accuracyFeature = new ol.Feature()
 geolocation.on('change:accuracyGeometry', function() {
   accuracyFeature.setGeometry(geolocation.getAccuracyGeometry())
-  dataExtent = source.getExtent()
+  var dataExtent = source.getExtent()
   view.fit(dataExtent, map.getSize())
 })
 
