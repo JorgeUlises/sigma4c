@@ -218,17 +218,20 @@ function setInitialPoint() {
     return
   }
 
-  coordenadas = coordenadas.split(' ')
-  console.log(coordenadas)
-  var x = parseFloat(coordenadas[0])
-  var y = parseFloat(coordenadas[1])
+  coordenadas = coordenadas.replace(/[\(\)]/g, '')
+  coordenadas = coordenadas.split(',')
+  var ring = new Array()
 
-  view.setCenter([x, y])
-  view.setZoom(20)
-
-  var punto = new ol.geom.Point([x, y])
-  positionFeature.setGeometry(punto)
-
+  for (var i = 0; i < coordenadas.length; i++) {
+    var mincor=coordenadas[i].split(' ');
+    var x=parseFloat(mincor[0])
+    var y=parseFloat(mincor[1])
+    var coordenada = [x,y]
+    ring.push(coordenada)
+  }
+  var poligono = new ol.geom.Polygon([ring])
+  positionFeature.setGeometry(poligono)
+  window.poly=poligono
   map.removeInteraction(draw)
   //var feature = new ol.Feature()
   //feature.setStyle(estiloPunto)
