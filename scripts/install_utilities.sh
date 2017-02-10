@@ -4,7 +4,7 @@ list=(vim git nmap tree wget)
 install=installed
 for p in ${list[*]}
 do
-  if which $p&>/dev/null
+  if which "$p" &>/dev/null
   then
     echo "$p ya está instalado."
   else
@@ -16,5 +16,5 @@ if [ "$install" = "installed" ]
 then
   echo 'Utilities ya están instalados. Nada que hacer.'
 else
-  sudo yum install -y ${list[*]}
+  sudo yum install -y "${list[*]}"
 fi

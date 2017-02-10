@@ -5,7 +5,7 @@ list=(php php-pgsql php-xml php-pdo)
 install=installed
 for p in ${list[*]}
 do
-  if yum list installed $p &>/dev/null
+  if yum list installed "$p" &>/dev/null
   then
     echo "$p ya está instalado."
   else
@@ -17,7 +17,7 @@ if [ "$install" = "installed" ]
 then
   echo 'PHP y dependencias de Symfony ya están instalados. Nada que hacer.'
 else
-  sudo yum install -y ${list[*]}
+  sudo yum install -y "${list[*]}"
 fi
 
 if [ -f /usr/local/bin/symfony ]
@@ -33,6 +33,6 @@ fi
 if [ -f /etc/php.ini.bak ]
 then
   echo 'php.ini.bak ya existe. Nada que hacer.'
-else  
+else
   sudo sed -i.bak '/^;date.timezone =$/s:$:\ndate.timezone = "America/Bogota";:' /etc/php.ini
 fi

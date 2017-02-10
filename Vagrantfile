@@ -9,7 +9,7 @@ Vagrant.configure(2) do |config|
   config.vm.network "forwarded_port", guest: 3000, host: 13000
   config.vm.network "forwarded_port", guest: 8000, host: 8000
   config.vm.network "forwarded_port", guest: 8080, host: 18080
-  
+
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   config.vm.network "private_network", ip: "192.168.69.69"
@@ -49,7 +49,7 @@ Vagrant.configure(2) do |config|
     fi
   SHELL
   config.vm.provision "shell", inline: "env | grep -i proxy || true"
-  
+
   scripts_path="scripts/"
   config.vm.provision "shell", path: scripts_path+"set_permisive.sh"
   config.vm.provision "shell", path: scripts_path+"install_utilities.sh"
@@ -63,4 +63,5 @@ Vagrant.configure(2) do |config|
   #config.vm.provision "shell", path: scripts_path+"install_gvnix.sh"
   config.vm.provision "shell", path: scripts_path+"install_symfony.sh"
   config.vm.provision "shell", path: scripts_path+"install_composer.sh"
+  config.vm.provision "shell", path: scripts_path+"install_sigma4c.sh"
 end

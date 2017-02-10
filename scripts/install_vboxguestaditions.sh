@@ -6,7 +6,7 @@ else
 
 sudo yum --exclude=kernel* update -y
 sudo yum install -y gcc
-sudo yum install -y kernel-devel-$(uname -r)
+sudo yum install -y kernel-devel-"$(uname -r)"
 sudo yum install -y wget
 echo 'Descargando VBox image.. Espere un momento.'
 wget -c http://download.virtualbox.org/virtualbox/5.0.20/VBoxGuestAdditions_5.0.20.iso -O VBoxGuestAdditions.iso > /dev/null 2>&1
