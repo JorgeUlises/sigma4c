@@ -13,6 +13,8 @@ Vagrant.configure(2) do |config|
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   config.vm.network "private_network", ip: "192.168.69.69"
+  # Fixing: https://seven.centos.org/2016/12/updated-centos-vagrant-images-available-v1611-01/
+  config.vm.provision "shell", inline: "service network restart", run: "always"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
