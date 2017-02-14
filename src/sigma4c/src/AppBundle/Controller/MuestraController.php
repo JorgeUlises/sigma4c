@@ -84,9 +84,14 @@ class MuestraController extends Controller
             //include dirname(__FILE__).'/res/exemple00.php';
             //echo "Hola Mundo";
             //$content = ob_get_clean();
-            $content = $this->render('muestra/pdf.html.twig', array(
+            // $content = $this->render('muestra/pdf.html.twig', array(
+            //     'muestras' => $muestras,
+            // )) -> getContent();
+            $content = $this->renderView('muestra/pdf.html.twig', array(
                 'muestras' => $muestras,
             ));
+            //var_dump($content);
+            //exit;
             $html2pdf = new \Html2Pdf('P', 'A4', 'fr');
             $html2pdf->setDefaultFont('Arial');
             $html2pdf->writeHTML($content);
