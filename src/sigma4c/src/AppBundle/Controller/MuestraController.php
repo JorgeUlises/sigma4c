@@ -87,15 +87,24 @@ class MuestraController extends Controller
             // $content = $this->render('muestra/pdf.html.twig', array(
             //     'muestras' => $muestras,
             // )) -> getContent();
-            $content = $this->renderView('muestra/pdf.html.twig', array(
+            //pdf.html.twig
+            $content = $this->renderView('muestra/ejem7.php', array(
                 'muestras' => $muestras,
             ));
-            //var_dump($content);
-            //exit;
-            $html2pdf = new \Html2Pdf('P', 'A4', 'fr');
+            $content .= $this->renderView('muestra/ejem7a.php', array(
+                'muestras' => $muestras,
+            ));
+            // ob_start();
+            // include dirname(__FILE__).'/muestra/ejem7.php';
+            // include dirname(__FILE__).'/muestra/ejem7a.php';
+            // $content = ob_get_clean();
+
+            // echo $content;
+            // exit;
+            $html2pdf = new \Html2Pdf('P', 'A4', 'es');
             $html2pdf->setDefaultFont('Arial');
             $html2pdf->writeHTML($content);
-            $html2pdf->Output('exemple00.pdf');
+            $html2pdf->Output('informe_muestras.pdf');
         } catch (Html2PdfException $e) {
             $formatter = new ExceptionFormatter($e);
             echo $formatter->getHtmlMessage();
