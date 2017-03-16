@@ -57,7 +57,7 @@ td    { vertical-align: top; }
     <table cellspacing="0" style="width: 100%; text-align: left;font-size: 10pt">
         <tr>
             <td style="width:50%;"></td>
-            <td style="width:50%; ">Spipu Ville, le <?php echo date('d/m/Y'); ?></td>
+            <td style="width:50%; ">Spipu Ville, le </td>
         </tr>
     </table>
     <br>

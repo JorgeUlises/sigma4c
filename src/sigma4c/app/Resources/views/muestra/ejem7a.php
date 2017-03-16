@@ -26,7 +26,7 @@
                             sur une grande route<br>
                             00000 - | Ville<br>
                             <br>
-                            Date : <?php echo date('d/m/Y'); ?><br>
+                            Date : <br>
                             Dossier suivi par <b>Mle Jesuis CELIBATAIRE</b><br>
                             Tel : 33 (0) 1 00 00 00 00<br>
                             Email : on_va@chez.moi<br>
