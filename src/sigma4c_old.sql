@@ -4,8 +4,8 @@ CREATE EXTENSION postgis_topology;
 ---
 
 -- Database generated with pgModeler (PostgreSQL Database Modeler).
--- pgModeler  version: 0.8.2
--- PostgreSQL version: 9.5
+-- pgModeler  version: 0.8.1
+-- PostgreSQL version: 9.4
 -- Project Site: pgmodeler.com.br
 -- Model Author: ---
 
@@ -85,8 +85,6 @@ CREATE TABLE public.muestra(
 	fecha_recepcion timestamp,
 	fecha_analisis timestamp,
 	tipo_muestreo character varying(200),
-	analisis text,
-	pdf_lab bytea,
 	CONSTRAINT muestra_id PRIMARY KEY (id)
 
 );
@@ -159,10 +157,6 @@ CREATE TABLE public.parametro(
 	id serial NOT NULL,
 	nombre character varying,
 	unidad character varying,
-	metodo character varying,
-	lc double precision,
-	max_l double precision,
-	min_l double precision,
 	CONSTRAINT parametro_id PRIMARY KEY (id)
 
 );
@@ -207,7 +201,6 @@ CREATE TABLE public.many_muestra_has_many_parametro(
 	id_parametro integer,
 	concentracion double precision,
 	tec_analitica character varying,
-	incertidumbre double precision,
 	CONSTRAINT many_muestra_has_many_parametro_pk PRIMARY KEY (id_muestra,id_parametro)
 
 );
