@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.8.1" last-position="0,90" last-zoom="0.85"
+<dbmodel pgmodeler-ver="0.8.2" last-position="0,0" last-zoom="0.6"
 	 default-schema="public" default-owner="sigma4c">
 <role name="sigma4c"
       password="abc123">
@@ -21,7 +21,7 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 	<schema name="public"/>
 	<role name="sigma4c"/>
 	<comment><![CDATA[Datos basicos de la empresa]]></comment>
-	<position x="344.706" y="525.882"/>
+	<position x="300" y="529"/>
 	<column name="id" not-null="true">
 		<type name="serial"/>
 	</column>
@@ -57,7 +57,7 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 	<schema name="public"/>
 	<role name="sigma4c"/>
 	<comment><![CDATA[Datos basicos del proyecto]]></comment>
-	<position x="216.471" y="190.588"/>
+	<position x="260" y="143"/>
 	<column name="id" not-null="true">
 		<type name="serial"/>
 	</column>
@@ -78,7 +78,7 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 	<schema name="public"/>
 	<role name="sigma4c"/>
 	<comment><![CDATA[Muestra que se toma en un lugar e instante determinado]]></comment>
-	<position x="1085.88" y="295.941"/>
+	<position x="1160" y="363"/>
 	<column name="id" not-null="true">
 		<type name="serial"/>
 	</column>
@@ -110,6 +110,12 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 		<type name="character varying" length="200"/>
 		<comment><![CDATA[Falta por describir]]></comment>
 	</column>
+	<column name="analisis">
+		<type name="text"/>
+	</column>
+	<column name="pdf_lab">
+		<type name="bytea"/>
+	</column>
 	<constraint name="muestra_id" type="pk-constr" table="public.muestra">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
@@ -127,7 +133,7 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 	<schema name="public"/>
 	<role name="sigma4c"/>
 	<comment><![CDATA[Nivel de privilegios del usuario]]></comment>
-	<position x="775.294" y="507.706"/>
+	<position x="700" y="586"/>
 	<column name="id" not-null="true">
 		<type name="serial"/>
 	</column>
@@ -148,7 +154,7 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 	<schema name="public"/>
 	<role name="sigma4c"/>
 	<comment><![CDATA[Datos basicos del usuario]]></comment>
-	<position x="361.176" y="692.412"/>
+	<position x="300" y="729"/>
 	<column name="id" not-null="true">
 		<type name="serial"/>
 	</column>
@@ -183,7 +189,7 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 	<schema name="public"/>
 	<role name="sigma4c"/>
 	<comment><![CDATA[Parametros que conforman la muestra como PH y demas]]></comment>
-	<position x="1108.24" y="700.647"/>
+	<position x="1120" y="786"/>
 	<column name="id" not-null="true">
 		<type name="serial"/>
 	</column>
@@ -192,6 +198,18 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 	</column>
 	<column name="unidad">
 		<type name="character varying"/>
+	</column>
+	<column name="metodo">
+		<type name="character varying"/>
+	</column>
+	<column name="lc">
+		<type name="double precision"/>
+	</column>
+	<column name="max_l">
+		<type name="double precision"/>
+	</column>
+	<column name="min_l">
+		<type name="double precision"/>
 	</column>
 	<constraint name="parametro_id" type="pk-constr" table="public.parametro">
 		<columns names="id" ref-type="src-columns"/>
@@ -222,17 +240,24 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 	 custom-color="#a03a41"
 	 src-table="public.rol"
 	 dst-table="public.usuario"
-	 src-required="false" dst-required="false"/>
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="68.629" y="-20.1607"/>
+	</label>
+</relationship>
 
 <table name="many_muestra_has_many_parametro">
 	<schema name="public"/>
 	<role name="sigma4c"/>
-	<position x="1103.53" y="550.588"/>
+	<position x="1120" y="606"/>
 	<column name="concentracion">
 		<type name="double precision"/>
 	</column>
 	<column name="tec_analitica">
 		<type name="character varying"/>
+	</column>
+	<column name="incertidumbre">
+		<type name="double precision"/>
 	</column>
 
 	<customidxs object-type="column">
@@ -255,7 +280,15 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 	 dst-table="public.many_muestra_has_many_parametro"
 	 src-required="true" dst-required="false"
 	 identifier="true"
-/>
+>
+	<line>
+		<position x="1540" y="480"/>
+	<position x="1540" y="620"/>
+	</line>
+	<label ref-type="name-label">
+		<position x="-28.0243" y="4.15147"/>
+	</label>
+</relationship>
 
 <relationship name="parametro_has_many_many_muestra_has_many_parametro" type="rel1n"
 	 src-col-pattern="{sc}_{st}"
@@ -274,7 +307,7 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 <table name="many_proyecto_has_many_empresa">
 	<schema name="public"/>
 	<role name="sigma4c"/>
-	<position x="358.824" y="374.118"/>
+	<position x="300" y="360"/>
 
 	<customidxs object-type="column">
 		<object name="id_empresa" index="1"/>
@@ -312,7 +345,7 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 	<schema name="public"/>
 	<role name="sigma4c"/>
 	<comment><![CDATA[Punto donde se toman muchas muestras]]></comment>
-	<position x="737.647" y="170.588"/>
+	<position x="780" y="206"/>
 	<column name="id" not-null="true">
 		<type name="serial"/>
 	</column>
@@ -353,6 +386,14 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 	 custom-color="#cefc2e"
 	 src-table="public.punto_control"
 	 dst-table="public.muestra"
-	 src-required="false" dst-required="false"/>
+	 src-required="false" dst-required="false">
+	<line>
+		<position x="1100" y="240"/>
+	<position x="1100" y="340"/>
+	</line>
+	<label ref-type="name-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
 
 </dbmodel>
