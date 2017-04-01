@@ -45,7 +45,7 @@ php app/console generate:doctrine:form "AppBundle:PuntoControl"
 php app/console generate:doctrine:crud --entity=AppBundle:PuntoControl
 
 
-#Para traer ¿O actulizar? SOLO una entidad de la base de datos:
+#Para traer ¿O actualizar? SOLO una entidad de la base de datos:
 #?php app/console doctrine:mapping:import AppBundle:Norma
 php app/console doctrine:mapping:import AppBundle:Norma
 php app/console generate:doctrine:entities AppBundle:Norma
