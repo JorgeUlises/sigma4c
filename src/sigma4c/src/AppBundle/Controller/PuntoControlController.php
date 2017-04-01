@@ -137,4 +137,25 @@ class PuntoControlController extends Controller
             ->getForm()
         ;
     }
+
+    /**
+     * Muestra un reporte de las muchas muestras que puede tener un punto de control.
+     *
+     * @Route("/{id}/muestras", name="puntocontrol_muestras")
+     * @Method({"GET", "POST"})
+     */
+    public function reportAction(Request $request, PuntoControl $puntoControl)
+    {
+		    $em = $this->getDoctrine()->getManager();
+
+        $muestras = $em->getRepository('AppBundle:Muestra')->findByIdPuntoControl($puntoControl->getId());
+
+        $parametros = $em->getRepository('AppBundle:Parametro')->findAll();
+
+        return $this->render('puntocontrol/muestras.html.twig', array(
+            'puntoControl' => $puntoControl,
+            'muestras' => $muestras,
+            'parametros' => $parametros
+        ));
+    }
 }
