@@ -210,14 +210,22 @@ class MuestraController extends Controller
       //               "
       //           );
       // $q = $qb->getQuery();
-      $em = $this->getDoctrine()->getManager();
-      $repository = $em->getRepository('AppBundle:Muestra');
-      $query = $repository->createQueryBuilder('u')
-              ->innerJoin('u.idParametro', 'g')
-              ->where('g.id = :id_parametro')
-              ->setParameter('id_parametro', 5)
-              ->getQuery()->getResult();
-      $params = $query->getResult();
+      // $em = $this->getDoctrine()->getManager();
+      // $repository = $em->getRepository('AppBundle:Parametro');
+      // $query = $repository->createQueryBuilder('u')
+      //         ->Join('u.idMuestra', 'p')
+      //         //->where('g.id = :id_parametro')
+      //         ->where('u.idMuestra = :id_muestra')
+      //         ->setParameter('id_muestra', '155523')
+      //         ->getQuery();
+      // $params = $query->getResult();
+      $em = $this->getDoctrine()->getEntityManager();
+      $params = $em->createQuery("SELECT m FROM AppBundle:Muestra m
+        JOIN m.idParametro p
+        WHERE p.id = 2
+        ")
+          //->setParameter('id', $id)
+          ->getResult();
       return $this->render('muestra/pruebas.html.twig', array(
             'muestra' => $muestra, 'parametros' => $params
         ));
