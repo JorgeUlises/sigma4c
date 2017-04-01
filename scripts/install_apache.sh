@@ -38,6 +38,7 @@ Alias "/" "/home/vagrant/src/sigma4c/web/"
     AllowOverride All
     Require all granted
 </Directory>
+EOF
 fi
 
 # rationale: iniciar apache
