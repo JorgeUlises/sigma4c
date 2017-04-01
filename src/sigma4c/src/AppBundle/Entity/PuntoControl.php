@@ -122,6 +122,6 @@ class PuntoControl
      */
     public function __toString()
     {
-        return $this->etiqueta . $this->geometria;
+        return $this->etiqueta . ' / ' . $this->geometria;
     }
 }
