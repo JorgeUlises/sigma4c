@@ -205,9 +205,6 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 	<column name="metodo">
 		<type name="character varying"/>
 	</column>
-	<column name="lc">
-		<type name="double precision"/>
-	</column>
 	<column name="max_l">
 		<type name="double precision"/>
 	</column>
@@ -258,6 +255,9 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 	</column>
 	<column name="tec_analitica">
 		<type name="character varying"/>
+	</column>
+	<column name="lc">
+		<type name="double precision"/>
 	</column>
 	<column name="incertidumbre">
 		<type name="double precision"/>
