@@ -1,0 +1,26 @@
+{% extends 'sigmabase.html.twig' %}
+
+{% block body %}
+
+    <h1>Consulta por muestra</h1>
+
+    <div class="form-group">
+        <label for="muestra">Seleccione una muestra:</label>
+        <select class="form-control" id="muestra">
+            <option value="" disabled selected>Seleccione por Id</option>
+            {% for muestra in muestras %}
+                <option>{{ muestra.id }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="parametro">Seleccione uno o varios parámetros:</label><br>
+        {% for parametro in parametros %}
+            <input type="checkbox" name="parametro" value="{{ parametro.id }}">  {{ parametro.nombre }}<br>
+        {% endfor %}
+    </div>
+
+    {% include 'puntocontrol/parametros.html.twig' %}
+
+{% endblock %}
