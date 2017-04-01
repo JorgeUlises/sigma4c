@@ -45,6 +45,20 @@ class Muestra
     private $tipoMuestreo;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="analisis", type="text", nullable=true)
+     */
+    private $analisis;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pdf_lab", type="blob", nullable=true)
+     */
+    private $pdfLab;
+
+    /**
      * @var integer
      */
     private $id;
@@ -83,7 +97,7 @@ class Muestra
     /**
      * Get responsable
      *
-     * @return string 
+     * @return string
      */
     public function getResponsable()
     {
@@ -106,7 +120,7 @@ class Muestra
     /**
      * Get elementoAmbiental
      *
-     * @return string 
+     * @return string
      */
     public function getElementoAmbiental()
     {
@@ -129,7 +143,7 @@ class Muestra
     /**
      * Get fotos
      *
-     * @return string 
+     * @return string
      */
     public function getFotos()
     {
@@ -152,7 +166,7 @@ class Muestra
     /**
      * Get fechaToma
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getFechaToma()
     {
@@ -175,7 +189,7 @@ class Muestra
     /**
      * Get fechaRecepcion
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getFechaRecepcion()
     {
@@ -198,7 +212,7 @@ class Muestra
     /**
      * Get fechaAnalisis
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getFechaAnalisis()
     {
@@ -218,25 +232,77 @@ class Muestra
         return $this;
     }
 
+
+
     /**
      * Get tipoMuestreo
      *
-     * @return string 
+     * @return string
      */
     public function getTipoMuestreo()
     {
         return $this->tipoMuestreo;
     }
 
+
+    /**
+     * Set analisis
+     *
+     * @param string $analisis
+     * @return Muestra
+     */
+    public function setAnalisis($analisis)
+    {
+        $this->analisis = $analisis;
+
+        return $this;
+    }
+
+    /**
+     * Get analisis
+     *
+     * @return string
+     */
+    public function getAnalisis()
+    {
+        return $this->analisis;
+    }
+
+    /**
+     * Set pdfLab
+     *
+     * @param string $pdfLab
+     * @return Muestra
+     */
+    public function setPdfLab($pdfLab)
+    {
+        $this->pdfLab = $pdfLab;
+
+        return $this;
+    }
+
+    /**
+     * Get pdfLab
+     *
+     * @return string
+     */
+    public function getPdfLab()
+    {
+        return $this->pdfLab;
+    }
+
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
     }
+
+
 
     /**
      * Set idPuntoControl
@@ -254,7 +320,7 @@ class Muestra
     /**
      * Get idPuntoControl
      *
-     * @return \AppBundle\Entity\PuntoControl 
+     * @return \AppBundle\Entity\PuntoControl
      */
     public function getIdPuntoControl()
     {
@@ -287,10 +353,21 @@ class Muestra
     /**
      * Get idParametro
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIdParametro()
     {
         return $this->idParametro;
     }
+
+    /**
+     * Get display id
+     *
+     * @return String
+     */
+    public function __toString()
+    {
+        return (string)$this->id;
+    }
+
 }

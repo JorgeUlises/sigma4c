@@ -45,6 +45,16 @@
       {{ form_widget(form.idPuntoControl, {'attr': {'class': 'form-control'}}) }}
     </div>
     <div class="form-group">
+      {{ form_label(form.analisis, 'Análisis') }}
+      {{ form_errors(form.analisis) }}
+      {{ form_widget(form.analisis, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+      {{ form_label(form.pdfLab, 'Informe Laboratorio') }}
+      {{ form_errors(form.pdfLab) }}
+      {{ form_widget(form.pdfLab, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
       {{ form_label(form.idParametro, 'Parámetro') }}
       {{ form_errors(form.idParametro) }}
       {{ form_widget(form.idParametro, {'attr': {'class': 'form-control'}}) }}

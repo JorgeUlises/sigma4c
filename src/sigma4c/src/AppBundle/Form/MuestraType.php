@@ -22,11 +22,13 @@ class MuestraType extends AbstractType
             ->add('fechaRecepcion', 'datetime')
             ->add('fechaAnalisis', 'datetime')
             ->add('tipoMuestreo')
+            ->add('analisis')
+            ->add('pdfLab')
             ->add('idPuntoControl')
             ->add('idParametro')
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */

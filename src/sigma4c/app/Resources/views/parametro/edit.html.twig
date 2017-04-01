@@ -15,6 +15,26 @@
         {{ form_widget(edit_form.unidad, {'attr': {'class': 'form-control'}}) }}
     </div>
     <div class="form-group">
+        {{ form_label(edit_form.metodo, 'Metodo') }}
+        {{ form_errors(edit_form.metodo) }}
+        {{ form_widget(edit_form.metodo, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(edit_form.prefijo, 'Prefijo') }}
+        {{ form_errors(edit_form.prefijo) }}
+        {{ form_widget(edit_form.prefijo, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(edit_form.minL, 'Minimo legal') }}
+        {{ form_errors(edit_form.minL) }}
+        {{ form_widget(edit_form.minL, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(edit_form.maxL, 'Maximo legal') }}
+        {{ form_errors(edit_form.maxL) }}
+        {{ form_widget(edit_form.maxL, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
         {{ form_label(edit_form.idMuestra, 'Muestra') }}
         {{ form_errors(edit_form.idMuestra) }}
         {{ form_widget(edit_form.idMuestra, {'attr': {'class': 'form-control'}}) }}

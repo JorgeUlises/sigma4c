@@ -8,7 +8,11 @@
                 <th>Id</th>
                 <th>Nombre</th>
                 <th>Unidad</th>
+                <th>Prefijo</th>
+                <th>Minimo legal</th>
+                <th>Maximo legal</th>
                 <th>Acciones</th>
+
             </tr>
         </thead>
         <tbody>
@@ -17,6 +21,10 @@
                 <td><a href="{{ path('parametro_show', { 'id': parametro.id }) }}">{{ parametro.id }}</a></td>
                 <td>{{ parametro.nombre }}</td>
                 <td>{{ parametro.unidad }}</td>
+                <td>{{ parametro.prefijo }}</td>                    
+                <td>{{ parametro.minL }}</td>
+                <td>{{ parametro.maxL }}</td>
+
                 <td>
                     <ul class="list-inline">
                         <li class="list-inline-item">

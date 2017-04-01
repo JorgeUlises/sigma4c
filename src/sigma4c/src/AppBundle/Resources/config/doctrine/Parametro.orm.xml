@@ -4,8 +4,13 @@
     <id name="id" type="integer" column="id">
       <generator strategy="SEQUENCE"/>
     </id>
+    <field name="prefijo" type="string" column="prefijo" nullable="true"/>
     <field name="nombre" type="string" column="nombre" nullable="true"/>
     <field name="unidad" type="string" column="unidad" nullable="true"/>
+    <field name="metodo" type="string" column="metodo" nullable="true"/>
+    <field name="maxL" type="float" column="max_l" precision="10" scale="0" nullable="true"/>
+    <field name="minL" type="float" column="min_l" precision="10" scale="0" nullable="true"/>
     <many-to-many field="idMuestra" target-entity="Muestra" mapped-by="idParametro"/>
+
   </entity>
 </doctrine-mapping>

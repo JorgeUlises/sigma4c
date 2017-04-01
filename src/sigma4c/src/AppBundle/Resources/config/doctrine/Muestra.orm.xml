@@ -14,6 +14,8 @@
     <field name="fechaRecepcion" type="datetime" column="fecha_recepcion" nullable="true"/>
     <field name="fechaAnalisis" type="datetime" column="fecha_analisis" nullable="true"/>
     <field name="tipoMuestreo" type="string" column="tipo_muestreo" length="200" nullable="true"/>
+    <field name="analisis" type="text" column="analisis" nullable="true"/>
+    <field name="pdfLab" type="blob" column="pdf_lab" nullable="true"/>
     <many-to-one field="idPuntoControl" target-entity="PuntoControl">
       <join-columns>
         <join-column name="id_punto_control" referenced-column-name="id"/>

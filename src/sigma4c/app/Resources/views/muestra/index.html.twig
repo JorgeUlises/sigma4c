@@ -14,6 +14,8 @@
                 <th>Fecha Recepción</th>
                 <th>Fecha Analisis</th>
                 <th>Tipo Muestreo</th>
+                <th>Análisis</th>
+                <th>Pdf Laboratorio</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -28,6 +30,8 @@
                 <td>{% if muestra.fechaRecepcion %}{{ muestra.fechaRecepcion|date('Y-m-d') }}{% endif %}</td>
                 <td>{% if muestra.fechaAnalisis %}{{ muestra.fechaAnalisis|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ muestra.tipoMuestreo }}</td>
+                <td>{{ muestra.analisis }}</td>
+                <td>{{ muestra.pdfLab }}</td>
                 <td>
                     <ul class="list-inline">
                         <li class="list-inline-item">

@@ -40,9 +40,19 @@
   {{ form_widget(edit_form.tipoMuestreo, {'attr': {'class': 'form-control'}}) }}
 </div>
 <div class="form-group">
-  {{ form_label(edit_form.idPuntoControl, 'Fuente Hídrica') }}
+  {{ form_label(edit_form.idPuntoControl, 'Punto de Control') }}
   {{ form_errors(edit_form.idPuntoControl) }}
   {{ form_widget(edit_form.idPuntoControl, {'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="form-group">
+  {{ form_label(edit_form.analisis, 'Análisis') }}
+  {{ form_errors(edit_form.analisis) }}
+  {{ form_widget(edit_form.analisis, {'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="form-group">
+  {{ form_label(edit_form.pdfLab, 'Informe Laboratorio') }}
+  {{ form_errors(edit_form.pdfLab) }}
+  {{ form_widget(edit_form.pdfLab, {'attr': {'class': 'form-control'}}) }}
 </div>
 <div class="form-group">
   {{ form_label(edit_form.idParametro, 'Parámetro') }}

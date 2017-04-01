@@ -15,12 +15,16 @@ class ParametroType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('prefijo')
             ->add('nombre')
             ->add('unidad')
+            ->add('metodo')
+            ->add('maxL')
+            ->add('minL')
             ->add('idMuestra')
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */
