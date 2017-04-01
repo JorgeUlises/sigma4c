@@ -161,7 +161,6 @@ CREATE TABLE public.parametro(
 	nombre character varying,
 	unidad character varying,
 	metodo character varying,
-	lc double precision,
 	max_l double precision,
 	min_l double precision,
 	CONSTRAINT parametro_id PRIMARY KEY (id)
@@ -208,6 +207,7 @@ CREATE TABLE public.many_muestra_has_many_parametro(
 	id_parametro integer,
 	concentracion double precision,
 	tec_analitica character varying,
+	lc double precision,
 	incertidumbre double precision,
 	CONSTRAINT many_muestra_has_many_parametro_pk PRIMARY KEY (id_muestra,id_parametro)
 
