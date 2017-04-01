@@ -81,6 +81,7 @@ define(['moment', 'underscore', 'd3.chart.analog', 'd3.chart.digital', 'd3.chart
             .on('mouseover', function () {
                 var mouse = d3.mouse(this);
                 var mX = mouse[0] - margin.left, mY = mouse[1] - margin.top;
+                mX = Math.round(mX);
                 if (mX > 0 && mY > 0 && mX < width)
                     hoverLine.style('opacity', 1);
                 else
@@ -92,6 +93,7 @@ define(['moment', 'underscore', 'd3.chart.analog', 'd3.chart.digital', 'd3.chart
             .on('mousemove', function () {
                 var mouse = d3.mouse(this);
                 var mX = mouse[0] - margin.left, mY = mouse[1] - margin.top;
+                mX = Math.round(mX);
                 hoverLine.attr('x1', mX).attr('x2', mX);
                 if (mX > 0 && mY > 0 && mX < width) {
                     var dt = _xScale.invert(mX);
@@ -110,7 +112,7 @@ define(['moment', 'underscore', 'd3.chart.analog', 'd3.chart.digital', 'd3.chart
                                     str += d.yVal.length == 1 ? v[yDim] : ((i > 0 ? ', ' : ' ') + yDim + ':' + v[yDim]);
                                 });
                             }
-                            g.select('.legend').text(d.id + ' : ' + str);
+                            g.select('.legend').text(d.id + ': ' + str + ' ' + d.unidad);
                         });
                         //move plot line to stick to nearest time where any value found , then update time and value legends
                         timeLegend.text(xMoment.format('DD MMM'));
@@ -176,6 +178,7 @@ define(['moment', 'underscore', 'd3.chart.analog', 'd3.chart.digital', 'd3.chart
     function minDistanceDate(dates, dt) {
         var result = null, distance = Infinity, dtVal=moment(dt).valueOf();
         _.each(dates, function(d) {
+          console.log('d', d);
             var m = moment(d).valueOf();
             if (distance > Math.abs(m - dtVal)) {
                 distance = Math.abs(m - dtVal);

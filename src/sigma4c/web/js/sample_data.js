@@ -94,5 +94,32 @@ var CTR = [{"DateTime":"2013-01-01","Value":0.01},
 {"DateTime":"2013-01-30","Value":0.015},
 {"DateTime":"2013-01-31","Value":0.02}];
 
-var arsenico = [{"DateTime":"2013-01-01","Value":20},
-{"DateTime":"2013-01-31","Value":25}];
+var arsenico = [
+{"DateTime":"2013-01-01","Value":0.44, "Value2": 100},
+{"DateTime":"2013-04-01","Value":0.1, "Value2": 100},
+{"DateTime":"2013-07-01","Value":0.2, "Value2": 100},
+{"DateTime":"2013-10-01","Value":0.2, "Value2": 100},
+{"DateTime":"2014-01-01","Value":0.7, "Value2": 100},
+{"DateTime":"2014-04-01","Value":0.5, "Value2": 100},
+{"DateTime":"2014-07-01","Value":0.63, "Value2": 100},
+{"DateTime":"2014-10-01","Value":0.3, "Value2": 100},
+{"DateTime":"2015-01-01","Value":0.2, "Value2": 100},
+{"DateTime":"2015-04-01","Value":0.33, "Value2": 100},
+{"DateTime":"2015-07-01","Value":0.4, "Value2": 100},
+{"DateTime":"2015-10-01","Value":0.3, "Value2": 100}
+];
+
+var mercurio = [
+{"DateTime":"2013-01-01","Value":0.3, "Value2": 100},
+{"DateTime":"2013-04-01","Value":0.12, "Value2": 100},
+{"DateTime":"2013-07-01","Value":0.12, "Value2": 100},
+{"DateTime":"2013-10-01","Value":0.52, "Value2": 100},
+{"DateTime":"2014-01-01","Value":0.27, "Value2": 100},
+{"DateTime":"2014-04-01","Value":0.65, "Value2": 100},
+{"DateTime":"2014-07-01","Value":0.763, "Value2": 100},
+{"DateTime":"2014-10-01","Value":0.83, "Value2": 100},
+{"DateTime":"2015-01-01","Value":0.92, "Value2": 100},
+{"DateTime":"2015-04-01","Value":0.033, "Value2": 100},
+{"DateTime":"2015-07-01","Value":0.44, "Value2": 100},
+{"DateTime":"2015-10-01","Value":0.33, "Value2": 100}
+];
