@@ -189,4 +189,39 @@ class MuestraController extends Controller
             ->getForm()
         ;
     }
+
+    /**
+     * Displays a form to query existing parameter for any Muestra entity.
+     *
+     * @Route("/{id}/parametros", name="muestra_parametros")
+     * @Method({"GET", "POST"})
+     */
+    public function queryParAction(Request $request, Muestra $muestra)
+    {
+      $em = $this->getDoctrine()->getManager();
+      $qb = $em->createQueryBuilder();
+      // $qb->add('select', 'm.id,elemento_ambiental,tipo_muestreo, concat(prefijo,'-',nombre), metodo, mhm.concentracion, mhm.tec_analitica,mhm.lc, mhm.incertidumbre')
+      //    ->add('from', 'parametro p, muestra m, many_muestra_has_many_parametro mhm')
+      //    ->add('where', 'p.id = mhm.id_parametro and m.id = mhm.id_muestra AND m.id = 155525');
+      // $query = $em->createQuery(
+      //               "SELECT concentracion, tec_analitica, lc, incertidumbre
+      //               FROM AppBundle:ManyMuestraHasManyParametro
+      //               WHERE id_muestra = 155525
+      //               "
+      //           );
+      // $q = $qb->getQuery();
+      $em = $this->getDoctrine()->getManager();
+      $repository = $em->getRepository('AppBundle:Muestra');
+      $query = $repository->createQueryBuilder('u')
+              ->innerJoin('u.idParametro', 'g')
+              ->where('g.id = :id_parametro')
+              ->setParameter('id_parametro', 5)
+              ->getQuery()->getResult();
+      $params = $query->getResult();
+      return $this->render('muestra/pruebas.html.twig', array(
+            'muestra' => $muestra, 'parametros' => $params
+        ));
+    }
+
+
 }

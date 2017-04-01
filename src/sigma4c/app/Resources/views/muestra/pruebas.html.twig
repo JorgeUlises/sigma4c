@@ -1,0 +1,49 @@
+<h1>Muestra</h1>
+
+<table class="table">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ muestra.id }}</td>
+        </tr>
+        <tr>
+            <th>Responsable</th>
+            <td>{{ muestra.responsable }}</td>
+        </tr>
+        <tr>
+            <th>Elemento Ambiental</th>
+            <td>{{ muestra.elementoAmbiental }}</td>
+        </tr>
+        <tr>
+            <th>Foto</th>
+            <td>{{ muestra.fotos }}</td>
+        </tr>
+        <tr>
+            <th>Fecha Toma</th>
+            <td>{% if muestra.fechaToma %}{{ muestra.fechaToma|date('Y-m-d') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Fecha Recepción</th>
+            <td>{% if muestra.fechaRecepcion %}{{ muestra.fechaRecepcion|date('Y-m-d') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Fecha Análisis</th>
+            <td>{% if muestra.fechaAnalisis %}{{ muestra.fechaAnalisis|date('Y-m-d') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Tipo Muestreo</th>
+            <td>{{ muestra.tipoMuestreo }}</td>
+        </tr>
+        <tr>
+            <th>Análisis</th>
+            <td>{{ muestra.analisis }}</td>
+        </tr>
+        <tr>
+            <th>Pdf Laboratorio</th>
+            <td>{{ muestra.pdfLab }}</td>
+        </tr>
+    </tbody>
+</table>
+{% for parametro in parametros %}
+<td>{{ parametro.metodo }}</td>
+{% endfor %}
