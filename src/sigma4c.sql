@@ -5,7 +5,7 @@ CREATE EXTENSION postgis_topology;
 
 -- Database generated with pgModeler (PostgreSQL Database Modeler).
 -- pgModeler  version: 0.8.2
--- PostgreSQL version: 9.5
+-- PostgreSQL version: 9.4
 -- Project Site: pgmodeler.com.br
 -- Model Author: ---
 
@@ -157,6 +157,7 @@ ALTER TABLE public.usuario OWNER TO sigma4c;
 -- DROP TABLE IF EXISTS public.parametro CASCADE;
 CREATE TABLE public.parametro(
 	id serial NOT NULL,
+	prefijo character varying,
 	nombre character varying,
 	unidad character varying,
 	metodo character varying,
