@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.8.2" last-position="105,91" last-zoom="0.75"
+<dbmodel pgmodeler-ver="0.8.2" last-position="0,66" last-zoom="0.75"
 	 default-schema="public" default-owner="sigma4c">
 <role name="sigma4c"
       password="abc123">
@@ -21,7 +21,7 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 	<schema name="public"/>
 	<role name="sigma4c"/>
 	<comment><![CDATA[Datos basicos de la empresa]]></comment>
-	<position x="300" y="520"/>
+	<position x="300" y="540"/>
 	<column name="id" not-null="true">
 		<type name="serial"/>
 	</column>
@@ -57,7 +57,7 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 	<schema name="public"/>
 	<role name="sigma4c"/>
 	<comment><![CDATA[Datos basicos del proyecto]]></comment>
-	<position x="260" y="140"/>
+	<position x="260" y="143"/>
 	<column name="id" not-null="true">
 		<type name="serial"/>
 	</column>
@@ -78,7 +78,7 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 	<schema name="public"/>
 	<role name="sigma4c"/>
 	<comment><![CDATA[Muestra que se toma en un lugar e instante determinado]]></comment>
-	<position x="1160" y="360"/>
+	<position x="1220" y="200"/>
 	<column name="id" not-null="true">
 		<type name="serial"/>
 	</column>
@@ -121,7 +121,7 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 	</constraint>
 
 	<customidxs object-type="column">
-		<object name="id_punto_control" index="1"/>
+		<object name="id_punto_control" index="10"/>
 	</customidxs>
 
 	<customidxs object-type="constraint">
@@ -133,7 +133,7 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 	<schema name="public"/>
 	<role name="sigma4c"/>
 	<comment><![CDATA[Nivel de privilegios del usuario]]></comment>
-	<position x="700" y="580"/>
+	<position x="820" y="740"/>
 	<column name="id" not-null="true">
 		<type name="serial"/>
 	</column>
@@ -154,7 +154,7 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 	<schema name="public"/>
 	<role name="sigma4c"/>
 	<comment><![CDATA[Datos basicos del usuario]]></comment>
-	<position x="300" y="720"/>
+	<position x="800" y="540"/>
 	<column name="id" not-null="true">
 		<type name="serial"/>
 	</column>
@@ -189,7 +189,7 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 	<schema name="public"/>
 	<role name="sigma4c"/>
 	<comment><![CDATA[Parametros que conforman la muestra como PH y demas]]></comment>
-	<position x="1120" y="780"/>
+	<position x="1260" y="760"/>
 	<column name="id" not-null="true">
 		<type name="serial"/>
 	</column>
@@ -246,10 +246,13 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 	</label>
 </relationship>
 
-<table name="many_muestra_has_many_parametro">
+<table name="lectura">
 	<schema name="public"/>
 	<role name="sigma4c"/>
-	<position x="1120" y="600"/>
+	<position x="1240" y="500"/>
+	<column name="id" not-null="true">
+		<type name="serial"/>
+	</column>
 	<column name="concentracion">
 		<type name="double precision"/>
 	</column>
@@ -262,55 +265,25 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 	<column name="incertidumbre">
 		<type name="double precision"/>
 	</column>
+	<constraint name="id" type="pk-constr" table="public.lectura">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
 
 	<customidxs object-type="column">
-		<object name="id_muestra" index="0"/>
-		<object name="id_parametro" index="1"/>
+		<object name="id_muestra" index="1"/>
+		<object name="id_parametro" index="6"/>
 	</customidxs>
 
 	<customidxs object-type="constraint">
-		<object name="many_muestra_has_many_parametro_pk" index="0"/>
-		<object name="muestra_fk" index="1"/>
+		<object name="muestra_fk" index="0"/>
 		<object name="parametro_fk" index="2"/>
 	</customidxs>
 </table>
 
-<relationship name="muestra_has_many_many_muestra_has_many_parametro" type="rel1n"
-	 src-col-pattern="{sc}_{st}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 src-table="public.muestra"
-	 dst-table="public.many_muestra_has_many_parametro"
-	 src-required="true" dst-required="false"
-	 identifier="true"
->
-	<line>
-		<position x="1540" y="480"/>
-	<position x="1540" y="620"/>
-	</line>
-	<label ref-type="name-label">
-		<position x="-28.0243" y="4.15147"/>
-	</label>
-</relationship>
-
-<relationship name="parametro_has_many_many_muestra_has_many_parametro" type="rel1n"
-	 src-col-pattern="{sc}_{st}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 src-table="public.parametro"
-	 dst-table="public.many_muestra_has_many_parametro"
-	 src-required="true" dst-required="false"
-	 identifier="true"
->
-	<label ref-type="name-label">
-		<position x="0" y="0"/>
-	</label>
-</relationship>
-
 <table name="many_proyecto_has_many_empresa">
 	<schema name="public"/>
 	<role name="sigma4c"/>
-	<position x="300" y="360"/>
+	<position x="300" y="363"/>
 
 	<customidxs object-type="column">
 		<object name="id_empresa" index="1"/>
@@ -342,13 +315,17 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 	 dst-table="public.many_proyecto_has_many_empresa"
 	 src-required="true" dst-required="false"
 	 identifier="true"
-/>
+>
+	<label ref-type="name-label">
+		<position x="188.002" y="-30.5485"/>
+	</label>
+</relationship>
 
 <table name="punto_control">
 	<schema name="public"/>
 	<role name="sigma4c"/>
 	<comment><![CDATA[Punto donde se toman muchas muestras]]></comment>
-	<position x="780" y="200"/>
+	<position x="780" y="140"/>
 	<column name="id" not-null="true">
 		<type name="serial"/>
 	</column>
@@ -391,12 +368,33 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 	 dst-table="public.muestra"
 	 src-required="false" dst-required="false">
 	<line>
-		<position x="1100" y="240"/>
-	<position x="1100" y="340"/>
+		<position x="1140" y="180"/>
+	<position x="1140" y="280"/>
 	</line>
+	<label ref-type="src-label">
+		<position x="-2.75" y="20.2399"/>
+	</label>
 	<label ref-type="name-label">
-		<position x="0" y="0"/>
+		<position x="-103.63" y="3.93934"/>
 	</label>
 </relationship>
+
+<relationship name="muestra_has_many_lectura" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#6902f8"
+	 src-table="public.muestra"
+	 dst-table="public.lectura"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="parametro_has_many_lectura" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#41540f"
+	 src-table="public.parametro"
+	 dst-table="public.lectura"
+	 src-required="false" dst-required="false"/>
 
 </dbmodel>

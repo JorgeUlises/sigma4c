@@ -5,7 +5,7 @@ CREATE EXTENSION postgis_topology;
 
 -- Database generated with pgModeler (PostgreSQL Database Modeler).
 -- pgModeler  version: 0.8.2
--- PostgreSQL version: 9.4
+-- PostgreSQL version: 9.5
 -- Project Site: pgmodeler.com.br
 -- Model Author: ---
 
@@ -77,7 +77,6 @@ ALTER TABLE public.proyecto OWNER TO sigma4c;
 -- DROP TABLE IF EXISTS public.muestra CASCADE;
 CREATE TABLE public.muestra(
 	id serial NOT NULL,
-	id_punto_control integer,
 	responsable character varying,
 	elemento_ambiental character varying(200),
 	fotos character varying(500),
@@ -87,6 +86,7 @@ CREATE TABLE public.muestra(
 	tipo_muestreo character varying(200),
 	analisis text,
 	pdf_lab bytea,
+	id_punto_control integer,
 	CONSTRAINT muestra_id PRIMARY KEY (id)
 
 );
@@ -200,34 +200,21 @@ REFERENCES public.rol (id) MATCH FULL
 ON DELETE SET NULL ON UPDATE CASCADE;
 -- ddl-end --
 
--- object: public.many_muestra_has_many_parametro | type: TABLE --
--- DROP TABLE IF EXISTS public.many_muestra_has_many_parametro CASCADE;
-CREATE TABLE public.many_muestra_has_many_parametro(
+-- object: public.lectura | type: TABLE --
+-- DROP TABLE IF EXISTS public.lectura CASCADE;
+CREATE TABLE public.lectura(
+	id serial NOT NULL,
 	id_muestra integer,
-	id_parametro integer,
 	concentracion double precision,
 	tec_analitica character varying,
 	lc double precision,
 	incertidumbre double precision,
-	CONSTRAINT many_muestra_has_many_parametro_pk PRIMARY KEY (id_muestra,id_parametro)
+	id_parametro integer,
+	CONSTRAINT id PRIMARY KEY (id)
 
 );
 -- ddl-end --
-ALTER TABLE public.many_muestra_has_many_parametro OWNER TO sigma4c;
--- ddl-end --
-
--- object: muestra_fk | type: CONSTRAINT --
--- ALTER TABLE public.many_muestra_has_many_parametro DROP CONSTRAINT IF EXISTS muestra_fk CASCADE;
-ALTER TABLE public.many_muestra_has_many_parametro ADD CONSTRAINT muestra_fk FOREIGN KEY (id_muestra)
-REFERENCES public.muestra (id) MATCH FULL
-ON DELETE CASCADE ON UPDATE CASCADE;
--- ddl-end --
-
--- object: parametro_fk | type: CONSTRAINT --
--- ALTER TABLE public.many_muestra_has_many_parametro DROP CONSTRAINT IF EXISTS parametro_fk CASCADE;
-ALTER TABLE public.many_muestra_has_many_parametro ADD CONSTRAINT parametro_fk FOREIGN KEY (id_parametro)
-REFERENCES public.parametro (id) MATCH FULL
-ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE public.lectura OWNER TO sigma4c;
 -- ddl-end --
 
 -- object: public.many_proyecto_has_many_empresa | type: TABLE --
@@ -287,6 +274,20 @@ ON DELETE SET NULL ON UPDATE CASCADE;
 -- ALTER TABLE public.muestra DROP CONSTRAINT IF EXISTS punto_control_fk CASCADE;
 ALTER TABLE public.muestra ADD CONSTRAINT punto_control_fk FOREIGN KEY (id_punto_control)
 REFERENCES public.punto_control (id) MATCH FULL
+ON DELETE SET NULL ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: muestra_fk | type: CONSTRAINT --
+-- ALTER TABLE public.lectura DROP CONSTRAINT IF EXISTS muestra_fk CASCADE;
+ALTER TABLE public.lectura ADD CONSTRAINT muestra_fk FOREIGN KEY (id_muestra)
+REFERENCES public.muestra (id) MATCH FULL
+ON DELETE SET NULL ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: parametro_fk | type: CONSTRAINT --
+-- ALTER TABLE public.lectura DROP CONSTRAINT IF EXISTS parametro_fk CASCADE;
+ALTER TABLE public.lectura ADD CONSTRAINT parametro_fk FOREIGN KEY (id_parametro)
+REFERENCES public.parametro (id) MATCH FULL
 ON DELETE SET NULL ON UPDATE CASCADE;
 -- ddl-end --
 
