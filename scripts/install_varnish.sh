@@ -9,8 +9,6 @@ else
   sudo yum install -y epel-release
   sudo yum install -y varnish
   sudo systemctl enable varnish
-  # change listen port
-  sudo sed -i.bak 's/^VARNISH_LISTEN_PORT=.*/VARNISH_LISTEN_PORT=80/' /etc/varnish/varnish.params
 fi
 
 # rationale: verificando instalacion varnish
