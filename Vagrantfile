@@ -6,9 +6,7 @@ Vagrant.configure(2) do |config|
   config.vm.box = "centos/7"
   config.ssh.insert_key = false # Soluciona fallo con ssh gpg key
 
-  config.vm.network "forwarded_port", guest: 3000, host: 13000
   config.vm.network "forwarded_port", guest: 8000, host: 8000
-  config.vm.network "forwarded_port", guest: 8080, host: 18080
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -66,4 +64,6 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", path: scripts_path+"install_symfony.sh"
   config.vm.provision "shell", path: scripts_path+"install_composer.sh"
   config.vm.provision "shell", path: scripts_path+"install_sigma4c.sh"
+  config.vm.provision "shell", path: scripts_path+"install_apache.sh"
+  config.vm.provision "shell", path: scripts_path+"install_varnish.sh"
 end
