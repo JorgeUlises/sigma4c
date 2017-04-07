@@ -44,11 +44,14 @@ php app/console generate:doctrine:crud --entity=AppBundle:Muestra
 php app/console generate:doctrine:form "AppBundle:PuntoControl"
 php app/console generate:doctrine:crud --entity=AppBundle:PuntoControl
 
+php app/console generate:doctrine:form "AppBundle:Lectura"
+php app/console generate:doctrine:crud --entity=AppBundle:Lectura
+
 
 #Para traer ¿O actualizar? SOLO una entidad de la base de datos:
-#?php app/console doctrine:mapping:import AppBundle:Norma
 php app/console doctrine:mapping:import AppBundle:Norma
 php app/console generate:doctrine:entities AppBundle:Norma
+#php app/console generate:doctrine:entities AppBundle:Norma --path="src"
 php app/console generate:doctrine:form "AppBundle:Norma"
 php app/console generate:doctrine:crud --entity=AppBundle:Norma
 
