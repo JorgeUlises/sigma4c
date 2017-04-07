@@ -21,10 +21,9 @@ class ParametroType extends AbstractType
             ->add('metodo')
             ->add('maxL')
             ->add('minL')
-            ->add('idMuestra')
         ;
     }
-
+    
     /**
      * @param OptionsResolver $resolver
      */

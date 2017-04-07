@@ -25,10 +25,9 @@ class MuestraType extends AbstractType
             ->add('analisis')
             ->add('pdfLab')
             ->add('idPuntoControl')
-            ->add('idParametro')
         ;
     }
-
+    
     /**
      * @param OptionsResolver $resolver
      */
