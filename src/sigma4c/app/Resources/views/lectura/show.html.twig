@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Lectura</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Concentracion</th>
+                <td>{{ lectura.concentracion }}</td>
+            </tr>
+            <tr>
+                <th>Tecanalitica</th>
+                <td>{{ lectura.tecAnalitica }}</td>
+            </tr>
+            <tr>
+                <th>Lc</th>
+                <td>{{ lectura.lc }}</td>
+            </tr>
+            <tr>
+                <th>Incertidumbre</th>
+                <td>{{ lectura.incertidumbre }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ lectura.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('lectura_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('lectura_edit', { 'id': lectura.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

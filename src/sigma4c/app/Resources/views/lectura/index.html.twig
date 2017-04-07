@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Lectura list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Concentracion</th>
+                <th>Tecanalitica</th>
+                <th>Lc</th>
+                <th>Incertidumbre</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lectura in lecturas %}
+            <tr>
+                <td><a href="{{ path('lectura_show', { 'id': lectura.id }) }}">{{ lectura.concentracion }}</a></td>
+                <td>{{ lectura.tecAnalitica }}</td>
+                <td>{{ lectura.lc }}</td>
+                <td>{{ lectura.incertidumbre }}</td>
+                <td>{{ lectura.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('lectura_show', { 'id': lectura.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('lectura_edit', { 'id': lectura.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('lectura_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
