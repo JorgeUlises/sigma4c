@@ -21,15 +21,5 @@
         <join-column name="id_punto_control" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
-    <many-to-many field="idParametro" target-entity="Parametro" inversed-by="idMuestra">
-      <join-table name="many_muestra_has_many_parametro">
-        <join-columns>
-          <join-column name="id_muestra" referenced-column-name="id"/>
-        </join-columns>
-        <inverse-join-columns>
-          <join-column name="id_parametro" referenced-column-name="id"/>
-        </inverse-join-columns>
-      </join-table>
-    </many-to-many>
   </entity>
 </doctrine-mapping>

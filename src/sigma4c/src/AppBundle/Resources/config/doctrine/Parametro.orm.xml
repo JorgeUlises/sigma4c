@@ -10,7 +10,5 @@
     <field name="metodo" type="string" column="metodo" nullable="true"/>
     <field name="maxL" type="float" column="max_l" precision="10" scale="0" nullable="true"/>
     <field name="minL" type="float" column="min_l" precision="10" scale="0" nullable="true"/>
-    <many-to-many field="idMuestra" target-entity="Muestra" mapped-by="idParametro"/>
-
   </entity>
 </doctrine-mapping>
