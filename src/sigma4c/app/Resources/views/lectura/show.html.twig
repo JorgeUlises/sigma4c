@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'sigmabase.html.twig' %}
 
 {% block body %}
     <h1>Lectura</h1>
 
-    <table>
+    <table class="table">
         <tbody>
             <tr>
                 <th>Concentracion</th>
@@ -28,16 +28,16 @@
         </tbody>
     </table>
 
-    <ul>
+    <ul class="list-inline">
         <li>
-            <a href="{{ path('lectura_index') }}">Back to the list</a>
+            <a class="btn btn-info" href="{{ path('lectura_index') }}">Volver</a>
         </li>
         <li>
-            <a href="{{ path('lectura_edit', { 'id': lectura.id }) }}">Edit</a>
+            <a class="btn btn-primary" href="{{ path('lectura_edit', { 'id': lectura.id }) }}">Editar</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input class="btn btn-danger" type="submit" value="E">
             {{ form_end(delete_form) }}
         </li>
     </ul>

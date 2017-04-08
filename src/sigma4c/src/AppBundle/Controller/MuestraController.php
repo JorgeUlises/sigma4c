@@ -77,31 +77,15 @@ class MuestraController extends Controller
 
         $muestras = $em->getRepository('AppBundle:Muestra')->findAll();
 
-//        return $this->render('muestra/index.html.twig', array(
-//            'muestras' => $muestras,
-//        ));
         try {
-            //ob_start();
-            //include dirname(__FILE__).'/res/exemple00.php';
-            //echo "Hola Mundo";
-            //$content = ob_get_clean();
-            // $content = $this->render('muestra/pdf.html.twig', array(
-            //     'muestras' => $muestras,
-            // )) -> getContent();
-            //pdf.html.twig
-            $content = $this->renderView('muestra/ejem7.php', array(
-                'muestras' => $muestras,
-            ));
-            $content .= $this->renderView('muestra/ejem7a.php', array(
-                'muestras' => $muestras,
-            ));
-            // ob_start();
-            // include dirname(__FILE__).'/muestra/ejem7.php';
-            // include dirname(__FILE__).'/muestra/ejem7a.php';
-            // $content = ob_get_clean();
 
-            // echo $content;
-            // exit;
+            $content = $this->renderView('muestra/ejem7.html.twig', array(
+                'muestras' => $muestras,
+            ));
+            // $content .= $this->renderView('muestra/ejem7a.php', array(
+            //     'muestras' => $muestras,
+            // ));
+
             $html2pdf = new \Html2Pdf('P', 'A4', 'es');
             $html2pdf->setDefaultFont('Arial');
             $html2pdf->writeHTML($content);
@@ -121,9 +105,12 @@ class MuestraController extends Controller
     public function showAction(Muestra $muestra)
     {
         $deleteForm = $this->createDeleteForm($muestra);
+        $em = $this->getDoctrine()->getManager();
+        $lecturas = $em->getRepository('AppBundle:Lectura')->findByIdMuestra($muestra->getId());
 
         return $this->render('muestra/show.html.twig', array(
             'muestra' => $muestra,
+            'lecturas' => $lecturas,
             'delete_form' => $deleteForm->createView(),
         ));
     }

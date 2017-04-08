@@ -1,0 +1,152 @@
+{% block stylesheets %}{% endblock %}
+<style type="text/css">
+.tablec {
+  width: 100%;
+  border: solid 1px black;
+  background: #F7F7F7;
+  text-align: right;
+  font-size: 9pt;
+}
+.tablec td {
+  border-right: solid 0.5px #ddd;
+  border-bottom: solid 0.5px #ddd;
+}
+.tablea {
+  border: solid 1px black;
+  width: 100%;
+  background: #81bd10;
+  text-align: center;
+  font-size: 10pt;
+}
+.foot {
+  width: 100%;
+  text-align: center;
+  font-size: 7pt;
+}
+</style>
+<!--<page backcolor="#FEFEFE" backimg="./res/bas_page.png" backimgx="center" backimgy="bottom" backimgw="100%" backtop="0" backbottom="30mm" footer="date;heure;page" style="font-size: 12pt" backtop="7mm" backbottom="7mm" backleft="10mm" backright="10mm">-->
+<page backcolor="#FEFEFE" backimg="./res/bas_page.png" backimgx="center" backimgy="bottom" backimgw="100%" backtop="0" backbottom="30mm" footer="date;heure;page" style="font-size: 10pt" backtop="7mm" backbottom="7mm" backleft="10mm" backright="10mm">
+    <bookmark title="Lettre" level="0" ></bookmark>
+    <table cellspacing="0" style="width: 100%; text-align: center; font-size: 14px">
+        <tr>
+            <td style="width: 75%;">
+            </td>
+            <td style="width: 25%; color: #444444;">
+                <img style="width: 100%;" src="http://cuatroconceptos.com/wp-content/uploads/2016/05/logo_pq.png" alt="Logo"><br>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <table cellspacing="0" style="width: 100%; text-align: left; font-size: 11pt;">
+        <tr>
+            <td style="width:50%;"></td>
+            <td style="width:14%; ">Cliente :</td>
+            <td style="width:36%">Nombre Cliente</td>
+        </tr>
+        <tr>
+            <td style="width:50%;"></td>
+            <td style="width:14%; ">Dirección:</td>
+            <td style="width:36%">
+                Calle 1 # 2 - 3 <br>
+                Barrio inventado<br>
+                Bogotá - Colombia<br>
+            </td>
+        </tr>
+        <tr>
+            <td style="width:50%;"></td>
+            <td style="width:14%; ">Email :</td>
+            <td style="width:36%">gerencia@cuatroconceptos.com</td>
+        </tr>
+        <tr>
+            <td style="width:50%;"></td>
+            <td style="width:14%; ">Tel :</td>
+            <td style="width:36%">+57 3017852790</td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <table cellspacing="0" style="width: 100%; text-align: left;font-size: 10pt">
+        <tr>
+            <td style="width:50%;"></td>
+            <td style="width:50%; ">Bogotá, Colombia</td>
+        </tr>
+    </table>
+    <br>
+    <i>
+        <b><u>Objeto </u>: &laquo; Análisis muestras punto control &raquo;</b><br>
+        Nit cliente : 00C4520100A<br>
+        Punto de control Asociad0 : XXXXX<br>
+    </i>
+    <br>
+    <br>
+    Cordial Saludo,Senores Lo que sea<br>
+    <br>
+    <br>
+    El presente es un resumen de las muestras para el punto de control <b>71326</b> concerniente al proyecto XXXXX<br>
+    <br>
+{% block body %}
+    <table class="tablea" cellspacing="0,2px">
+        <tr>
+            <th style="width: 10%">Id</th>
+            <th style="width: 12%">Responsable</th>
+            <th style="width: 13%">Elemento Ambiental</th>
+            <th style="width: 13%">Fotos</th>
+            <th style="width: 13%">Toma</th>
+            <th style="width: 13%">Recepción</th>
+            <th style="width: 13%">Analisis</th>
+            <th style="width: 10%">Tipo Muestreo</th>
+
+        </tr>
+      </table>
+        <table class="tablec" cellspacing="0,2px">
+            <tbody>
+            {% for muestra in muestras %}
+            <tr>
+                <td style="width: 10%; text-align: left"><a href="{{ path('muestra_show', { 'id': muestra.id }) }}">{{ muestra.id }}</a></td>
+                <td style="width: 12%; text-align: left">{{ muestra.responsable }}</td>
+                <td style="width: 13%; text-align: left">{{ muestra.elementoAmbiental }}</td>
+                <td style="width: 13%; text-align: left">{{ muestra.fotos }}</td>
+                <td style="width: 13%; text-align: left">{% if muestra.fechaToma %}{{ muestra.fechaToma|date('Y-m-d') }}{% endif %}</td>
+                <td style="width: 13%; text-align: left">{% if muestra.fechaRecepcion %}{{ muestra.fechaRecepcion|date('Y-m-d') }}{% endif %}</td>
+                <td style="width: 13%; text-align: left">{% if muestra.fechaAnalisis %}{{ muestra.fechaAnalisis|date('Y-m-d') }}{% endif %}</td>
+                <td style="width: 10%; text-align: left">{{ muestra.tipoMuestreo }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endblock %}
+
+
+    <br>
+    Nota: El resultado de este análisis es único y solo valido con el sello seco del Laboratorio.Queda totalmente prohibida la reproducción del mismo y solamente son validas las copias
+autorizadas con el sello seco del laboratorio. Este reporte aplica unicamente a la muestra analizada. Los valores de incertidumbre reportados corresponden a incertidumbre combinada (uc).
+Para expandir aplique: k*uc*Concentración. El factor de cobertura es k=2 con un nivel de confianza del 95%.<br>
+    <br>
+    <b>Observaciones:</b><br>
+    <br>
+    <nobreak>
+        <table cellspacing="0" style="width: 100%; text-align: left;">
+            <tr>
+                <td style="width:50%;"></td>
+                <td style="width:50%; ">
+                  <b>Firma:</b><br><br>
+                  <hr>
+                    Director Técnico<br>
+                    Danilo A. Riaño A.<br>
+                    T.P. PQ-1480<br>
+                    <b>LABORATORIOS PRODYCON S.A.</b><br>
+                    Tel : 33 (0) 1 00 00 00 00<br>
+                    Email : on_va@chez.moi<br>
+                </td>
+            </tr>
+        </table>
+    </nobreak>
+    <page_footer>
+      <div class="foot">
+        © 2016 Cuatro Conceptos. All Rights Reserved<br>
+        Cuatroconceptos.com<br>
+        Tel: 3017852790<br>
+      </div>
+    </page_footer>
+</page>

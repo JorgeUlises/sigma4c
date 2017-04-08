@@ -68,9 +68,11 @@ class LecturaController extends Controller
     public function showAction(Lectura $lectura)
     {
         $deleteForm = $this->createDeleteForm($lectura);
-
+        $em = $this->getDoctrine()->getManager();
+        $pmetro = $em->getRepository('AppBundle:PuntoControl')->findById($lectura->getId());
         return $this->render('lectura/show.html.twig', array(
             'lectura' => $lectura,
+            'pcontrl' => $pmetro,
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -112,7 +114,6 @@ class LecturaController extends Controller
     {
         $form = $this->createDeleteForm($lectura);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($lectura);
