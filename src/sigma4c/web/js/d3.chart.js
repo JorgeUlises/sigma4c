@@ -97,7 +97,11 @@ define(['moment', 'underscore', 'd3.chart.analog', 'd3.chart.digital', 'd3.chart
                 hoverLine.attr('x1', mX).attr('x2', mX);
                 if (mX > 0 && mY > 0 && mX < width) {
                     var dt = _xScale.invert(mX);
-                    var nearestDateVal = minDistanceDate(_.map(_graphs, function (d) { return d.map[mX] ? d.map[mX].date : null; }), dt);
+                    //console.log('_graphs', _graphs);
+                    //console.log('dt', dt);
+                    //console.log('mX', mX);
+                    //console.log('_.map(_graphs,...)',_.map(_graphs, function (d) { console.log('d',d.data);return d.map[mX] ? d.map[mX].date : null; }));
+                    var nearestDateVal = minDistanceDate(_.map(_graphs, function (d) { return d.map[mX] ? d.map[mX].date : d.data[(mX<width/2)?0:1].DateTime; }), dt);
                     var graphIdswithDataAtNearestDate = _.chain(_graphs).filter(function(d) { return d.map[mX] && d.map[mX].date == nearestDateVal; }).pluck('id').value();
                     if (nearestDateVal!=null) {
                         var xMoment = moment(nearestDateVal);
@@ -112,7 +116,12 @@ define(['moment', 'underscore', 'd3.chart.analog', 'd3.chart.digital', 'd3.chart
                                     str += d.yVal.length == 1 ? v[yDim] : ((i > 0 ? ', ' : ' ') + yDim + ':' + v[yDim]);
                                 });
                             }
-                            g.select('.legend').text(d.id + ': ' + str + ' ' + d.unidad);
+                            // by juusechec
+                            if (str == ""){
+                              str = d.data[(mX<width/2)?0:1].Value;
+                            }
+                            //Aqui se configura la leyenda
+                            g.select('.legend').text(d.name + ': ' + str + ' ' + d.unidad);
                         });
                         //move plot line to stick to nearest time where any value found , then update time and value legends
                         timeLegend.text(xMoment.format('DD MMM'));
@@ -178,7 +187,7 @@ define(['moment', 'underscore', 'd3.chart.analog', 'd3.chart.digital', 'd3.chart
     function minDistanceDate(dates, dt) {
         var result = null, distance = Infinity, dtVal=moment(dt).valueOf();
         _.each(dates, function(d) {
-          console.log('d', d);
+            console.log('d', d);
             var m = moment(d).valueOf();
             if (distance > Math.abs(m - dtVal)) {
                 distance = Math.abs(m - dtVal);

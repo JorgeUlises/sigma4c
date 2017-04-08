@@ -2,24 +2,51 @@
 
 {% block body %}
 
-    <h1>Consulta por muestra</h1>
-
-    <div class="form-group">
-        <label for="muestra">Seleccione una muestra:</label>
-        <select class="form-control" id="muestra">
-            <option value="" disabled selected>Seleccione por Id</option>
-            {% for muestra in muestras %}
-                <option>{{ muestra.id }}</option>
-            {% endfor %}
-        </select>
-    </div>
+    <h1>Consulta por parámetros</h1>
 
     <div class="form-group">
         <label for="parametro">Seleccione uno o varios parámetros:</label><br>
         {% for parametro in parametros %}
-            <input type="checkbox" name="parametro" value="{{ parametro.id }}">  {{ parametro.nombre }}<br>
+            <input type="checkbox" name="parametro" value="{{ parametro.id }}" onchange="graficarParametro(this);">
+            {{ parametro.nombre }}<br>
         {% endfor %}
     </div>
+
+    <script>
+        window.muestras = new Array();
+        {% for muestra in muestras %}
+            var muestra = {
+                'id': '{{ muestra.id }}',
+                'fechaToma': '{{ muestra.fechaToma|date("Y-m-d") }}',
+                'lecturas': new Array()
+            };
+            {% for lectura in muestrasArray[ muestra.id ] %}
+            muestra.lecturas.push({
+              'concentracion': '{{ lectura.concentracion }}',
+              'tecAnalitica': '{{ lectura.tecAnalitica }}',
+              'lc': '{{ lectura.lc }}',
+              'incertidumbre': '{{ lectura.incertidumbre }}',
+              'id': '{{ lectura.id }}',
+              'idParametro': '{{ lectura.idParametro.id }}',
+              'idMuestra': '{{ lectura.idMuestra }}'
+            });
+            {% endfor %}
+            window.muestras.push(muestra);
+        {% endfor %}
+
+        window.parametros = new Array();
+        {% for parametro in parametros %}
+            window.parametros.push({
+                'prefijo': '{{ parametro.prefijo }}',
+                'nombre': '{{ parametro.nombre }}',
+                'unidad': '{{ parametro.unidad }}',
+                'metodo': '{{ parametro.metodo }}',
+                'maxL': '{{ parametro.maxL }}',
+                'minL': '{{ parametro.minL }}',
+                'id': '{{ parametro.id }}'
+            });
+        {% endfor %}
+    </script>
 
     {% include 'puntocontrol/parametros.html.twig' %}
 

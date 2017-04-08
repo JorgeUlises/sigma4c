@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 require_once dirname(__FILE__).'/../../../vendor/autoload.php';
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -193,42 +194,28 @@ class MuestraController extends Controller
     /**
      * Displays a form to query existing parameter for any Muestra entity.
      *
-     * @Route("/{id}/parametros", name="muestra_parametros")
-     * @Method({"GET", "POST"})
+     * @Route("/{id}/lecturas", name="muestra_lecturas")
+     * @Method("GET")
      */
-    public function queryParAction(Request $request, Muestra $muestra)
+    public function queryLecturasAction(Muestra $muestra)
     {
       $em = $this->getDoctrine()->getManager();
-      $qb = $em->createQueryBuilder();
-      // $qb->add('select', 'm.id,elemento_ambiental,tipo_muestreo, concat(prefijo,'-',nombre), metodo, mhm.concentracion, mhm.tec_analitica,mhm.lc, mhm.incertidumbre')
-      //    ->add('from', 'parametro p, muestra m, many_muestra_has_many_parametro mhm')
-      //    ->add('where', 'p.id = mhm.id_parametro and m.id = mhm.id_muestra AND m.id = 155525');
-      // $query = $em->createQuery(
-      //               "SELECT concentracion, tec_analitica, lc, incertidumbre
-      //               FROM AppBundle:ManyMuestraHasManyParametro
-      //               WHERE id_muestra = 155525
-      //               "
-      //           );
-      // $q = $qb->getQuery();
-      // $em = $this->getDoctrine()->getManager();
-      // $repository = $em->getRepository('AppBundle:Parametro');
-      // $query = $repository->createQueryBuilder('u')
-      //         ->Join('u.idMuestra', 'p')
-      //         //->where('g.id = :id_parametro')
-      //         ->where('u.idMuestra = :id_muestra')
-      //         ->setParameter('id_muestra', '155523')
-      //         ->getQuery();
-      // $params = $query->getResult();
-      $em = $this->getDoctrine()->getEntityManager();
-      $params = $em->createQuery("SELECT m FROM AppBundle:Muestra m
-        JOIN m.idParametro p
-        WHERE p.id = 2
-        ")
-          //->setParameter('id', $id)
-          ->getResult();
-      return $this->render('muestra/pruebas.html.twig', array(
-            'muestra' => $muestra, 'parametros' => $params
-        ));
+      $lecturas = $em->getRepository('AppBundle:Lectura')->findByIdMuestra($muestra->getId());
+
+      $response = array();
+      foreach ($lecturas as $lectura) {
+          $response[] = array(
+              'concentracion' => $lectura->getConcentracion(),
+              'tecAnalitica' => $lectura->getTecAnalitica(),
+              'lc' => $lectura->getlc(),
+              'incertidumbre' => $lectura->getIncertidumbre(),
+              'id' => $lectura->getId(),
+              'idParametro' => $lectura->getIdParametro()->getId(),
+              'idMuestra' => $lectura->getIdMuestra()->getId()
+          );
+      }
+
+      return new JsonResponse($response);
     }
 
 

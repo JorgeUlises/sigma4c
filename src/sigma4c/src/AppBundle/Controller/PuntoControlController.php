@@ -149,12 +149,17 @@ class PuntoControlController extends Controller
 		    $em = $this->getDoctrine()->getManager();
 
         $muestras = $em->getRepository('AppBundle:Muestra')->findByIdPuntoControl($puntoControl->getId());
-
+        $muestrasArray = array();
+        foreach($muestras as $muestra) {
+          $lecturas = $em->getRepository('AppBundle:Lectura')->findByIdMuestra($muestra->getId());
+          $muestrasArray[$muestra->getId()] = $lecturas;
+        }
         $parametros = $em->getRepository('AppBundle:Parametro')->findAll();
 
         return $this->render('puntocontrol/muestras.html.twig', array(
             'puntoControl' => $puntoControl,
             'muestras' => $muestras,
+            'muestrasArray' => $muestrasArray,
             'parametros' => $parametros
         ));
     }

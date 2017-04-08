@@ -62,36 +62,11 @@
             });
 
             require(['d3.chart'], function(d3Chart) {
-                console.log(d3Chart);
+                console.log('d3Chart cargado.');
                 d3Chart.init({container: '#container', xDim: 'DateTime'});
-                // d3Chart.addGraph({ id: 'Speed', type: 'horizon', name: 'Speed', dataId: 512, yVal: ['Value'], data: speedData });
-                d3Chart.addGraph({
-                    id: 'MERCURIO',
-                    type: 'analog',
-                    name: 'Mercurio',
-                    dataId: 513,
-                    yVal: ['Value'],
-                    maximo: 0.70,
-                    minimo: 30,
-                    unidad: 'mg/L Hg',
-                    data: mercurio
-                });
-
-                d3Chart.addGraph({
-                    id: 'ARSENICO',
-                    type: 'analog',
-                    name: 'Arsénico',
-                    yVal: ['Value'],
-                    maximo: 0.64,
-                    minimo: 0,
-                    unidad: 'mg/L As',
-                    data: arsenico
-                });
-                //   d3Chart.addGraph({ id: 'DI', type: 'digital', name: 'Digital Input', dataId: 522, data: diData });       d3Chart.addGraph({ id: 'Accel', type: 'analog', name: 'Accel', dataId: 522, yVal: ['X', 'Y', 'Z'], data: accelData });
-                d3Chart.render();
-
-                // setTimeout(function() {
-                //     d3Chart.reorderGraph('Accel', 'up');
+                window.d3Chart = d3Chart;
+                // d3Chart.addGraph({ id: 'Speed', type: 'horizon', name: 'Speed', dataId: 512, yVal: ['Value'], data: speedData });   d3Chart.addGraph({ id: 'DI', type: 'digital', name: 'Digital Input', dataId: 522, data: diData });       d3Chart.addGraph({ id:
+                // 'Accel', type: 'analog', name: 'Accel', dataId: 522, yVal: ['X', 'Y', 'Z'], data: accelData }); setTimeout(function() {     d3Chart.reorderGraph('Accel', 'up');
                 //
                 //     //window.setTimeout(function () {    d3Chart.removeGraph('RPM'); }, 2000);
                 //
@@ -100,6 +75,72 @@
             });
 
         });
+    </script>
+
+    <script type="text/javascript">
+
+        function agregarGraficar(obj) {
+            window.d3Chart.addGraph(obj);
+            window.d3Chart.render();
+        }
+
+        function graficarParametro(ele) {
+            var idParametro = ele.value;
+            var data = new Array();
+
+            for (var i = 0; i < window.muestras.length; i++) {
+                var lecturas = window.muestras[i].lecturas;
+                var parametro = new String();
+                for (var j = 0; j < lecturas.length; j++) {
+                    if (lecturas[j].idParametro === idParametro) {
+                        data.push({'DateTime': window.muestras[i].fechaToma, 'Value': lecturas[j].concentracion});
+                    }
+                }
+            }
+            var parametro = getParametroById(idParametro);
+            var obj = {
+                id: 'parametro' + idParametro,
+                type: 'analog',
+                name: parametro.nombre,
+                yVal: ['Value'],
+                maximo: parametro.maxL,
+                minimo: parametro.minL,
+                unidad: parametro.unidad,
+                data: data
+            }
+
+            console.log('obj', obj);
+            if (data.length === 0) {
+                window.alert('No hay datos.');
+                return;
+            } else if (data.length === 1) {
+                window.alert('Solo hay 1 dato.');
+                return;
+            }
+            agregarGraficar(obj);
+        }
+
+        function getParametroById(id){
+          return window.parametros.filter(x => x.id === id)[0];
+          //myArray.filter(x => x.id === '45').map(x => x.foo)
+        }
+
+        function graficarPrueba(){
+          var obj = {
+              id: 'parametroinventado',
+              type: 'analog',
+              name: 'inventado',
+              yVal: ['Value'],
+              maximo: 0.4,
+              minimo: 0.2,
+              unidad: 'litros',
+              data: mercurio
+          }
+          agregarGraficar(obj);
+        }
+
+        // function getLecturasByMuestra(muestra) {     $.ajax({         url: '/muestra/' + muestra.id + '/lecturas'     }).done(function(a) {         console.log('Lectura de muestra ' + muestra.id + ': ', a);         muestra.lecturas = a;     }); } function
+        // consultarTodasLecturas() {     for (var i = 0; i < window.muestras.length; i++) {         getLecturasByMuestra(window.muestras[i]);     } } consultarTodasLecturas();
     </script>
 
 {% endblock %}

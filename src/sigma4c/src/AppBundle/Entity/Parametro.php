@@ -54,16 +54,11 @@ class Parametro
     private $id;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $idMuestra;
-
-    /**
      * Constructor
      */
     public function __construct()
     {
-        $this->idMuestra = new \Doctrine\Common\Collections\ArrayCollection();
+
     }
 
      /**
@@ -215,40 +210,7 @@ class Parametro
         return $this->id;
     }
 
-    /**
-     * Add idMuestra
-     *
-     * @param \AppBundle\Entity\Muestra $idMuestra
-     * @return Parametro
-     */
-    public function addIdMuestra(\AppBundle\Entity\Muestra $idMuestra)
-    {
-        $this->idMuestra[] = $idMuestra;
-
-        return $this;
-    }
-
-    /**
-     * Remove idMuestra
-     *
-     * @param \AppBundle\Entity\Muestra $idMuestra
-     */
-    public function removeIdMuestra(\AppBundle\Entity\Muestra $idMuestra)
-    {
-        $this->idMuestra->removeElement($idMuestra);
-    }
-
-    /**
-     * Get idMuestra
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getIdMuestra()
-    {
-        return $this->idMuestra;
-    }
-
-    /**
+   /**
      * Get display name
      *
      * @return String
