@@ -20,7 +20,7 @@
                 'fechaToma': '{{ muestra.fechaToma|date("Y-m-d") }}',
                 'lecturas': new Array()
             };
-            {% for lectura in muestrasArray[ muestra.id ] %}
+            {% for lectura in lecturasArray[ muestra.id ] %}
             muestra.lecturas.push({
               'concentracion': '{{ lectura.concentracion }}',
               'tecAnalitica': '{{ lectura.tecAnalitica }}',
