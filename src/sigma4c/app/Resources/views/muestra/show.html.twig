@@ -47,6 +47,38 @@
             </tr>
         </tbody>
     </table>
+    <h1>Lecturas</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Concentracion</th>
+                <th>Tecnica Analítica</th>
+                <th>Lc</th>
+                <th>Incertidumbre</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lectura in lecturas %}
+            <tr>
+                <td><a href="{{ path('lectura_show', { 'id': lectura.id }) }}">{{ lectura.concentracion }}</a></td>
+                <td>{{ lectura.tecAnalitica }}</td>
+                <td>{{ lectura.lc }}</td>
+                <td>{{ lectura.incertidumbre }}</td>
+                <td>
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="{{ path('lectura_show', { 'id': lectura.id }) }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="{{ path('lectura_edit', { 'id': lectura.id }) }}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+</table>
 
     <ul class="list-inline">
         <li>

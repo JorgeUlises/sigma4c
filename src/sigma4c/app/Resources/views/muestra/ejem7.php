@@ -1,3 +1,4 @@
+
 <style type="text/css">
 <!--
 table { vertical-align: top; }
@@ -29,27 +30,27 @@ td    { vertical-align: top; }
     <table cellspacing="0" style="width: 100%; text-align: left; font-size: 11pt;">
         <tr>
             <td style="width:50%;"></td>
-            <td style="width:14%; ">Client :</td>
-            <td style="width:36%">M. Albert Dupont</td>
+            <td style="width:14%; ">Cliente :</td>
+            <td style="width:36%">Nombre Cliente</td>
         </tr>
         <tr>
             <td style="width:50%;"></td>
-            <td style="width:14%; ">Adresse :</td>
+            <td style="width:14%; ">Dirección:</td>
             <td style="width:36%">
-                Résidence perdue<br>
-                1, rue sans nom<br>
-                00 000 - Pas de Ville<br>
+                Calle 1 # 2 - 3 <br>
+                Barrio inventado<br>
+                Bogotá - Colombia<br>
             </td>
         </tr>
         <tr>
             <td style="width:50%;"></td>
             <td style="width:14%; ">Email :</td>
-            <td style="width:36%">nomail@domain.com</td>
+            <td style="width:36%">gerencia@cuatroconceptos.com</td>
         </tr>
         <tr>
             <td style="width:50%;"></td>
             <td style="width:14%; ">Tel :</td>
-            <td style="width:36%">33 (0) 1 00 00 00 00</td>
+            <td style="width:36%">+57 3017852790</td>
         </tr>
     </table>
     <br>
@@ -57,14 +58,14 @@ td    { vertical-align: top; }
     <table cellspacing="0" style="width: 100%; text-align: left;font-size: 10pt">
         <tr>
             <td style="width:50%;"></td>
-            <td style="width:50%; ">Spipu Ville, le </td>
+            <td style="width:50%; ">Bogotá, Colombia</td>
         </tr>
     </table>
     <br>
     <i>
-        <b><u>Objet </u>: &laquo; Bon de Retour &raquo;</b><br>
-        Compte client : 00C4520100A<br>
-        Référence du Dossier : 71326<br>
+        <b><u>Objeto </u>: &laquo; Análisis punto control X &raquo;</b><br>
+        Nit cliente : 00C4520100A<br>
+        Muestra Asociada : 71326<br>
     </i>
     <br>
     <br>

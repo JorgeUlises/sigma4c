@@ -23,7 +23,7 @@ class LecturaType extends AbstractType
             ->add('idMuestra')
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */

@@ -1,20 +1,49 @@
-{% extends 'base.html.twig' %}
+{% extends 'sigmabase.html.twig' %}
 
 {% block body %}
-    <h1>Lectura edit</h1>
+    <h1>Editar Lectura</h1>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+    {{ form_start(edit_form, {'attr': {'class': 'form-horizontal'}}) }}
+        <div class="form-group">
+          {{ form_label(edit_form.concentracion, 'Concentracion') }}
+          {{ form_errors(edit_form.concentracion) }}
+          {{ form_widget(edit_form.concentracion, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+          {{ form_label(edit_form.tecAnalitica, 'Tecnica Analítica') }}
+          {{ form_errors(edit_form.tecAnalitica) }}
+          {{ form_widget(edit_form.tecAnalitica, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+          {{ form_label(edit_form.lc, 'Lc') }}
+          {{ form_errors(edit_form.lc) }}
+          {{ form_widget(edit_form.lc, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+          {{ form_label(edit_form.incertidumbre, 'Incertidumbre') }}
+          {{ form_errors(edit_form.incertidumbre) }}
+          {{ form_widget(edit_form.incertidumbre, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+          {{ form_label(edit_form.idParametro, 'Parámetro') }}
+          {{ form_errors(edit_form.idParametro) }}
+          {{ form_widget(edit_form.idParametro, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+          {{ form_label(edit_form.idMuestra, 'Muestra') }}
+          {{ form_errors(edit_form.idMuestra) }}
+          {{ form_widget(edit_form.idMuestra, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <input class="btn btn-default"  type="submit" value="Guardar" />
     {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('lectura_index') }}">Back to the list</a>
+<br/>
+    <ul class="list-inline">
+      <li>
+        <a class="btn btn-info" href="{{ path('lectura_index') }}">Volver</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input class="btn btn-danger" type="submit" value="Eliminar">
             {{ form_end(delete_form) }}
         </li>
     </ul>
