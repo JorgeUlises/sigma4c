@@ -1,4 +1,4 @@
-#Sigma4C
+# Sigma4C
 Es el entorno de desarrollo para el sigma4c.
 ```bash
 #$ vagrant init centos/7
@@ -25,3 +25,6 @@ Después de que hayas iniciado toda la máquina, se puede ejecutar fácilmente:
 $ ./run
 ```
 
+# Producción
+ - http://stackoverflow.com/questions/6789950/symfony2-how-to-switch-from-dev-to-prod
+ - http://symfony.com/doc/2.8/deployment.html
