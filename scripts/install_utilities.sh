@@ -16,5 +16,5 @@ if [ "$install" = "installed" ]
 then
   echo 'Utilities ya están instalados. Nada que hacer.'
 else
-  sudo yum install -y "${list[*]}"
+  sudo yum install -y ${list[*]}
 fi
