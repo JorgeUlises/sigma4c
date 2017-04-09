@@ -11,7 +11,8 @@ fi
 
 # rationale: instalar php7.1
 # link: https://webtatic.com/packages/php71/
-list=(php71w-cli mod_php71w php71w-pgsql php71w-xml php71w-pdo php71w-gd php71w-opcache)
+list=(php71w-cli mod_php71w php71w-pgsql php71w-xml php71w-pdo php71w-gd \
+  php71w-opcache php71w-cli php71w-intl)
 install=installed
 for p in ${list[*]}
 do
