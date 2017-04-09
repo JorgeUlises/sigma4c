@@ -41,5 +41,33 @@ Alias "/" "/home/vagrant/src/sigma4c/web/"
 EOF
 fi
 
+# rationale: configurar rutas de status e info
+# el indice 00- hace que cargue de primero alfabéticamente
+file=/etc/httpd/conf.d/00-status.conf
+if [ -f $file ]
+then
+  echo "El archivo $file ya existe. Nada que hacer."
+else
+  sudo tee $file << 'EOF'
+Alias "/server-status" "/var/www/dummy"
+Alias "/server-info" "/var/www/dummy"
+ExtendedStatus on
+<Location /server-status>
+    SetHandler server-status
+    Order deny,allow
+    Deny from all
+    Allow from all
+    #Allow from 192.168.69.69
+</Location>
+<Location /server-info>
+    SetHandler server-info
+    Order deny,allow
+    Deny from all
+    Allow from all
+    #Allow from 192.168.69.69
+</Location>
+EOF
+fi
+
 # rationale: iniciar apache
 sudo systemctl start httpd
