@@ -1,7 +1,17 @@
 #!/bin/bash
 echo 'Ejecutando: install_symfony.sh'
 
-list=(php php-pgsql php-xml php-pdo)
+# rationale: instalar repositorio webtatic para tener php7 en centos7
+if yum repolist | grep -i webtatic &> /dev/null
+then
+  echo 'Webtatic ya está instalado. Nada que hacer.'
+else
+  sudo rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
+fi
+
+# rationale: instalar php7.1
+# link: https://webtatic.com/packages/php71/
+list=(php71w-cli mod_php71w php71w-pgsql php71w-xml php71w-pdo php71w-gd php71w-opcache)
 install=installed
 for p in ${list[*]}
 do
@@ -17,7 +27,7 @@ if [ "$install" = "installed" ]
 then
   echo 'PHP y dependencias de Symfony ya están instalados. Nada que hacer.'
 else
-  sudo yum install -y "${list[*]}"
+  sudo yum install -y ${list[*]}
 fi
 
 if [ -f /usr/local/bin/symfony ]
