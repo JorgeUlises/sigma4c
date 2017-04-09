@@ -6,10 +6,12 @@
 
     <div class="form-group">
         <label for="parametro">Seleccione uno o varios parámetros:</label><br>
-        {% for parametro in parametros %}
-            <input type="checkbox" name="parametro" value="{{ parametro.id }}" onchange="graficarParametro(this);">
-            {{ parametro.nombre }}<br>
-        {% endfor %}
+        <div style="height: 250px; overflow-y: scroll;">
+          {% for parametro in parametros %}
+              <input type="checkbox" name="parametro" value="{{ parametro.id }}" onchange="graficarParametro(this);">
+              {{ parametro.nombre }}<br>
+          {% endfor %}
+        </div>
     </div>
 
     <script>

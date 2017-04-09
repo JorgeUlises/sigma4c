@@ -5,7 +5,7 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.3.3/d3.min.js"></script>
 
     <style>
-        body {
+        #container {
             font: 12px Arial;
         }
 
@@ -137,6 +137,28 @@
               data: mercurio
           }
           agregarGraficar(obj);
+          var obj = {
+              id: 'parametroinventado2',
+              type: 'analog',
+              name: 'Inventado 2',
+              yVal: ['Value'],
+              maximo: 0.4,
+              minimo: 0.2,
+              unidad: 'cms',
+              data: mercurio2
+          }
+          agregarGraficar(obj);
+          var obj = {
+              id: 'parametroinventado3',
+              type: 'analog',
+              name: 'Inventado 3',
+              yVal: ['Value'],
+              maximo: 0.4,
+              minimo: 0.2,
+              unidad: 'semillas',
+              data: arsenico
+          }
+          agregarGraficar(obj);
         }
 
         // function getLecturasByMuestra(muestra) {     $.ajax({         url: '/muestra/' + muestra.id + '/lecturas'     }).done(function(a) {         console.log('Lectura de muestra ' + muestra.id + ': ', a);         muestra.lecturas = a;     }); } function
@@ -152,3 +174,9 @@
         <p>Working...</p>
     </div>
 </div>
+
+<ul class="list-inline">
+    <li>
+        <a class="btn btn-info" href="#" onclick="graficarPrueba();">Prueba</a>
+    </li>
+</ul>

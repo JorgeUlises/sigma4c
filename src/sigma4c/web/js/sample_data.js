@@ -123,3 +123,18 @@ var mercurio = [
 {"DateTime":"2015-07-01","Value":0.44, "Value2": 100},
 {"DateTime":"2015-10-01","Value":0.33, "Value2": 100}
 ];
+
+var mercurio2 = [
+{"DateTime":"2013-01-01","Value":0.2, "Value2": 100},
+{"DateTime":"2013-04-01","Value":0.52, "Value2": 100},
+{"DateTime":"2013-07-01","Value":0.32, "Value2": 100},
+{"DateTime":"2013-10-01","Value":0.552, "Value2": 100},
+{"DateTime":"2014-01-01","Value":0.273, "Value2": 100},
+{"DateTime":"2014-04-01","Value":0.265, "Value2": 100},
+{"DateTime":"2014-07-01","Value":0.3763, "Value2": 100},
+{"DateTime":"2014-10-01","Value":0.383, "Value2": 100},
+{"DateTime":"2015-01-01","Value":0.392, "Value2": 100},
+{"DateTime":"2015-04-01","Value":0.033, "Value2": 100},
+{"DateTime":"2015-07-01","Value":0.464, "Value2": 100},
+{"DateTime":"2015-10-01","Value":0.133, "Value2": 100}
+];
