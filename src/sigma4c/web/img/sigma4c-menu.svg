@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="142.66493mm"
+   height="27.184883mm"
+   viewBox="0 0 505.50565 96.324393"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="sigma4c-menu.svg"
+   inkscape:export-filename="E:\Users\jorge\sigma4c-icon_128x128.png"
+   inkscape:export-xdpi="112.23"
+   inkscape:export-ydpi="112.23">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#000000"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="216.0517"
+     inkscape:cy="27.109547"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1536"
+     inkscape:window-height="801"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-78.175119,-169.5518)">
+    <path
+       style="fill:#fefffb;fill-opacity:1"
+       d="m 114.28957,264.73212 c -15.888024,-4.47093 -28.157125,-15.57493 -33.478416,-30.29924 -3.13256,-8.66796 -3.51929,-21.35475 -0.91255,-29.93688 4.141901,-13.63629 12.816281,-23.71703 25.773196,-29.95174 12.54455,-6.03628 25.15651,-6.60192 37.45775,-1.67994 3.89748,1.55947 3.92253,1.6046 3.92253,7.0679 0,4.84986 -0.20641,5.41173 -1.75,4.76353 -10.06976,-4.22858 -12.22177,-4.76017 -19.25,-4.75509 -33.585075,0.0243 -50.479516,39.60558 -27.424944,64.25278 2.849114,3.04593 7.320404,6.32331 11.298914,8.28193 6.03449,2.97077 7.37859,3.24042 16.10501,3.23096 8.22355,-0.009 10.30496,-0.37629 15.27366,-2.69588 7.53504,-3.51767 15.68656,-11.33518 19.31977,-18.52815 2.83881,-5.62023 2.92506,-6.24485 3.41992,-24.76565 0.31254,-11.69716 0.88914,-18.95039 1.50015,-18.87092 1.67891,0.21834 5.5,8.96042 7.67371,17.55627 1.82047,7.19896 1.93142,8.99839 0.92909,15.06772 -3.15759,19.11998 -14.9617,33.91535 -31.81728,39.88006 -7.62228,2.6973 -21.02043,3.35781 -28.04051,1.38234 z m 7.26251,-25.42903 c -11.2747,-2.82564 -18.80079,-13.54897 -17.07693,-24.33155 3.40135,-21.27502 31.41029,-25.77746 40.97355,-6.58651 4.18467,8.39755 3.09687,17.06587 -2.98666,23.79961 -5.42072,6.00008 -13.88063,8.88012 -20.90996,7.11845 z"
+       id="path3351"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="sssssssssscssscsssssssss" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:88.54566956px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="192.70497"
+       y="246.16876"
+       id="text4156"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4158"
+         x="192.70497"
+         y="246.16876"
+         style="fill:#ffffff;fill-opacity:1">Sigma4C</tspan></text>
+  </g>
+</svg>
