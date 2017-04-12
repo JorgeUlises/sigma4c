@@ -5,7 +5,7 @@ CREATE EXTENSION postgis_topology;
 
 -- Database generated with pgModeler (PostgreSQL Database Modeler).
 -- pgModeler  version: 0.8.2
--- PostgreSQL version: 9.5
+-- PostgreSQL version: 9.4
 -- Project Site: pgmodeler.com.br
 -- Model Author: ---
 
@@ -163,6 +163,7 @@ CREATE TABLE public.parametro(
 	metodo character varying,
 	max_l double precision,
 	min_l double precision,
+	norma character varying,
 	CONSTRAINT parametro_id PRIMARY KEY (id)
 
 );

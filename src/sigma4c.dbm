@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.8.2" last-position="0,66" last-zoom="0.75"
+<dbmodel pgmodeler-ver="0.8.2" last-position="0,65" last-zoom="0.75"
 	 default-schema="public" default-owner="sigma4c">
 <role name="sigma4c"
       password="abc123">
@@ -57,7 +57,7 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 	<schema name="public"/>
 	<role name="sigma4c"/>
 	<comment><![CDATA[Datos basicos del proyecto]]></comment>
-	<position x="260" y="143"/>
+	<position x="260" y="140"/>
 	<column name="id" not-null="true">
 		<type name="serial"/>
 	</column>
@@ -211,6 +211,9 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 	<column name="min_l">
 		<type name="double precision"/>
 	</column>
+	<column name="norma">
+		<type name="character varying"/>
+	</column>
 	<constraint name="parametro_id" type="pk-constr" table="public.parametro">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
@@ -283,7 +286,7 @@ CREATE EXTENSION postgis_topology;]]></prepended-sql>
 <table name="many_proyecto_has_many_empresa">
 	<schema name="public"/>
 	<role name="sigma4c"/>
-	<position x="300" y="363"/>
+	<position x="300" y="360"/>
 
 	<customidxs object-type="column">
 		<object name="id_empresa" index="1"/>
