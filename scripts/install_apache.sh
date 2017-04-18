@@ -14,7 +14,7 @@ else
 fi
 
 # rationale: dar permisos al servidor web para acceder como usuario vagrant
-file=/etc/httpd/conf.d/permisos.conf
+file=/etc/httpd/conf.d/40-permisos.conf
 if [ -f $file ]
 then
   echo "El archivo $file ya existe. Nada que hacer."
@@ -43,7 +43,7 @@ fi
 
 # rationale: configurar rutas de status e info
 # el indice 00- hace que cargue de primero alfabéticamente
-file=/etc/httpd/conf.d/00-status.conf
+file=/etc/httpd/conf.d/50-status.conf
 if [ -f $file ]
 then
   echo "El archivo $file ya existe. Nada que hacer."

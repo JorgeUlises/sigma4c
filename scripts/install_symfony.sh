@@ -2,7 +2,7 @@
 echo 'Ejecutando: install_symfony.sh'
 
 # rationale: instalar repositorio webtatic para tener php7 en centos7
-if yum repolist | grep -i webtatic &> /dev/null
+if yum -C repolist | grep -i webtatic &> /dev/null
 then
   echo 'Webtatic ya está instalado. Nada que hacer.'
 else
