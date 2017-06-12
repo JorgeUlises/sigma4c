@@ -8,7 +8,7 @@ sudo yum localinstall -y http://download.postgresql.org/pub/repos/yum/9.5/redhat
 sudo yum install -y postgresql95-server
 sudo /usr/pgsql-9.5/bin/postgresql95-setup initdb
 sudo systemctl enable postgresql-9.5
-sudo sed -i.bak "s/#listen_addresses = 'localhost'/listen_addresses = '*'" /var/lib/pgsql/9.5/data/postgresql.conf
+sudo sed -i.bak "s/#listen_addresses = 'localhost'/listen_addresses = '*'/" /var/lib/pgsql/9.5/data/postgresql.conf
 sudo sed -i.bak 's/peer/trust/; s/ident/md5/' /var/lib/pgsql/9.5/data/pg_hba.conf
 sudo tee -a /var/lib/pgsql/9.5/data/pg_hba.conf << 'EOF'
 host    all             all             0.0.0.0/0               md5
