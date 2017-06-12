@@ -13,7 +13,6 @@ sudo sed -i.bak 's/peer/trust/; s/ident/md5/' /var/lib/pgsql/9.5/data/pg_hba.con
 sudo tee -a /var/lib/pgsql/9.5/data/pg_hba.conf << 'EOF'
 host    all             all             0.0.0.0/0               md5
 EOF
-sudo sed -i.bak \"s/#listen_addresses = 'localhost'/listen_addresses = '*'/\" /var/lib/pgsql/9.5/data/postgresql.conf
 sudo systemctl start postgresql-9.5.service
 echo "Se ha terminado la instalación de Postgresql"
 #if you what remove # yum erase postgresql95*
@@ -23,6 +22,7 @@ $ sudo su postgres
 $ psql
 > CREATE USER nombre_usuario WITH PASSWORD 'clave';
 > CREATE DATABASE nombre_db WITH OWNER = nombre_usuario ENCODING = 'UTF8' TABLESPACE = pg_default CONNECTION LIMIT = -1;
+> ALTER USER nombre_usuario WITH ENCRYPTED PASSWORD 'clave'; --CHANGE USER PASSWORD
 $ vim /var/lib/pgsql/9.5/data/pg_hba.conf
 #host   DATABASE        USER            ADDRESS                 METHOD
 local   all             all                                     trust
