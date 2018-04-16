@@ -1,29 +1,5 @@
 #!/bin/bash
 source utils
 
-case "$1" in
-
-"--help" )
-  echo Ayuda en construcción
-  ;;
-
-"h" )
-printc 'vagrant halt'
-vagrant halt  
-  ;;
-
-"r" )
-printc 'vagrant reload'
-vagrant reload
-printc 'vagrant ssh'
-vagrant ssh
-  ;;
-
-*)
-printc 'vagrant up'
-vagrant up
-printc 'vagrant ssh'
-vagrant ssh
-  ;;
-
-esac
+printc 'docker-compose up'
+docker-compose up
